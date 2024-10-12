@@ -11,7 +11,9 @@ interface Sector {
     id: number;
     name: string;
     description: string;
-    acf:object;
+    acf: {                    // ACF fields specific to the sector
+        [key: string]: unknown;   // ACF can contain dynamic fields, 'unknown' is safer than 'any'
+    };
 }
 
 // Interface for context props
@@ -36,7 +38,7 @@ export const SectorDataProvider = ({ children }: { children: ReactNode }) => {
             setLoading(true); // Start loading state 
             try {
 
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/pages?slug=home`);
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/pages?&fields=acf&acf_format=standard`);
                 if (!response.ok) throw new Error('Failed to fetch sector data');
                 const data: unknown = await response.json();
                 setHomeSecondSection(data as Sector[]); // Changed setSectorData to setHomeSecondSection
