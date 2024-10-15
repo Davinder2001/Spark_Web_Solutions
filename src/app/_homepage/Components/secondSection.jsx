@@ -3,9 +3,9 @@ import { useContext } from 'react';
 import { SectorDataContext } from '@/context/apiContext';
 
 const SecondSection = () => {
-  const sectorDataContext = useContext(SectorDataContext);
- 
-  const mainData = sectorDataContext?.homeSecondSection?.[0]?.acf?.['second-section'];
+  const pagesDataApi = useContext(SectorDataContext);
+  const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'home')?.acf?.second_section;
+  
   return (
     <div>
       {mainData?.map((section, sectionIndex) => (

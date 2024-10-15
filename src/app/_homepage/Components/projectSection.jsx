@@ -3,15 +3,15 @@ import { useContext } from 'react';
 import { SectorDataContext } from '@/context/apiContext';
 
 const ProjectSection = () => {
-    const sectorDataContext = useContext(SectorDataContext);
-    const mainData = sectorDataContext?.homeSecondSection?.[0]?.acf?.['projects_section'];
-
+    const pagesDataApi = useContext(SectorDataContext);
+    const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'home')?.acf?.projects_section;
+   
     return (
         <div>
-            {mainData && mainData.length > 0 && (
+            {mainData && (
                 <>
-                    <h2>{mainData[0].heading}</h2>
-                    {mainData[0].projects.map((project, index) => (
+                    <h2>{mainData?.heading}</h2>
+                    {mainData.projects.map((project, index) => (
                         <div key={index} style={{ margin: '20px', border: '1px solid #ccc', padding: '10px', borderRadius: '5px' }}>
                             <img
                                 src={project.image}
