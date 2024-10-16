@@ -1,9 +1,14 @@
 import React from 'react'
+import FirstSection from './components/firstSection'
+import SecondSection from './components/secondSection'
+import ThirdSection from './components/thirdSection'
 
 const Page = () => {
   return (
     <div>
-      <h2>Internship</h2>
+     <FirstSection/>
+     <SecondSection/>
+     <ThirdSection/>
     </div>
   )
 }

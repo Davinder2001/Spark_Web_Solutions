@@ -2,3 +2,36 @@ body{
   background-color: #111216;
   color: white;
 }
+
+
+.container{
+  padding: 0;
+  margin: auto;
+  max-width: 1750px;
+}
+img {
+  max-width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer{
+  background-color: #18191D;  
+  border-radius: 20px;
+  margin: 70px 0px;
+  padding: 20px;
+
+  .footer-inner {
+    padding:20px;
+    display: flex;
+    justify-content: space-between;
+  }
+.copyright-section {
+    border-top: 1px solid;
+    padding: 20px;
+    text-align: center;
+}
+}

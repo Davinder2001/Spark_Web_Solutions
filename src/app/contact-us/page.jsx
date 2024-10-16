@@ -1,9 +1,12 @@
 import React from 'react'
+import FormSection from './components/formSection'
+import MapSection from './components/mapSection'
 
 const Page = () => {
   return (
     <div>
-        <h2>Contact Us</h2>
+        <FormSection/>
+        <MapSection/>
     </div>
   )
 }

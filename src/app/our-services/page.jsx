@@ -1,9 +1,12 @@
 import React from 'react'
+import ServicesSection from './components/servicesSection'
+import ExpertiseSection from './components/expertiseSection'
 
 const Page = () => {
   return (
     <div>
-        <h2>Services</h2>
+      <ServicesSection/>
+      <ExpertiseSection/>
     </div>
   )
 }
