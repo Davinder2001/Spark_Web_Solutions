@@ -3,7 +3,7 @@ import MainBlogs from './components/mainBlogs'
 
 const Page = () => {
   return (
-    <div>
+    <div className='container'>
       <MainBlogs/>
     </div>
   )

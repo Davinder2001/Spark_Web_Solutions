@@ -13,7 +13,7 @@ const SecondSection = () => {
   };
 
   return (
-    <div className=''>
+    <div className='container'>
       <h2>{mainData?.heading}</h2>
       <p>{stripHtmlTags(mainData?.description)}</p> {/* Render plain text */}
     </div>

@@ -1,6 +1,16 @@
-body{
+body.dark-mode{
   background-color: #111216;
   color: white;
+
+
+// CSS For dark mode
+  .popup .popup-content{
+    background-color: #111216;
+ 
+  input, textarea {
+    background: linear-gradient(95.49deg, #18191D 1.53%, #1D1E21 50.01%, #363C48 99.61%);
+    color: white;
+} }
 }
 
 
@@ -35,3 +45,98 @@ img {
     text-align: center;
 }
 }
+
+.courses-main-outer{
+  .tab-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+
+}
+.header {
+  padding: 20px; /* Adjust padding as needed */
+}
+
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure it appears on top */
+
+
+
+  .form-top-bar {
+    display: flex;
+    justify-content: space-between;
+}
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 900px;
+  width: 100%;
+}
+
+.popup-content h2 {
+  margin: 0 0 10px;
+}
+
+.popup-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-content input,
+.popup-content textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.popup-content button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #0070f3; /* Change to your primary color */
+  color: white;
+  cursor: pointer;
+}
+
+.popup-content button[type='button'] {
+  background-color: #ccc; /* Close button */
+}
+
+.popup-content button:hover {
+  opacity: 0.9; /* Slight hover effect */
+}
+.container-for-four {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.form-control {
+  display: flex;
+  flex-direction: column;
+}
+
+}
+

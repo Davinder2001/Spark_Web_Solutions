@@ -5,7 +5,7 @@ import { SectorDataContext } from '@/context/apiContext';
 const Testimonial = () => {
   const { testimonialsApi } = useContext(SectorDataContext);
   return (
-    <div>
+    <div className='container'>
     <h3></h3>
       {testimonialsApi?.map((section, sectionIndex) => (
         <div key={sectionIndex}>

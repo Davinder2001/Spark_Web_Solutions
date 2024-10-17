@@ -1,5 +1,7 @@
 'use client'
 import { useContext } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { SectorDataContext } from '@/context/apiContext';
 
 
@@ -13,7 +15,9 @@ const Portfolio = () => {
         { mainData && (
             mainData.portfolio?.map((card, index) => (
                 <div key={index} className="portfolio-card">
-                    <img src={card.image} alt={card.project_name} />
+                <Link href={card.link} target='blank' >
+
+                    <Image src={card.image} alt={card.project_name} width={1000} height={500}  />
                     <h3>{card.project_name} ({card.year})</h3>
                     {card && (
                         card.technology.map((technology, index) => (
@@ -22,6 +26,7 @@ const Portfolio = () => {
                     )
 
                     }
+                </Link>
                     <p>{card.description}</p>
                 </div>
             ))

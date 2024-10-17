@@ -6,11 +6,11 @@ export const SectorDataContext = createContext(undefined);
 
 // Provider component
 export const SectorDataProvider = ({ children }) => {
-    const [pagesDataApi, setPagesDataApi] = useState([]); // Data from Pages API
-    const [testimonialsApi, setTestimonialsApi] = useState(null); // Data from Testimonials API
-    const [postDataApi, setPostDataApi] = useState(null); // Data from Posts API
-    const [headerDataApi, setHeaderDataApi] = useState(null); // Data from Header API
-    const [footerDataApi, setFooterDataApi] = useState(null); // Data from Footer API
+    const [pagesDataApi, setPagesDataApi] = useState([]);           // Data from Pages API
+    const [testimonialsApi, setTestimonialsApi] = useState(null);   // Data from Testimonials API
+    const [postDataApi, setPostDataApi] = useState(null);           // Data from Posts API
+    const [headerDataApi, setHeaderDataApi] = useState(null);       // Data from Header API
+    const [footerDataApi, setFooterDataApi] = useState(null);       // Data from Footer API
 
     const [loading, setLoading] = useState({
         pages: true,
@@ -33,11 +33,11 @@ export const SectorDataProvider = ({ children }) => {
         const fetchData = async () => {
             try {
                 const [pagesResponse, testimonialsResponse, postsResponse, headerResponse, footerResponse] = await Promise.all([
-                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/pages?&fields=acf&acf_format=standard`),
-                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/testimonial?&fields=acf&acf_format=standard`),
-                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/posts?&fields=acf&acf_format=standard`),
-                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/header?&fields=acf&acf_format=standard`), // Header API
-                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/footer?&fields=acf&acf_format=standard`), // Footer API
+                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/pages?&fields=acf&acf_format=standard`),            //Pages API
+                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/testimonial?&fields=acf&acf_format=standard`),      //Testimonial API
+                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/posts?_embed&fields=acf&acf_format=standard`),      //Post API
+                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/header?&fields=acf&acf_format=standard`),           // Header API
+                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/wp/v2/footer?&fields=acf&acf_format=standard`),           // Footer API
                 ]);
 
                 // Check if responses are ok

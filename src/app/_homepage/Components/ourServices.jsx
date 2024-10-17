@@ -9,7 +9,7 @@ const OurServices = () => {
 
 
   return (
-    <div>
+    <div className='container'>
       <h2>{mainData?.heading}</h2>
       <div className="services-container">
         {mainData?.cards?.map((card, index) => (

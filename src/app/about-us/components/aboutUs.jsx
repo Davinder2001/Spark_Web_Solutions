@@ -7,7 +7,7 @@ const AboutUsMain = () => {
     const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'about-us')?.acf?.third_section;
 
     return (
-        <div className="third-section">
+        <div className="third-section container">
             {mainData && (
                 <>
                 <h1>{mainData.slider_text}</h1>

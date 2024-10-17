@@ -6,7 +6,7 @@ const ParagraphSection = () => {
   const pagesDataApi = useContext(SectorDataContext);
   const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'about-us')?.acf?.third_section;
   return (
-    <div className="para-section">
+    <div className="para-section container">
             {mainData && (
                <>
                {mainData.description_section?.map((section, index) => (

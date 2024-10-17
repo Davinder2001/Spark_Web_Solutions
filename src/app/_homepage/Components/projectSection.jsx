@@ -7,7 +7,7 @@ const ProjectSection = () => {
     const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'home')?.acf?.projects_section;
    
     return (
-        <div>
+        <div className='container'>
             {mainData && (
                 <>
                     <h2>{mainData?.heading}</h2>

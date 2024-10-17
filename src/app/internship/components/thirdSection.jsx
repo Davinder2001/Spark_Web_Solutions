@@ -7,43 +7,82 @@ const ThirdSection = () => {
   const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'internship')?.acf?.third_section;
 
   // State to track the active tab
-  const [activeTab, setActiveTab] = useState(mainData?.tabs?.[0]?.id); // Initialize with the first tab's id
+  const [activeTab, setActiveTab] = useState('all'); // Initialize with 'all' for the "All Courses" tab
 
   return (
-    <div>
-      <h2>{mainData?.heading}</h2>
+    <div className='courses-main-outer container'>
       {/* Tab Navigation */}
-      <div style={{ display: 'flex', borderBottom: '1px solid #ccc', marginBottom: '1rem' }}>
-        {mainData?.tabs?.map((tab) => (
+      <div style={{ display: 'flex', marginBottom: '1rem' }}>
+        {/* "All Courses" button */}
+        <button
+          onClick={() => setActiveTab('all')}
+          style={{
+            padding: '10px 20px',
+            cursor: 'pointer',
+            border: 'none',
+            backgroundColor: activeTab === 'all' ? '#F24B74' : '#f1f1f1',
+            color: activeTab === 'all' ? '#fff' : '#000',
+            borderRadius: '40px',
+            marginRight: '5px'
+          }}
+          
+        >
+          All Courses
+        </button>
+        {/* Dynamic Tab Buttons */}
+        {mainData?.map((tab) => (
           <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
+            key={tab.course_name}
+            onClick={() => setActiveTab(tab.course_name)}
             style={{
               padding: '10px 20px',
               cursor: 'pointer',
               border: 'none',
-              backgroundColor: activeTab === tab.id ? '#0070f3' : '#f1f1f1',
-              color: activeTab === tab.id ? '#fff' : '#000',
-              borderRadius: '4px',
+              backgroundColor: activeTab === tab.course_name ? '#F24B74' : '#f1f1f1',
+              color: activeTab === tab.course_name ? '#fff' : '#000',
+              borderRadius: '40px',
               marginRight: '5px'
             }}
           >
-            {tab.title}
+            {tab.course_name}
           </button>
         ))}
       </div>
 
       {/* Tab Content */}
-      <div>
-        {mainData?.tabs?.map((tab) => (
-          <div
-            key={tab.id}
-            style={{ display: activeTab === tab.id ? 'block' : 'none' }} // Show only active tab content
-          >
-            <h3>{tab.title}</h3>
-            <p>{tab.content}</p> {/* Assuming each tab has a content field */}
-          </div>
-        ))}
+      <div className='content-wrapper'>
+        {activeTab === 'all' ? (
+          // Show all courses if "All Courses" is active
+          mainData?.map((tab) => (
+            <div key={tab.course_name} className='tab-content-wrapper'>
+              {tab.courses_details?.map((course, index) => (
+                <div key={index} className='single-course-wrapper'>
+                  <h3>{course.course_heading}</h3>
+                  <p dangerouslySetInnerHTML={{ __html: course.course_description }}></p>
+                </div>
+              ))}
+            </div>
+          ))
+        ) : (
+          // Show content for the selected tab
+          mainData?.map((tab) => (
+            <div
+              key={tab.course_name}
+              style={{ display: activeTab === tab.course_name ? 'block' : 'none' }} // Show only active tab content
+              className=''
+            >
+            <div className='tab-content-wrapper'>
+
+              {tab.courses_details?.map((course, index) => (
+                <div key={index}>
+                  <h3>{course.course_heading}</h3>
+                  <p dangerouslySetInnerHTML={{ __html: course.course_description }}></p>
+                </div>
+              ))}
+            </div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

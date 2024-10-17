@@ -1,5 +1,6 @@
 'use client';
 import { useContext, useState } from 'react';
+import Image from 'next/image';
 import { SectorDataContext } from '@/context/apiContext';
 
 const FormSection = () => {
@@ -37,14 +38,12 @@ const FormSection = () => {
         formDataToSend.append('_wpcf7_unit_tag', 289);
 
         try {
-            // const response = await fetch('https://api.sparkweb.co.in/wp-json/contact-form-7/v1/contact-forms/289/feedback', {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/contact-form-7/v1/contact-forms/289/feedback`, {
                 method: 'POST',
                 body: formDataToSend, // Send FormData object
             });
 
             const result = await response.json();
-            console.log('Res',result)
     
             if (response.ok) {
                 alert(result.message)
@@ -103,7 +102,14 @@ const FormSection = () => {
                 </div>
                 <button type="submit">Send Message</button>
             </form>
-            <img src={mainData?.main_image} alt="main" />
+            <Image 
+            src={mainData?.main_image} 
+            alt="Main Image" 
+            layout="responsive" 
+            width={100} 
+            height={50} 
+           
+            />
 
             {/* Status Message */}
             {statusMessage && <p>{statusMessage}</p>}

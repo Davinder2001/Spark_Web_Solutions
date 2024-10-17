@@ -2,84 +2,114 @@
 import { useContext, useState, useEffect } from 'react';
 import { SectorDataContext } from '@/context/apiContext';
 import Link from 'next/link';
+import EnquiryPopup from '../popup/enqueryPopup'; // Import the Popup component
 
 const Header = () => {
   const { headerDataApi } = useContext(SectorDataContext);
   const mainData = headerDataApi?.find(page => page.slug === 'header')?.acf;
 
-  const [isPlaying, setIsPlaying] = useState(false); // State to track music play/mute
-  const [audio, setAudio] = useState(null); // State to store the audio element
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [audio, setAudio] = useState(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
-    // Set up the audio file dynamically from mainData.music
     if (mainData?.music) {
       const audioFile = new Audio(mainData.music);
       setAudio(audioFile);
     }
     return () => {
-      // Cleanup the audio on component unmount
       if (audio) audio.pause();
     };
-  }, [mainData?.music]); // Run effect when mainData.music changes
+  }, [mainData?.music]);
 
   const toggleMusic = () => {
     if (audio) {
       if (isPlaying) {
-        audio.muted = true; // Mute the music
+        audio.muted = true;
       } else {
-        audio.muted = false; // Unmute the music
-        if (audio.paused) audio.play(); // Ensure the music plays if paused
+        audio.muted = false;
+        if (audio.paused) audio.play();
       }
-      setIsPlaying(!isPlaying); // Toggle the play/mute state
+      setIsPlaying(!isPlaying);
     }
   };
 
+  const toggleDarkMode = () => {
+    setIsDarkMode(prevMode => !prevMode);
+  };
+
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', !isDarkMode);
+    document.body.classList.toggle('light-mode', isDarkMode);
+  }, [isDarkMode]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const togglePopup = () => {
+    setIsPopupOpen(prev => !prev);
+  };
+  
+
   return (
-    <div className='container'>
+    <div className={`container ${isSticky ? 'sticky-header' : ''}`}>
       <div className='header'>
         <h3>{mainData?.contact_no}</h3>
         <Link href='/'>
           <img src={mainData?.logo} alt='Logo' />
         </Link>
         <div className='icons'>
-
-        <img src={mainData?.enquery_icon} alt='Enquiry Icon' />
-        <img src={mainData?.light_mode_icon} alt='Light Mode Icon' />
-        {/* Clickable music icon to toggle music (play/mute) */}
-        <img
-          src={mainData?.music_icon}
-          alt='Music Icon'
-          onClick={toggleMusic}
-          style={{ cursor: 'pointer' }}
-        />
+          <img
+            src={mainData?.enquery_icon}
+            alt='Enquiry Icon'
+            onClick={togglePopup}
+            style={{ cursor: 'pointer' }}
+          />
+          <img
+            src={isDarkMode ? mainData?.dark_mode_icon : mainData?.light_mode_icon}
+            alt='Mode Icon'
+            onClick={toggleDarkMode}
+            style={{ cursor: 'pointer' }}
+          />
+          <img
+            src={mainData?.music_icon}
+            alt='Music Icon'
+            onClick={toggleMusic}
+            style={{ cursor: 'pointer' }}
+          />
         </div>
       </div>
 
       <nav>
         <ul style={{ display: 'flex', listStyleType: 'none', padding: 0, gap: '20px' }}>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/about-us">About</Link>
-          </li>
-          <li>
-            <Link href="/internship">Internship</Link>
-          </li>
-          <li>
-            <Link href="/portfolio">Portfolio</Link>
-          </li>
-          <li>
-            <Link href="/our-services">Our Services</Link>
-          </li>
-          <li>
-            <Link href="/contact-us">Contact Us</Link>
-          </li>
-          <li>
-            <Link href="/blog">Blogs</Link>
-          </li>
+          <li><Link href="/">Home</Link></li>
+          <li><Link href="/about-us">About</Link></li>
+          <li><Link href="/internship">Internship</Link></li>
+          <li><Link href="/portfolio">Portfolio</Link></li>
+          <li><Link href="/our-services">Our Services</Link></li>
+          <li><Link href="/contact-us">Contact Us</Link></li>
+          <li><Link href="/blog">Blogs</Link></li>
         </ul>
       </nav>
+
+      {/* Popup Component */}
+      {/* Popup Component */}
+{isPopupOpen && (
+  <div className={`popup ${isPopupOpen ? 'show' : ''}`}>
+    <EnquiryPopup onClose={togglePopup} />
+  </div>
+)}
+
     </div>
   );
 };

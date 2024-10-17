@@ -7,7 +7,7 @@ const SecondSection = () => {
   const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'home')?.acf?.second_section;
   
   return (
-    <div>
+    <div className='container'>
       {mainData?.map((section, sectionIndex) => (
         <div key={sectionIndex}>
           <h2>{section.main_heading}</h2>

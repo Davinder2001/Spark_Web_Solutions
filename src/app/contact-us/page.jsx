@@ -4,7 +4,7 @@ import MapSection from './components/mapSection'
 
 const Page = () => {
   return (
-    <div>
+    <div className='container'>
         <FormSection/>
         <MapSection/>
     </div>

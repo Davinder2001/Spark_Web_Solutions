@@ -8,7 +8,7 @@ const AboutUsSection = () => {
     const mainData = pagesDataApi?.find(page => page.slug === 'home')?.acf.about_us_section;
     
   return (
-    <div>
+    <div className='container'>
     <h2>{mainData?.heading}</h2>
            {mainData?.image_gallery?.map((image, index) => (
           <div key={index} className="service-card">
