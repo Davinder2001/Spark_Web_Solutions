@@ -1,5 +1,5 @@
 'use client';
-import { useContext } from 'react';
+import { useContext} from 'react';
 import { SectorDataContext } from '@/context/apiContext';
 
 const OurServices = () => {
@@ -10,7 +10,18 @@ const OurServices = () => {
 
   return (
     <div className='container'>
+    <marquee className='marquee'>
+    <div className='marquee'>
+
       <h2>{mainData?.heading}</h2>
+      <h2>{mainData?.heading}</h2>
+      <h2>{mainData?.heading}</h2>
+      <h2>{mainData?.heading}</h2>
+      <h2>{mainData?.heading}</h2>
+      <h2>{mainData?.heading}</h2>
+      <h2>{mainData?.heading}</h2>
+    </div>
+    </marquee>
       <div className="services-container">
         {mainData?.cards?.map((card, index) => (
           <div key={index} className="service-card">

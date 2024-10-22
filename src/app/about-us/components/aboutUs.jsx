@@ -1,5 +1,6 @@
 'use client';
 import { useContext } from 'react';
+import Image from 'next/image';
 import { SectorDataContext } from '@/context/apiContext';
 
 const AboutUsMain = () => {
@@ -16,7 +17,13 @@ const AboutUsMain = () => {
                     <p>{mainData.main_description}</p>
                     <div className="image-gallery">
                         {mainData.image_gallery?.map((image, index) => (
-                            <img key={index} src={image.images} alt={`Image ${index + 1}`} />
+                            <Image  key={index} 
+                                    src={image.images} 
+                                    alt={`Image ${index + 1}`}
+                                    layout="responsive" 
+                                    width={100} 
+                                    height={50} 
+                                     />
                         ))}
                     </div>
                 </>

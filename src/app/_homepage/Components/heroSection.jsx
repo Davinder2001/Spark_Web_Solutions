@@ -1,10 +1,17 @@
 import React from 'react'
+import Image from 'next/image';
 
 const HeroSection = () => {
   return (
     <>
 
-        <img src='/image.png' alt='Image'/>
+        <Image  src='/image.png' 
+                alt='Image'
+                layout="responsive" 
+                width={100} 
+                height={50} 
+        />
+      
 </>
   )
 }

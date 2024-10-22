@@ -11,7 +11,7 @@ const Header = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audio, setAudio] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
+  // const [isSticky, setIsSticky] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
@@ -45,16 +45,16 @@ const Header = () => {
     document.body.classList.toggle('light-mode', isDarkMode);
   }, [isDarkMode]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsSticky(window.scrollY > 0);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setIsSticky(window.scrollY > 0);
+  //   };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
 
   const togglePopup = () => {
     setIsPopupOpen(prev => !prev);
@@ -62,7 +62,8 @@ const Header = () => {
   
 
   return (
-    <div className={`container ${isSticky ? 'sticky-header' : ''}`}>
+    <div className='container'>
+    {/* <div className={`container ${isSticky ? 'sticky-header' : ''}`}> */}
       <div className='header'>
         <h3>{mainData?.contact_no}</h3>
         <Link href='/'>

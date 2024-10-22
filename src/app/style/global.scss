@@ -1,3 +1,163 @@
+
+/* Basement Grotesque */
+@font-face {
+  font-family: Basement Grotesque;
+  src: url(../fonts/basement_grotesque/BasementGrotesque-Black_v1.202.otf);
+  font-weight: 900; /* Black */
+  font-style: normal;
+}
+
+/* Nunito Italic */
+@font-face {
+  font-family: Nunito-Italic;
+  src: url(../fonts/Nunito/Nunito/Nunito-Italic-VariableFont_wght.ttf);
+  font-weight: 400; /* Regular Italic */
+  font-style: italic;
+}
+
+/* Nunito Variable */
+@font-face {
+  font-family: Nunito-VariableFont;
+  src: url(../fonts/Nunito/Nunito/Nunito-VariableFont_wght.ttf);
+  font-weight: 100 900; /* Variable font, supporting multiple weights */
+  font-style: normal;
+}
+
+/* Nunito Regular (Normal) */
+@font-face {
+  font-family: Nunito;
+  src: url(../fonts/Nunito/Nunito/static/Nunito-Regular.ttf) format("truetype");
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+/* Nunito Light */
+@font-face {
+  font-family: Nunito;
+  src: url(../fonts/Nunito/Nunito/static/Nunito-Light.ttf) format("truetype");
+  font-weight: 300; /* Light */
+  font-style: normal;
+}
+
+/* Nunito ExtraLight */
+@font-face {
+  font-family: Nunito;
+  src: url(../fonts/Nunito/Nunito/static/Nunito-ExtraLight.ttf) format("truetype");
+  font-weight: 200; /* ExtraLight */
+  font-style: normal;
+}
+
+/* Nunito SemiBold */
+@font-face {
+  font-family: Nunito;
+  src: url(../fonts/Nunito/Nunito/static/Nunito-SemiBold.ttf) format("truetype");
+  font-weight: 600; /* SemiBold */
+  font-style: normal;
+}
+
+/* Nunito Bold */
+@font-face {
+  font-family: Nunito;
+  src: url(../fonts/Nunito/Nunito/static/Nunito-Bold.ttf) format("truetype");
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+/* Nunito ExtraBold */
+@font-face {
+  font-family: Nunito;
+  src: url(../fonts/Nunito/Nunito/static/Nunito-ExtraBold.ttf) format("truetype");
+  font-weight: 800; /* ExtraBold */
+  font-style: normal;
+}
+
+/* Nunito Black */
+@font-face {
+  font-family: Nunito;
+  src: url(../fonts/Nunito/Nunito/static/Nunito-Black.ttf) format("truetype");
+  font-weight: 900; /* Black */
+  font-style: normal;
+}
+
+/* Saira Black */
+@font-face {
+  font-family: Saira;
+  src: url(../fonts/Saira/Saira/static/Saira-Black.ttf) format("truetype");
+  font-weight: 900; /* Black */
+  font-style: normal;
+}
+
+/* Saira ExtraBold */
+@font-face {
+  font-family: Saira;
+  src: url(../fonts/Saira/Saira/static/Saira-ExtraBold.ttf) format("truetype");
+  font-weight: 800; /* ExtraBold */
+  font-style: normal;
+}
+
+/* Saira Bold */
+@font-face {
+  font-family: Saira;
+  src: url(../fonts/Saira/Saira/static/Saira-Bold.ttf) format("truetype");
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+/* Saira SemiBold */
+@font-face {
+  font-family: Saira;
+  src: url(../fonts/Saira/Saira/static/Saira-SemiBold.ttf) format("truetype");
+  font-weight: 600; /* SemiBold */
+  font-style: normal;
+}
+
+/* Saira Medium */
+@font-face {
+  font-family: Saira;
+  src: url(../fonts/Saira/Saira/static/Saira-Medium.ttf) format("truetype");
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+/* Saira Regular */
+@font-face {
+  font-family: Saira;
+  src: url(../fonts/Saira/Saira/static/Saira-Regular.ttf) format("truetype");
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+/* Saira Light */
+@font-face {
+  font-family: Saira;
+  src: url(../fonts/Saira/Saira/static/Saira-Light.ttf) format("truetype");
+  font-weight: 300; /* Light */
+  font-style: normal;
+}
+
+/* Saira ExtraLight */
+@font-face {
+  font-family: Saira;
+  src: url(../fonts/Saira/Saira/static/Saira-ExtraLight.ttf) format("truetype");
+  font-weight: 200; /* ExtraLight */
+  font-style: normal;
+}
+
+/* Saira Thin */
+@font-face {
+  font-family: Saira;
+  src: url(../fonts/Saira/Saira/static/Saira-Thin.ttf) format("truetype");
+  font-weight: 100; /* Thin */
+  font-style: normal;
+}
+
+
+
+
+
+
+
+
 body.dark-mode{
   background-color: #111216;
   color: white;
@@ -11,6 +171,24 @@ body.dark-mode{
     background: linear-gradient(95.49deg, #18191D 1.53%, #1D1E21 50.01%, #363C48 99.61%);
     color: white;
 } }
+}
+
+
+h1{
+  font-family: Basement Grotesque;
+}
+h2, h3, h4, h5, h6{
+  font-family: Saira;
+}
+
+p{
+  font-family: Nunito;
+}
+
+#box{
+  height: 300px;
+  width: 300px;
+  background-color: crimson;
 }
 
 
@@ -139,4 +317,69 @@ img {
 }
 
 }
+.form_section {
 
+  .inner-section {
+    display: flex;
+    width: 100%;
+  }
+  
+  .left-side {
+    width: 50%;
+  }
+  
+  .left-side {
+    input, textarea{
+      background: linear-gradient(95.49deg, #18191D 1.53%, #1D1E21 50.01%, #363C48 99.61%);
+      outline:none;
+      border:none;
+      color: white;
+      max-width: 500px;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+  }
+  input{
+    height: 40px;
+  }
+  textarea{
+    height: 120px;
+  }
+  input::placeholder {
+    color: #ffffff;
+  }  
+  textarea::placeholder {
+    color: #ffffff;
+  }
+  
+  }
+
+  
+  .right-section {
+    width: 50%;
+  }
+}  
+  
+.btn {
+  font-size: 25px;
+  background-color: #F24B74;
+  border: navajowhite;
+  padding: 20px 18px;
+  cursor: pointer;
+}
+
+// Home Second Section CSS Start
+.marquee{
+  // width: 2200px;
+  display: flex;
+  text-transform: uppercase;
+  gap:30px;
+}
+.marquee2{
+  // width: 2200px;
+  display: flex;
+  text-transform: uppercase;
+  gap:30px;
+  transform: translateX(-100%);
+}
