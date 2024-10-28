@@ -9,7 +9,7 @@ const FirstSection = () => {
     const mainData = footerDataApi?.find(page => page.slug === 'footer')?.acf?.address
     
   return (
-    <div>
+    <div className='section'>
         <h2>{mainData?.heading}</h2>
         <p>{mainData?.address}</p>
         {/* <Link href={mainData?.link}>Open Map</Link> */}

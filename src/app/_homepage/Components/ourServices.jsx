@@ -13,13 +13,13 @@ const OurServices = () => {
     <marquee className='marquee'>
     <div className='marquee'>
 
-      <h2>{mainData?.heading}</h2>
-      <h2>{mainData?.heading}</h2>
-      <h2>{mainData?.heading}</h2>
-      <h2>{mainData?.heading}</h2>
-      <h2>{mainData?.heading}</h2>
-      <h2>{mainData?.heading}</h2>
-      <h2>{mainData?.heading}</h2>
+      <h1>{mainData?.heading}</h1>
+      <h1>{mainData?.heading}</h1>
+      <h1>{mainData?.heading}</h1>
+      <h1>{mainData?.heading}</h1>
+      <h1>{mainData?.heading}</h1>
+      <h1>{mainData?.heading}</h1>
+      <h1>{mainData?.heading}</h1>
     </div>
     </marquee>
       <div className="services-container">

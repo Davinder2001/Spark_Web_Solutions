@@ -13,7 +13,7 @@ const ThirdSection = () => {
             mainData.items?.map((item, index) => (
                 <div key={index}>
                     <a href={item.link} target="_blank" rel="noopener noreferrer">
-                        <h5>{item.name}</h5>
+                        <p>{item.name}</p>
                     </a>
                 </div>
             ))

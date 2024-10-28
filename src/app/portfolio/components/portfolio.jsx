@@ -4,37 +4,47 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { SectorDataContext } from '@/context/apiContext';
 
-
 const Portfolio = () => {
     const pagesDataApi = useContext(SectorDataContext);
     const mainData = pagesDataApi.pagesDataApi?.find(page => page.slug === 'portfolio')?.acf;
 
-  return (
-    <div>
-        <h2>{mainData?.page_heading}</h2>
-        { mainData && (
-            mainData.portfolio?.map((card, index) => (
-                <div key={index} className="portfolio-card">
-                <Link href={card.link} target='blank' >
-
-                    <Image src={card.image} alt={card.project_name} width={1000} height={500}  />
-                    <h3>{card.project_name} ({card.year})</h3>
-                    {card && (
-                        card.technology.map((technology, index) => (
-                            <h3 key={index}>{technology.name} </h3>
-                        ))
-                    )
-
-                    }
-                </Link>
-                    <p>{card.description}</p>
+    return (
+        <div className='portfolio'>
+            <div className='portfolio-inner'>
+                <div className='page-title'>
+                    <h1>{mainData?.page_heading}</h1>
                 </div>
-            ))
-        )
-
-        }
-    </div>
-  )
+                <div className='cards'>
+                    {mainData && (
+                        mainData.portfolio?.map((card, index) => (
+                            <div key={index} className="portfolio-card">
+                                <Link href={card.link} target='blank'>
+                                    <div className='project-image'>
+                                        <Image src={card.image} alt={card.project_name} className='' width={1000} height={500} />
+                                        <div className='overlay'>
+                                            <p>{card.description}</p>
+                                        </div>
+                                    </div>
+                                    <div className='card-small-headings'>
+                                    <h3 className='project-title'>{card.project_name} ({card.year})</h3>
+                                    {card.technology && card.technology.length > 0 && (
+                                        <h3 className='technologys'>
+                                            {card.technology.map((technology, techIndex) => (
+                                                <span key={techIndex}>
+                                                    {technology.name}{techIndex < card.technology.length - 1 ? ', ' : ''}
+                                                </span>
+                                            ))}
+                                        </h3>
+                                    )}
+                                    </div>
+                                </Link>
+                            </div>
+                        ))
+                    )}
+                </div>
+            </div>
+        </div>
+    )
 }
 
-export default Portfolio
+export default Portfolio;

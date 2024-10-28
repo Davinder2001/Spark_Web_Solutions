@@ -12,7 +12,12 @@ const Page = ({ params }) => {
 
   return (
     <div className='container'>
-      <h2>{post?.title?.rendered}</h2>
+    <div className='single-post'>
+    <div className='single-post-inner'>
+    <div className='heading-seaction'>
+      <h1>{post?.title?.rendered}</h1>
+    </div>
+    <div className='blog-img'>
      <Image src={post_img} 
             alt='img'
             layout="responsive" 
@@ -20,7 +25,12 @@ const Page = ({ params }) => {
             height={50} 
             style={{ width: '100%', height: 'auto' }} 
              />
+    </div>
+    <div className='blog-content'>
       <div dangerouslySetInnerHTML={{ __html: post?.content?.rendered }} />
+    </div>
+    </div>
+    </div>
     </div>
   );
 };

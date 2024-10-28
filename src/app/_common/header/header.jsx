@@ -2,6 +2,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { SectorDataContext } from '@/context/apiContext';
 import Link from 'next/link';
+import Image from 'next/image';
 import EnquiryPopup from '../popup/enqueryPopup'; // Import the Popup component
 
 const Header = () => {
@@ -67,26 +68,38 @@ const Header = () => {
       <div className='header'>
         <h3>{mainData?.contact_no}</h3>
         <Link href='/'>
-          <img src={mainData?.logo} alt='Logo' />
+          <Image src={mainData?.logo} alt='Logo'
+          layout="responsive" 
+            width={100} 
+            height={50}  />
         </Link>
         <div className='icons'>
-          <img
+          <Image
             src={mainData?.enquery_icon}
             alt='Enquiry Icon'
             onClick={togglePopup}
+            layout="responsive" 
+            width={100} 
+            height={50} 
             style={{ cursor: 'pointer' }}
           />
-          <img
+          <Image
             src={isDarkMode ? mainData?.dark_mode_icon : mainData?.light_mode_icon}
             alt='Mode Icon'
             onClick={toggleDarkMode}
             style={{ cursor: 'pointer' }}
+            layout="responsive" 
+            width={100} 
+            height={50} 
           />
-          <img
+          <Image
             src={mainData?.music_icon}
             alt='Music Icon'
             onClick={toggleMusic}
             style={{ cursor: 'pointer' }}
+            layout="responsive" 
+            width={100} 
+            height={50} 
           />
         </div>
       </div>

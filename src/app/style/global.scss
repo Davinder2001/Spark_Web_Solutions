@@ -158,37 +158,56 @@
 
 
 
-body.dark-mode{
-  background-color: #111216;
+body ::selection {
+  background-color: #F24B74;
   color: white;
+}
+
 
 
 // CSS For dark mode
+body.dark-mode{
+  background-color: #111216;
+  color: white;
   .popup .popup-content{
     background-color: #111216;
  
   input, textarea {
     background: linear-gradient(95.49deg, #18191D 1.53%, #1D1E21 50.01%, #363C48 99.61%);
     color: white;
-} }
+  }
+ }
 }
 
 
 h1{
   font-family: Basement Grotesque;
+  color: #F24B74;
 }
 h2, h3, h4, h5, h6{
   font-family: Saira;
+  color: #F24B74;
 }
 
 p{
   font-family: Nunito;
 }
 
+
+// Removable CSS
+
 #box{
   height: 300px;
   width: 300px;
   background-color: crimson;
+}
+.main{
+  text-align: center;
+}
+.abc{
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
 }
 
 
@@ -197,15 +216,33 @@ p{
   margin: auto;
   max-width: 1750px;
 }
-img {
-  max-width: 100%;
+
+.page-title h1{
+  font-size: 70px;
+  line-height: 87px;
+  
 }
+
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+
+  .icons {
+    display: flex;
+    gap: 40px;
+  }
+
+  .icons img {
+    width: 100%;
+    object-fit: contain;
+    cursor: pointer !important;
+  }
+  
 }
+
 .footer{
   background-color: #18191D;  
   border-radius: 20px;
@@ -230,6 +267,7 @@ img {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
     margin-bottom: 30px;
+    margin-top: 70px;
   }
 }
 
@@ -244,6 +282,34 @@ img {
 }
 .header {
   padding: 20px; /* Adjust padding as needed */
+}
+
+.second_section .inner-section {
+  display: flex;
+}
+.second_section .inner-section .tabs_area{
+  width:30%;
+}
+.second_section .inner-section .description_outer{
+  width: 70%;
+  border: 1px solid rgb(204, 204, 204);
+  padding: 10px;
+  margin-bottom: 50px;
+}
+.second_section .description_outer .description {
+  padding: 17px;
+  border: 1px solid;
+}
+.services-container .service-card {
+  background-color: #19191E;
+  padding: 20px 50px;
+  border-radius: 5px;
+  text-align:center;
+}
+
+.services-container {
+  display: flex;
+  gap: 10px;
 }
 
 
@@ -288,6 +354,10 @@ img {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+button{
+  cursor: pointer;
 }
 
 .popup-content button {
@@ -383,3 +453,272 @@ img {
   gap:30px;
   transform: translateX(-100%);
 }
+
+
+
+
+// Portfolio Page CSS
+.portfolio {
+
+
+
+  .portfolio-inner .cards {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+
+  .portfolio-card {
+    position: relative;
+    // margin: 20px;
+    overflow: hidden;
+}
+
+.project-image {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #2F2F33F2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 50px;
+}
+
+.overlay p{
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.project-image:hover .overlay {
+    opacity: 1;
+}
+
+.project-image {
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.card-small-headings h3 {
+  font-size:25px;
+  line-height:39.79px;
+  text-transform: uppercase;
+  color: white;
+}
+.card-small-headings {
+  margin: 20px 0px;
+}
+
+.ptoject-title::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -.15vh;
+    left: 0;
+    background-color: #fefeff;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform .5s ease-out;
+}
+
+
+}
+
+
+
+// Internship Page CSS
+.internship{
+
+  .first-section {
+    display: flex;
+    background: linear-gradient(95.49deg, #18191D 1.53%, #1D1E21 50.01%, #363C48 99.61%);
+    padding: 30px 0px 0px 30px;
+    border-radius: 8px;
+  }
+  .single-course-wrapper {
+    background: linear-gradient(95.49deg, #18191D 1.53%, #1D1E21 50.01%, #363C48 99.61%);
+    padding: 30px;
+    border-radius: 15px;
+  }
+  .first-section .paragraph-section p {
+    font-size:30px;
+    padding-right: 200px;
+  }
+  .second-section h2 {
+    font-size:50px;
+    line-height:81px;
+  }
+  .second-section p {
+    font-size:30px;
+    line-height:53px;
+  }
+  .second-section {
+    margin: 100px auto;
+  }
+  .first-section .image-section {
+    padding: 20px;
+    border-radius: 22px 2px 2px 2px;
+    background-color: #111216;
+  }
+  .first-section .image-section img {
+    border-radius: 22px 2px 2px 2px;
+  }
+  .tabs-button{
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 40px;
+    margin-right: 5px;
+    font-size: 25px;
+    font-weight: 600;
+    font-family: Saira;
+    color: #F24B74;
+  }
+  .tabs-button.active{
+    background-color: #F24B74;
+    color: white;
+  }
+  .single-course-wrapper h3 {
+    font-size: 30px;
+    font-weight: 600;
+    line-height:47.22px;
+}
+.single-course-wrapper .join-cource-btn {
+    color: #F24B74;
+    text-decoration: underline;
+    font-size: 25px;
+    font-family: 'Saira';
+    line-height: 88px;
+    font-weight: 600;
+}
+.single-course-wrapper p{
+  font-size: 20px;
+  line-height: 38px;
+  margin: 20px 0px;
+}
+.page-title img {
+  margin-left: 305px;
+}
+.page-title{
+  margin: 50px 0px;
+}
+
+.page-title h1:last-child {
+  margin-left: 300px !important;
+}
+
+.courses-main-outer .tabs-container-btns {
+  display: flex;
+  gap: 30px;
+}
+}  
+
+
+
+// Blog Page CSS
+.blogs {
+  .blogs-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+  }
+
+  .blog .blog-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .blog .blog-top-bar .categories{
+      display:flex;
+      gap:10px;
+  }
+  .blog {
+    position: relative;
+    max-height: 340px;
+    height: 100%;
+    overflow: hidden;
+    object-fit: cover;
+    text-align: center;
+    border-radius: 16px;
+}
+
+.blog-content {
+    position: absolute;
+}
+
+.blog-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding: 35px;
+    z-index: 999;
+}
+.categories .category {
+  border: 1px solid #ffffff;
+  padding: 10px 25px;
+  border-radius: 22px;
+}
+
+.blog img {
+    width: 100%;
+    height: 100%;
+}
+
+.blog img {
+    height: 100%;
+    width: 100%;
+}
+.blog-title h2 {
+  color: white;
+}
+.image-section .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(87.35deg, rgba(14, 16, 20, 0.8) 15.02%, rgba(41, 49, 64, 0.8) 97.79%),
+linear-gradient(88.5deg, rgba(0, 0, 0, 0.15) 16.61%, rgba(0, 0, 0, 0.15) 98.33%);
+}
+}
+
+
+// Blog Single page css
+.single-post {
+
+  .blog-img img {
+    max-width: 1275px;
+    max-height: 461px;
+    margin: auto;
+    object-fit: cover;
+    background: #00000033;
+    border-radius: 35px;
+  }
+  
+  .blog-img {
+    text-align: center;
+}
+.heading-seaction h1{
+  font-size: 70px;
+  line-height: 84px;
+}
+.blog-content {
+  font-size: 30px;
+  font-weight: 600;
+}
+} 

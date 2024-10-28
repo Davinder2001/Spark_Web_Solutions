@@ -11,7 +11,7 @@ const AboutUsSection = () => {
     <div className='container'>
     <h2>{mainData?.heading}</h2>
            {mainData?.image_gallery?.map((image, index) => (
-          <div key={index} className="service-card">
+          <div key={index} className="about-card">
             <img src={image.images} alt={image.card_heading} />
           </div>
         ))}
