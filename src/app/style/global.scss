@@ -242,7 +242,20 @@ p{
   }
   
 }
-
+.contact-map-section {
+  display:flex;
+}
+.contact-map-section .map-column {
+  width:70%;
+}
+.contact-card .card {
+  background: linear-gradient(95.49deg, #18191D 1.53%, #1D1E21 50.01%, #363C48 99.61%);
+  padding:30px;
+  border-radius:8px;
+}
+.contact-map-section .contact-card {
+  width: 30%;
+}
 .footer{
   background-color: #18191D;  
   border-radius: 20px;
@@ -404,7 +417,6 @@ button{
       outline:none;
       border:none;
       color: white;
-      max-width: 500px;
       width: 100%;
       padding: 10px;
       margin-bottom: 10px;
@@ -647,7 +659,7 @@ button{
   }
   .blog {
     position: relative;
-    max-height: 340px;
+    max-height: 460px;
     height: 100%;
     overflow: hidden;
     object-fit: cover;

@@ -1,46 +1,39 @@
 'use client';
 import { useContext } from 'react';
+import Link from 'next/link'; // Importing Link from Next.js
 import { SectorDataContext } from '@/context/apiContext';
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa'; // Importing icons
 
 const MapSection = () => {
     const pagesDataApi = useContext(SectorDataContext);
     const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'contact-us')?.acf;
-//    console.log('sasasa', mainData)
-  return (
-    <div>
-           {/* Dynamically rendered map link */}
-           {/* {mainData?.google_map_link && (
-                <iframe
-                    src={mainData.google_map_link}
-                    width="600"
-                    height="450"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Google Map"
-                ></iframe>
-            )} */}
 
-            {/* Dynamically rendered contact link */}
-            {/* {mainData?.contact_link && (
-                <div>
-                    <a href={mainData.contact_link} target="_blank" rel="noopener noreferrer">
-                        Contact Us
-                    </a>
-                </div>
-            )} */}
-            <div>
+    return (
+        <div className='contact-map-section'>
+            <div className='map-column'>
+                {/* You can add a map or any other content here */}
+            </div>
+            <div className='contact-card'>
+                <div className='card'>
                 <h3>{mainData?.card_heading}</h3>
                 <p>{mainData?.main_office_address}</p>
                 <p>{mainData?.phone_number}</p>
                 <p>{mainData?.email_id}</p>
-                <p>Icon</p>
-                <p>Icon</p>
-                <p>Icon</p>
+                <div className='social-icons'>
+                    <Link href='https://www.facebook.com' passHref>
+                        <FaFacebookF />
+                    </Link>
+                    <Link href='https://www.instagram.com' passHref>
+                        <FaInstagram />
+                    </Link>
+                    <Link href='https://www.linkedin.com' passHref>
+                        <FaLinkedinIn />
+                    </Link>
+                </div>
+                </div>
             </div>
-    </div>
-  )
+        </div>
+    );
 }
 
-export default MapSection
+export default MapSection;

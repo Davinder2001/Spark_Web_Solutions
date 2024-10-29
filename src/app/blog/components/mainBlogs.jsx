@@ -42,12 +42,13 @@ const MainBlogs = () => {
 
             {blogs._embedded?.['wp:featuredmedia']?.[0]?.source_url && (
               <Image
+                className='post-featured-image'
                 src={blogs._embedded['wp:featuredmedia'][0].source_url}
                 alt={blogs.title.rendered}
                 layout="responsive"
                 width={100}
-                height={50}
-                style={{ width: '100%', height: 'auto' }}
+                height={100}
+                // style={{ width: '100%', height: '100%' }}
               />
             )}
               <div className='overlay'></div>
