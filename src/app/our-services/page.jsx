@@ -4,7 +4,7 @@ import ExpertiseSection from './components/expertiseSection'
 
 const Page = () => {
   return (
-    <div className='container'>
+    <div className='container services-page'>
       <ServicesSection/>
       <ExpertiseSection/>
     </div>

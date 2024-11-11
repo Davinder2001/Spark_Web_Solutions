@@ -12,8 +12,9 @@ const FourthSection = () => {
             <Image
                 src={mainData}
                 alt='Logo'
+                layout="responsive" 
                 width={100} 
-                height={100}
+                height={50}
                 className='logo-image'
             />
         </div>

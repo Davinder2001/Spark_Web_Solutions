@@ -67,7 +67,7 @@ const FormSection = () => {
             <div className='form-heading' >
                 <h3>Make an Enquiry</h3>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='contact-us-form' >
                 <div className='form-control'>
                     <input
                         type="text"

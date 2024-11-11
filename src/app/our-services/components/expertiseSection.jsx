@@ -7,9 +7,9 @@ const ExpertiseSection = () => {
     const pagesDataApi = useContext(SectorDataContext);
     const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'our-services')?.acf;
   return (
-    <div>
+    <div className='expertise'>
         <h2>{mainData?.expertise_section_heading}</h2>
-        <div className='' >
+        <div className='expertises-list' >
         {mainData && (
             mainData?.expertise?.map((card, index) => (
                 <div key={index} className="expertise-card">
