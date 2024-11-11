@@ -10,10 +10,10 @@ const FirstSection = () => {
     
   return (
     <div className='section'>
-        <h2>{mainData?.heading}</h2>
+        <h3>{mainData?.heading}</h3>
         <p>{mainData?.address}</p>
         {/* <Link href={mainData?.link}>Open Map</Link> */}
-        <Link href='/'>Open Map</Link>
+        <Link className='open-map' href='/'>Open Map</Link>
     </div>
   )
 }

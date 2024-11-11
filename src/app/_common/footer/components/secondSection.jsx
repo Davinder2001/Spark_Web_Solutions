@@ -7,7 +7,7 @@ const SecondSection = () => {
     const mainData = footerDataApi?.find(page => page.slug === 'footer')?.acf?.get_in_touch
     
   return (
-    <div>
+    <div className='section'>
         <h3>{mainData?.heading}</h3>
         {mainData &&(
             mainData.items?.map((item, index) => (

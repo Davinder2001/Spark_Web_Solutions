@@ -59,10 +59,14 @@ const FormSection = () => {
         <div className='form_section'>
         <div className='inner-section'>
         <div className='left-side'>
+            <div className='left-inner'>
             <div className='page_title'>
                 <h2>{mainData?.page_title}</h2>
             </div>
             {/* Form */}
+            <div className='form-heading' >
+                <h3>Make an Enquiry</h3>
+            </div>
             <form onSubmit={handleSubmit}>
                 <div className='form-control'>
                     <input
@@ -72,7 +76,7 @@ const FormSection = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                    />
+                        />
                 </div>
                 <div className='form-control'>
                     <input
@@ -82,7 +86,7 @@ const FormSection = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                    />
+                        />
                 </div>
                 <div className='form-control'>
                     <input
@@ -92,7 +96,7 @@ const FormSection = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                    />
+                        />
                 </div>
                 <div className='form-control'>
                     <textarea
@@ -101,10 +105,11 @@ const FormSection = () => {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                    ></textarea>
+                        ></textarea>
                 </div>
                 <button className='btn' type="submit">Send Message</button>
             </form>
+            </div>
         </div>
         <div className='right-section'>
 
