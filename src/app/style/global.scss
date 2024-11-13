@@ -153,7 +153,7 @@
 
 
 
-
+//temp css
 
 
 
@@ -609,6 +609,128 @@ button{
 }
 
 // Contact page css end
+
+
+
+
+//about us page css Start
+
+.about-us-page{
+
+  
+  .image-gallery-container {
+    display: flex;
+    gap: 93px;
+  }
+  .top-big-image {
+    width: 50%;
+  }
+  
+  .description-column-main {
+  width: 50%;
+}
+.image-gallery.inline-thumbnails {
+  display: flex;
+  gap: 20px;
+}
+
+.description-column-main .thumbnail.active .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #F24B74;
+}
+.description-column-main .thumbnail .thumbnail-image {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.description-column-main .thumbnail {
+  position: relative;
+}
+.about-us-main .short-description p {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 59px;
+}
+.description-column-main .main-description p {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 46px;
+}
+.about-card-outer .card-heading h2 {
+  font-size: 70px;
+  font-weight: 800;
+  line-height: 84px;
+}
+.para-section .about-card {
+  display: flex;
+  background: linear-gradient(95.49deg, #18191D 1.53%, #1D1E21 50.01%, #363C48 99.61%);
+  border-radius: 8px;
+}
+.about-card  .card-description p {
+  font-size: 30px;
+  padding: 50px;
+}
+.about-card{
+  .desc-inner {
+    width: 75%;
+  }
+  
+  .card-img-sec {
+    width: 25%;
+    text-align: end;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+  }
+  .card-img-sec img {
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: cover;
+  }
+  .card-img-sec .card-img-inner {
+    background-color: #111216;
+    padding: 10px;
+    border-radius:15px 0 0 0;
+}
+}
+.para-section {
+  margin: 100px 0px;
+}
+}
+
+
+
+
+
+//about us page css End
+
+
+
+
+// Testimmonial CSS Start 
+
+.testimonials{
+
+  .testimonial{
+    background: linear-gradient(95.49deg, #18191D 1.53%, #1D1E21 50.01%, #363C48 99.61%);
+    padding: 20px;
+  }
+  .testimonials-inner{
+    display: flex;
+    gap: 20px;
+  }
+  
+}
+
+
+
+// Testimmonial CSS End
 
 
 
