@@ -726,11 +726,13 @@ button{
 
 
     margin: 100px 0;
+    overflow: hidden;
 
-  .testimonials-inner{
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 1fr 1fr 1fr;
+    .swiper-wrapper{
+    display:flex;
+  }
+  .swiper{
+    overflow: visible !important;
   }
   .testimonial .testimonial-image {
     overflow: hidden;
@@ -758,6 +760,9 @@ button{
   font-weight: 400;
 }
 
+.testimonials-pagination .pagination-top .swiper-pagination-bullet {
+  background-color: #F24B74;
+}
 
 .testimonial-frontt {
   position: absolute;
@@ -773,8 +778,19 @@ button{
   font-size: 36px;
   color: white;
   text-align: center;
-  margin-bottom: 100px;
 }
+.testimonials-pagination{
+  margin-bottom: 100px;
+  text-align: center;
+}
+.testimonial-heading {
+  
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+}
+
 .testimonial {
   position: relative;
   text-align: center;
