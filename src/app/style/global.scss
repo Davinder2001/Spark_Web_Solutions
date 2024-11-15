@@ -620,10 +620,11 @@ button{
   
   .image-gallery-container {
     display: flex;
-    gap: 93px;
+    gap: 50px;
   }
   .top-big-image {
     width: 50%;
+    height: 660px;
   }
   
   .description-column-main {
@@ -702,6 +703,12 @@ button{
 .para-section {
   margin: 100px 0px;
 }
+.image-gallery-container .top-big-image img {
+  max-height: 660px;
+  object-fit: cover;
+  height:100% !important;
+  width:100% !important;
+}
 }
 
 
@@ -717,15 +724,78 @@ button{
 
 .testimonials{
 
-  .testimonial{
-    background: linear-gradient(95.49deg, #18191D 1.53%, #1D1E21 50.01%, #363C48 99.61%);
-    padding: 20px;
-  }
+
+    margin: 100px 0;
+
   .testimonials-inner{
-    display: flex;
+    display: grid;
     gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
   }
-  
+  .testimonial .testimonial-image {
+    overflow: hidden;
+    height: 102px;
+    object-fit: cover;
+    margin: auto;
+    width: 102px;
+    border-radius: 50%;
+}
+
+.testimonial  .testimonial-name h2 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 37.78px;
+  color: white;
+}
+.testimonial .testimonial-image img {
+    max-height: 102px;
+    object-fit: cover;
+    height: 100% !important;
+}
+.testimonial .testimonial-desg p {
+  font-size: 18px;
+  line-height: 24.55px;
+  font-weight: 400;
+}
+
+
+.testimonial-frontt {
+  position: absolute;
+  top: -43px;
+  display: flex;
+  flex-direction: column;
+  max-width: 355px;
+  margin: auto;
+  left: 114px;
+  gap: 5px;
+}
+.testimonial-heading h3 {
+  font-size: 36px;
+  color: white;
+  text-align: center;
+  margin-bottom: 100px;
+}
+.testimonial {
+  position: relative;
+  text-align: center;
+
+}
+.testimonial-background-img img.test-m-2 {
+  position: absolute;
+  left: 125px;
+  z-index: -1;
+}
+
+.testimonial-background-img {
+  position: relative;
+  text-align: center;
+}
+
+.testimonial .testimonial-main-text-des p{
+   font-size: 18px;
+  line-height: 24.55px;
+  font-weight: 400;
+}
 }
 
 
