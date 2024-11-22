@@ -223,10 +223,46 @@ p{
 .page-title h1{
   font-size: 70px;
   line-height: 87px;
-  
+  margin: 30px 0px;
 }
 
+/* Add these styles to control visibility on hover */
+.button-container {
+  display: none;
+}
 
+.navigation-container:hover .button-container {
+  display: block;
+}
+
+/* Optional: Style the buttons when they appear */
+.button-container button {
+  transition: opacity 0.3s ease;
+}
+
+/* Add animation or styling for hover if needed */
+.navigation-container:hover .button-container button {
+  opacity: 1;
+}
+.navigation-container {
+  text-align: center;
+}
+
+.navigation-inner {
+  max-width: 200px;
+  margin: auto;
+  position: fixed;
+  bottom: 50px;
+  left: 45%;
+  z-index: 9999999999999;
+}
+nav {
+  ul, ol {
+    list-style: none;
+    padding-left: 0; /* Optional: remove default padding */
+  }
+  
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -279,7 +315,7 @@ p{
     text-align: center;
   }
   .first-section {
-      width: 25%;
+      width: 28%;
   }
 
   .second-section {
@@ -287,7 +323,7 @@ p{
   }
 
   .third-section {
-      width: 25%;
+      width: 10%;
   }
 
   .forth-section {
@@ -666,6 +702,7 @@ button{
   font-size: 70px;
   font-weight: 800;
   line-height: 84px;
+  margin: 30px 0px;
 }
 .para-section .about-card {
   display: flex;
@@ -743,6 +780,10 @@ button{
     border-radius: 50%;
 }
 
+.testimonial-button{
+  cursor: pointer;
+}
+
 .testimonial  .testimonial-name h2 {
   font-size: 24px;
   font-weight: 500;
@@ -773,6 +814,7 @@ button{
   margin: auto;
   left: 114px;
   gap: 5px;
+  width: 100%;
 }
 .testimonial-heading h3 {
   font-size: 36px;

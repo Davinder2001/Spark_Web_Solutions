@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { useContext, useEffect } from "react";
 import Image from "next/image";
 import { SectorDataContext } from "@/context/apiContext";
@@ -30,19 +30,26 @@ const Testimonial = () => {
     initSwiper();
   }, []);
 
+  // Function to limit the description to 20 words
+  const truncateDescription = (text, wordLimit = 45) => {
+    const words = text.split(' ');
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(' ') + '...';
+    }
+    return text;
+  };
+
   return (
     <div className="container">
       <div className="testimonials">
-
         <div className="testimonials-pagination">
-        <div className="testimonial-heading">
-          <button className="custom-prev">←</button>
-          <h3>What Our Clients Say About Us</h3>
-          <button className="custom-next">→</button>
+          <div className="testimonial-heading">
+            <button className="custom-prev testimonial-button">←</button>
+            <h3>What Our Clients Say About Us</h3>
+            <button className="custom-next testimonial-button">→</button>
+          </div>
+          <div className="pagination-top" />
         </div>
-        <div className="pagination-top" />
-        </div>
-
 
         <Swiper
           modules={[Navigation, Pagination]}
@@ -92,7 +99,8 @@ const Testimonial = () => {
                     />
                   </div>
                   <div className="testimonial-main-text-des">
-                    <p>{section.acf.description}</p>
+                    {/* Truncate description to 20 words */}
+                    <p>{truncateDescription(section.acf.description)}</p>
                   </div>
                 </div>
               </div>

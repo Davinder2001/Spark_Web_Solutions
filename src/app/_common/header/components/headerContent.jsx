@@ -62,10 +62,14 @@ const HeaderContent = () => {
         {/* Header logo and link */}
 
         <Link href='/'>
-          <Image src={mainData?.logo} alt='Logo'
-          layout="responsive" 
+            <Image 
+            src={isDarkMode ? mainData?.lite_mode_logo : mainData?.logo} // Conditional logo for dark/light mode
+            alt='Logo'
+            layout="responsive" 
             width={100} 
-            height={50}  />
+            height={50} 
+          />
+
         </Link>
 
         {/* Header End icons */}
