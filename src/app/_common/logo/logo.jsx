@@ -21,8 +21,8 @@ const Logo = ({ isLiteMode }) => {
       <Image
         src={isLiteMode ? mainData.lite_mode_logo : mainData.logo}
         alt="Logo"
-        width={300} // Ensure the width matches the container
-        height={100} // Ensure the height matches the container
+        width={200} // Ensure the width matches the container
+        height={80} // Ensure the height matches the container
         style={{ objectFit: 'contain' }} // Maintain aspect ratio while fitting
       />
     </div>
