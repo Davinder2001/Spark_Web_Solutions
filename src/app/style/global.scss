@@ -158,18 +158,33 @@
 
 
 
-body ::selection {
+body::selection {
   background-color: #F24B74;
   color: white;
 }
 // CSS For light mode
 body.light-mode{
   background-color: #ffffff;
-  color: #1111;
+  color: #18191d !important;
+
+  .testimonial-background-img .test-m-1 {
+    filter: brightness(15);
+}
+
+.footer {
+  color: black;
+  box-shadow: 0px 8px 24px 0px #959DA540;
+  background: linear-gradient(95.49deg, #FFFFFF 1.53%, #FFFFFF 32.47%, #F4F4F4 52.92%);
+}
+
+img.lite-dark-mode {
+  filter: brightness(0.1);
+}
+
 }
 
 // CSS For dark mode
-body.dark-mode{
+body{
   background-color: #111216;
   color: white;
   .popup .popup-content{
@@ -298,16 +313,39 @@ nav {
 
 
 // Footer CSS Start
+body.light-mode .footer{
+.footer-inner{
+  .section h3{
+    color: #F24B74;
+  }
+  .section p {
+    color: black;
+  }
+
+} 
+.copyright-section p{
+  color: black;
+}
+}
+
 .footer{
   background-color: #18191D;  
-  border-radius: 20px;
+  border-radius: 50px;
   margin: 70px 0px;
 
   .footer-inner {
-    padding:20px;
+    padding:50px 77px;
     display: flex;
     justify-content: space-between;
+
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
   }
+
   .forth-section img {
     max-width:265px;
   }
@@ -316,6 +354,12 @@ nav {
   }
   .first-section {
       width: 28%;
+
+      a{
+        display: flex;
+      align-items: center;
+      gap:10px;
+      }
   }
 
   .second-section {
@@ -328,6 +372,11 @@ nav {
 
   .forth-section {
       width: 25%;
+
+    .section {
+      align-items: center;
+    }
+
   }
   .footer-inner .section h3{
     color: #DFDED9;
@@ -651,6 +700,12 @@ button{
 
 //about us page css Start
 
+body.light-mode .about-us-page{
+.para-section .about-card {
+  background: white;
+  
+}}
+
 .about-us-page{
 
   
@@ -664,11 +719,22 @@ button{
   }
   
   .description-column-main {
-  width: 50%;
+    width: 50%;
+    top: 30px;
+    left: -150px;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 50px;
+
 }
 .image-gallery.inline-thumbnails {
   display: flex;
   gap: 20px;
+  position: relative;
+  left: -167px;
 }
 
 .description-column-main .thumbnail.active .overlay {
@@ -759,8 +825,29 @@ button{
 
 // Testimmonial CSS Start 
 
-.testimonials{
 
+//Lite mode
+body.light-mode .testimonials{
+.testimonial  .testimonial-name h2 {
+  color: #111;
+}
+ .testimonial-heading h3 {
+  color: #111;
+}
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  outline: black 3px solid;
+}
+
+}
+
+
+
+// Normal dark mode
+.testimonials{
+  
+  span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    outline: white 3px solid;
+  }
 
     margin: 100px 0;
     overflow: hidden;
@@ -919,6 +1006,15 @@ button{
 
 
 // Portfolio Page CSS
+
+body.light-mode .portfolio {
+.card-small-headings h3 {
+  color: black;
+}
+}
+
+
+
 .portfolio {
 
 

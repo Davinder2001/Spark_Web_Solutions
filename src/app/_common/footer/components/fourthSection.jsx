@@ -17,6 +17,7 @@ const FourthSection = () => {
                 height={50}
                 className='logo-image'
             />
+            
         </div>
     );
 }

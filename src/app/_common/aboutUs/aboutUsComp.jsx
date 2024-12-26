@@ -47,9 +47,9 @@ const AboutUsComp = () => {
                     )}
 
                     <div className="description-column-main">
-                        <div className="page-heading background">
+                        {/* <div className="page-heading background">
                             <h2>{mainData.heading}</h2>
-                        </div>
+                        </div> */}
                         <div className='main-description'>
                             <p>{mainData.main_description}</p>
                         </div>
@@ -76,8 +76,7 @@ const AboutUsComp = () => {
                         </div>
                     </div>
                 </div>
-                    
-                </div>
+            </div>
             )}
         </div>
     );

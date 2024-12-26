@@ -1,9 +1,10 @@
-"use client";
+'use client';
 import { useContext, useState, useEffect } from 'react';
 import { SectorDataContext } from '@/context/apiContext';
 import Link from 'next/link';
 import Image from 'next/image';
-import EnquiryPopup from '../../popup/enqueryPopup'; 
+import EnquiryPopup from '../../popup/enqueryPopup';
+import Logo from '../../logo/logo'; // Import the new Logo component
 
 const HeaderContent = () => {
   const { headerDataApi } = useContext(SectorDataContext);
@@ -11,7 +12,7 @@ const HeaderContent = () => {
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [audio, setAudio] = useState(null);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isLiteMode, setIsDarkMode] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
@@ -37,83 +38,64 @@ const HeaderContent = () => {
   };
 
   const toggleDarkMode = () => {
-    setIsDarkMode(prevMode => !prevMode);
+    setIsDarkMode((prevMode) => !prevMode);
   };
 
   useEffect(() => {
-    document.body.classList.toggle('dark-mode', !isDarkMode);
-    document.body.classList.toggle('light-mode', isDarkMode);
-  }, [isDarkMode]);
-
+    document.body.classList.toggle('light-mode', isLiteMode);
+  }, [isLiteMode]);
 
   const togglePopup = () => {
-    setIsPopupOpen(prev => !prev);
+    setIsPopupOpen((prev) => !prev);
   };
-  
 
   return (
-    <div className=''>
-      <div className='header'>
-
+    <div>
+      <div className="header">
         {/* Header Mob No */}
-
         <h3>{mainData?.contact_no}</h3>
-        
-        {/* Header logo and link */}
 
-        <Link href='/'>
-            <Image 
-            src={isDarkMode ? mainData?.lite_mode_logo : mainData?.logo} // Conditional logo for dark/light mode
-            alt='Logo'
-            layout="responsive" 
-            width={100} 
-            height={50} 
-          />
-
+        {/* Header Logo */}
+        <Link href="/">
+          <Logo isLiteMode={isLiteMode} /> {/* Use the Logo component */}
         </Link>
 
-        {/* Header End icons */}
-
-        <div className='icons'>
+        {/* Header End Icons */}
+        <div className="icons">
           <Image
             src={mainData?.enquery_icon}
-            alt='Enquiry Icon'
+            alt="Enquiry Icon"
             onClick={togglePopup}
-            layout="responsive" 
-            width={100} 
-            height={50} 
+            width={50}
+            height={50}
             style={{ cursor: 'pointer' }}
           />
           <Image
-            src={isDarkMode ? mainData?.dark_mode_icon : mainData?.light_mode_icon}
-            alt='Mode Icon'
+            src={isLiteMode ? mainData?.dark_mode_icon : mainData?.light_mode_icon}
+            alt="Mode Icon"
+            className="lite-dark-mode"
             onClick={toggleDarkMode}
+            width={50}
+            height={50}
             style={{ cursor: 'pointer' }}
-            layout="responsive" 
-            width={100} 
-            height={50} 
           />
           <Image
             src={mainData?.music_icon}
-            alt='Music Icon'
+            alt="Music Icon"
             onClick={toggleMusic}
+            width={50}
+            height={50}
             style={{ cursor: 'pointer' }}
-            layout="responsive" 
-            width={100} 
-            height={50} 
           />
         </div>
       </div>
 
- 
-
       {/* Popup Component */}
-    {isPopupOpen && (
-    <div className={`popup ${isPopupOpen ? 'show' : ''}`}>
-        <EnquiryPopup onClose={togglePopup} />
-    </div>
-)}
-
+      {isPopupOpen && (
+        <div className={`popup ${isPopupOpen ? 'show' : ''}`}>
+          <EnquiryPopup onClose={togglePopup} />
+        </div>
+      )}
     </div>
   );
 };
