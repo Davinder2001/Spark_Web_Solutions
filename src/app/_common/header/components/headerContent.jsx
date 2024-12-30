@@ -66,8 +66,8 @@ const HeaderContent = () => {
             src={mainData?.enquery_icon}
             alt="Enquiry Icon"
             onClick={togglePopup}
-            width={50}
-            height={50}
+            width={35}
+            height={35}
             style={{ cursor: 'pointer' }}
           />
           <Image
@@ -75,16 +75,16 @@ const HeaderContent = () => {
             alt="Mode Icon"
             className="lite-dark-mode"
             onClick={toggleDarkMode}
-            width={50}
-            height={50}
+            width={35}
+            height={35}
             style={{ cursor: 'pointer' }}
           />
           <Image
             src={mainData?.music_icon}
             alt="Music Icon"
             onClick={toggleMusic}
-            width={50}
-            height={50}
+            width={35}
+            height={35}
             style={{ cursor: 'pointer' }}
           />
         </div>

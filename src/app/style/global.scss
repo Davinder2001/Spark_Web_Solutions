@@ -212,6 +212,29 @@ p{
 }
 
 
+
+.header-section {
+  position: relative;
+  transition: all 0.3s ease; 
+}
+
+.sticky-header {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%; 
+  background-color: #111216;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+body.light-mode .sticky-header{
+  background-color: white;
+}
+
+
+
+
 // Removable CSS
 
 #box{
@@ -286,7 +309,7 @@ nav {
 
   .icons {
     display: flex;
-    gap: 40px;
+    gap: 30px;
   }
 
   .icons img {
@@ -396,18 +419,20 @@ body.light-mode .footer{
     font-weight: 500;
     line-height: 33px;
   }
-.copyright-section {
-    border-top: 1px solid #363636;
-    padding: 20px;
-    text-align: center;
+
+  .copyright-section {
+      border-top: 1px solid #DFDED9;
+      padding: 20px;
+      text-align: center;
+  }
+  .copyright-section p{
+    color: #FFFFFF91;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 36px;
+  }
 }
-.copyright-section p{
-  color: #FFFFFF91;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 36px;
-}
-}
+
 // Footer CSS End
 
 .courses-main-outer{
@@ -428,9 +453,6 @@ body.light-mode .footer{
   z-index: 1000;
 
 
-}
-.header {
-  padding: 20px; /* Adjust padding as needed */
 }
 
 .second_section .inner-section {
@@ -695,6 +717,27 @@ button{
 
 // Contact page css end
 
+// Loader css
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #111; /* Full black overlay with opacity */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999999999999999999999999 !important; /* Ensure loader is on top of all content */
+}
+
+.loading-img {
+  width: 200px; /* You can adjust the width/height based on your image size */
+  height: auto;
+}
+
+
 
 
 
@@ -702,7 +745,8 @@ button{
 
 body.light-mode .about-us-page{
 .para-section .about-card {
-  background: white;
+  background: linear-gradient(95.49deg, #FFFFFF 1.53%, #FFFFFF 50.01%, #F4F4F4 78.14%);
+  box-shadow: 0px 8px 24px 0px #959DA540;
   
 }}
 
@@ -796,6 +840,7 @@ body.light-mode .about-us-page{
     max-width: 300px;
     max-height: 300px;
     object-fit: cover;
+    border-radius: 8px 0 0 0;
   }
   .card-img-sec .card-img-inner {
     background-color: #111216;
@@ -1186,6 +1231,19 @@ body.light-mode .portfolio {
 
 
 // Blog Page CSS
+
+body.light-mode .blogs {
+   .categories .category{
+    color:white; 
+  }
+  .blog-content a{
+    color:white; 
+  }
+}
+
+
+
+
 .blogs {
   .blogs-inner {
     display: grid;

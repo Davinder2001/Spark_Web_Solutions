@@ -26,6 +26,7 @@ const Logo = ({ isLiteMode }) => {
         style={{ objectFit: 'contain' }} // Maintain aspect ratio while fitting
       />
     </div>
+    
   );
 };
 
