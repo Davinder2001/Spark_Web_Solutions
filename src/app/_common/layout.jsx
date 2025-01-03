@@ -12,10 +12,20 @@ const Layout = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    
+    let timeout;
+
     if (mainData) {
       setIsLoading(false);
+    } else {
+      // Set a timeout to refresh the page after 5 seconds if data is not available
+      timeout = setTimeout(() => {
+        window.location.reload();
+      }, 5000);
     }
+
+    return () => {
+      if (timeout) clearTimeout(timeout); // Clear timeout on component unmount
+    };
   }, [mainData]);
 
   return (
@@ -24,7 +34,7 @@ const Layout = ({ children }) => {
       {!isLoading && (
         <>
           <Header />
-            <main>{children}</main>
+          <main>{children}</main>
           <Footer />
         </>
       )}

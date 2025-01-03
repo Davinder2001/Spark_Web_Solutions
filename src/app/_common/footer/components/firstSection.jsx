@@ -8,7 +8,6 @@ const FirstSection = () => {
 
     const { footerDataApi } = useContext(SectorDataContext);
     const mainData = footerDataApi?.find(page => page.slug === 'footer')?.acf?.address;
-    console.log('mainData', mainData)
     
     return (
         <div className='section'>

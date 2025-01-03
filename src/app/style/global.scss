@@ -213,6 +213,15 @@ p{
 
 
 
+.stickey-form .step {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+
+
+
 .header-section {
   position: relative;
   transition: all 0.3s ease; 
@@ -283,16 +292,16 @@ body.light-mode .sticky-header{
   opacity: 1;
 }
 .navigation-container {
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .navigation-inner {
-  max-width: 200px;
-  margin: auto;
   position: fixed;
   bottom: 50px;
-  left: 45%;
   z-index: 9999999999999;
+  max-width: 380px;
+  width: 100%;
 }
 nav {
   ul, ol {
@@ -301,11 +310,113 @@ nav {
   }
   
 }
+
+
+// Removeable css for navigation
+nav.main-header-navigation>ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+
+.main-header-navigation .after-nav-area ul li {
+  padding: 20px 0;
+}
+
+.main-header-navigation .after-nav-area {
+  border-top: 1px solid;
+}
+
+
+.navigation-inner .nav-wrapper {
+  background: white;
+  color: black;
+  border-radius: 20px;
+}
+.navigation-inner .contact-menu-wrapper {
+  background: white;
+  color: black;
+  border-radius: 20px;
+}
+
+.menu-button-container span.menu-devider {
+  color: #F24B74;
+  font-size: 45px;
+  font-family: auto;
+}
+
+nav.main-header-navigation ul li a {
+  font-size: 35px;
+  font-weight: 500;
+}
+nav.main-header-navigation ul li {
+  text-align:center;
+}
+
+.navigation-container .contact-menu-wrapper h5 {
+  font-family: 'Saira';
+  font-size: 35px;
+  text-align: center;
+}
+
+.contact-menu-wrapper .after-nav-area .social-icons svg {
+  height: 38px;
+  width: 38px;
+  color: #F24B74;
+}
+
+.contact-menu-wrapper nav.stickey-contsct-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 20px;
+  margin: 30px 0px;
+}
+
+.contact-menu-wrapper .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px;
+}
+
+.contact-menu-wrapper .after-nav-area {
+  border-top: 1px solid;
+}
+
+
+
+.contact-menu-wrapper nav.stickey-contsct-wrapper ul li {
+  text-align: center;
+  font-size: 25px;
+  font-family: 'Saira';
+  line-height: 38px;
+  font-weight: 500;
+}
+
+
+
+
+.header-section a.nav-link-logo-menu img.nav-logo-menu {
+  max-width: 260px;
+  padding: 20px;
+}
+
+.header-section a.nav-link-logo-menu {
+  display: flex;
+  justify-content: center;
+}
+
+
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  
 
   .icons {
     display: flex;
@@ -476,6 +587,7 @@ body.light-mode .footer{
   padding: 20px 50px;
   border-radius: 5px;
   text-align:center;
+ 
 }
 
 .services-container {
@@ -1002,6 +1114,8 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   .services{
     .service-card {
       display: flex;
+      position: relative;
+      z-index: 9;
     } 
     .service-card-outer {
       background-repeat: no-repeat;
@@ -1009,6 +1123,19 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
       background-size: cover;
       border-radius: 50px;
       padding: 50px;
+
+.overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 50px;
+        background: linear-gradient(87.35deg, rgba(14, 16, 20, 0.901961) 15.02%, rgba(41, 49, 64, 0.901961) 97.79%), linear-gradient(88.5deg, rgba(0, 0, 0, 0.2) 16.61%, rgba(0, 0, 0, 0.2) 98.33%);
+    }
+    
+
+
   }
   .service-count h2 {
     font-size:80px;
@@ -1139,6 +1266,93 @@ body.light-mode .portfolio {
 }
 
 
+.navigation-container .close-btn-navigation {
+  background-color: white !important;
+  width: 100%;
+}
+
+
+// Stickey Form Css
+button.sticky-form-button {
+  position: fixed;
+  right: 25px;
+  top: 40%;
+  transform: rotate(-90deg);
+  transform-origin: right center;
+  background-color: #F24B74;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1), color 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+button.sticky-form-button:hover {
+  background-color: #fff;
+  color: #F24B74;
+}
+
+
+.stickey-form .form-group .option-container label {
+  background: linear-gradient(95.49deg, #18191D 1.53%, #1D1E21 50.01%, #363C48 99.61%);
+  padding: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.stickey-form .form-header{
+  display: flex;
+  justify-content: space-between;
+    align-items: baseline;
+}
+
+.popup.show .stickey-form {
+  background-color: #111216;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+
+.stickey-form .form-group {
+  display: flex;
+  gap: 18px;
+}
+
+
+.navigation-container button.navbar-buttons-main {
+  font-size: 25px;
+  font-family: 'Saira';
+  padding: 10px 30px;
+  background-color: transparent;
+  border: unset;
+  color: #F24B74;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+.all-buttons-container {
+  border-radius: 30px;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.navigation-container .menu-button-container {
+  display: flex;
+  background-color: #ffffff;
+  width: 100%;
+}
+button.navbar-buttons-main.navigation-menu-btn{
+  width: 50%;
+}
+button.navbar-buttons-main.navigation-contact-btn {
+  width: 50%;
+}
+
+
 
 // Internship Page CSS
 .internship{
@@ -1175,7 +1389,7 @@ body.light-mode .portfolio {
     background-color: #111216;
   }
   .first-section .image-section img {
-    border-radius: 22px 2px 2px 2px;
+    border-radius: 12px 2px 2px 2px;
   }
   .tabs-button{
     padding: 10px 20px;

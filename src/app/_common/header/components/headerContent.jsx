@@ -1,19 +1,25 @@
 'use client';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { SectorDataContext } from '@/context/apiContext';
 import Link from 'next/link';
 import Image from 'next/image';
 import EnquiryPopup from '../../popup/enqueryPopup';
+import StickeyForm from '../../stickeyForm/stickeyForm';
 import Logo from '../../logo/logo'; // Import the new Logo component
+import { gsap } from 'gsap';
 
 const HeaderContent = () => {
   const { headerDataApi } = useContext(SectorDataContext);
-  const mainData = headerDataApi?.find(page => page.slug === 'header')?.acf;
+  const mainData = headerDataApi?.find((page) => page.slug === 'header')?.acf;
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [audio, setAudio] = useState(null);
   const [isLiteMode, setIsDarkMode] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isStickyFormOpen, setIsStickyFormOpen] = useState(false); // New state for Sticky Form
+
+  const popupRef = useRef(null);
+  const stickyFormRef = useRef(null);
 
   useEffect(() => {
     if (mainData?.music) {
@@ -49,15 +55,44 @@ const HeaderContent = () => {
     setIsPopupOpen((prev) => !prev);
   };
 
+  const toggleStickyForm = () => {
+    setIsStickyFormOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (isPopupOpen) {
+      gsap.fromTo(
+        popupRef.current,
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.5, ease: 'power4.out' }
+      );
+    } else if (popupRef.current) {
+      gsap.to(popupRef.current, { opacity: 0, scale: 0.8, duration: 0.5, ease: 'power3.in' });
+    }
+  }, [isPopupOpen]);
+
+  useEffect(() => {
+    if (isStickyFormOpen) {
+      gsap.fromTo(
+        stickyFormRef.current,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.5, ease: 'power4.out' }
+      );
+    } else if (stickyFormRef.current) {
+      gsap.to(stickyFormRef.current, { opacity: 0, y: 50, duration: 0.5, ease: 'power3.in' });
+    }
+  }, [isStickyFormOpen]);
+
   return (
     <div>
       <div className="header">
-        {/* Header Mob No */}
-        <h3>{mainData?.contact_no}</h3>
+        <Link href={`tel:${mainData?.contact_no}`}>
+          <h3>{mainData?.contact_no}</h3>
+        </Link>
 
         {/* Header Logo */}
-        <Link href="/">
-          <Logo isLiteMode={isLiteMode} /> {/* Use the Logo component */}
+        <Link href="/" >
+          <Logo isLiteMode={isLiteMode} />
         </Link>
 
         {/* Header End Icons */}
@@ -89,10 +124,21 @@ const HeaderContent = () => {
           />
         </div>
       </div>
+      {/* Sticky Form Button */}
+      <button className="sticky-form-button" onClick={toggleStickyForm}>
+        Enquiry Now
+      </button>
 
-      {/* Popup Component */}
+      {/* Popup Component for Sticky Form */}
+      {isStickyFormOpen && (
+        <div className="popup" ref={stickyFormRef}>
+          <StickeyForm onClose={toggleStickyForm} />
+        </div>
+      )}
+
+      {/* Enquiry Popup */}
       {isPopupOpen && (
-        <div className={`popup ${isPopupOpen ? 'show' : ''}`}>
+        <div className="popup" ref={popupRef}>
           <EnquiryPopup onClose={togglePopup} />
         </div>
       )}

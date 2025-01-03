@@ -5,12 +5,14 @@ import { SectorDataContext } from '@/context/apiContext';
 
 const FourthSection = () => {
     const { footerDataApi } = useContext(SectorDataContext);
-    const mainData = footerDataApi?.find(page => page.slug === 'footer')?.acf?.logo;
+    const darkLogo = footerDataApi?.find(page => page.slug === 'footer')?.acf?.logo;
+    // const dlightLogo = footerDataApi?.find(page => page.slug === 'footer')?.acf?.light_logo;
+    // console.log(dlightLogo)
 
     return (
         <div className='section'>
             <Image
-                src={mainData}
+                src={darkLogo}
                 alt='Logo'
                 layout="responsive" 
                 width={100} 
