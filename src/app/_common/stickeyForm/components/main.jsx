@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
-import SecondForm from './components/forms/SecondForm';
-import ThirdForm from './components/forms/ThirdForm';
-
-const StickeyForm = ({ onClose }) => {
-  const [formData, setFormData] = useState({
+import React from 'react'
+const [formData, setFormData] = useState({
     step1: '',
     additionalFields: {},
   });
 
-
-
   const [currentStep, setCurrentStep] = useState(1);
 
-  const handleChange = (e) => {
+
+const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -32,28 +26,11 @@ const StickeyForm = ({ onClose }) => {
     }
   };
 
-  return (
-    <div className="stickey-form">
-      <div className="form-header">
-        <div className="headings">
-          <h2>Welcome To</h2>
-          <h5>Spark Web Solutions</h5>
-        </div>
-        <div className="close-popup">
-          <button className="close-button" onClick={onClose}>
-            <Image
-              src="/images/123.png"
-              layout="responsive"
-              width={100}
-              height={100}
-            />
-          </button>
-        </div>
-      </div>
 
-      {/* Step 1 */}
-      {currentStep === 1 && (
-        <div className="step">
+const Main = () => {
+  return (
+    <div>
+         <div className="step">
           <h3>What brings you to our website today?</h3>
           <div className="form-group">
             <div className="option-container">
@@ -94,23 +71,8 @@ const StickeyForm = ({ onClose }) => {
             </div>
           </div>
         </div>
-      )}
-
-
-
-      {/* Step 2 */}
-      {currentStep === 2 && (
-        <>
-          {formData.step1 === 'option2' && (
-            <SecondForm formData={formData} setFormData={setFormData} />
-          )}
-          {formData.step1 === 'option3' && (
-            <ThirdForm formData={formData} setFormData={setFormData} />
-          )}
-        </>
-      )}
     </div>
-  );
-};
+  )
+}
 
-export default StickeyForm;
+export default Main

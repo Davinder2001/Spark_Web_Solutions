@@ -1308,7 +1308,7 @@ button.sticky-form-button:hover {
     align-items: baseline;
 }
 
-.popup.show .stickey-form {
+.popup .stickey-form {
   background-color: #111216;
   padding: 30px;
   border-radius: 20px;
@@ -1351,6 +1351,39 @@ button.navbar-buttons-main.navigation-menu-btn{
 button.navbar-buttons-main.navigation-contact-btn {
   width: 50%;
 }
+
+.popup {
+  .stickey-form  {
+    .form-header .headings{
+      h2 {
+        color: #FFFFFF;
+        font-size: 100px;
+        font-weight: 600;
+      }
+      h5 {
+        font-size: 40px;
+        font-weight: 600;
+      }
+    } 
+  }
+  .step h3 {
+    font-size: 40px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .stickey-form .option-container label {
+    font-size: 30px;
+    font-weight: 600;
+    font-family: 'Saira';
+    line-height: 48px;
+    display: flex;
+    gap: 18px;
+}
+} 
+
+
+
 
 
 

@@ -2,16 +2,24 @@
 import { useContext, useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { SectorDataContext } from '@/context/apiContext';
-import Link from 'next/link';
+// import Link from 'next/link';
+import ContactPopup from './popupForm';
 import { gsap } from 'gsap';
 
 const ServicesSection = () => {
     const pagesDataApi = useContext(SectorDataContext);
     const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'our-services')?.acf;
+    const [isPopupOpen, setIsPopupOpen] = useState(false); // Add state for popup
 
     const [activeIndex, setActiveIndex] = useState(0);
     const serviceCardsRef = useRef([]);
     const isScrolling = useRef(false);
+
+    
+    const handleContactClick = (e) => {
+        e.preventDefault(); // Prevent the default link behavior
+        setIsPopupOpen(true);
+    };
 
     useEffect(() => {
         const handleScroll = (e) => {
@@ -62,6 +70,14 @@ const ServicesSection = () => {
         });
     }, [activeIndex]);
 
+
+
+    
+    console.log('isPopupOpen', isPopupOpen)
+
+
+
+
     return (
         <div className='services' style={{ overflow: 'hidden', height: '80vh' }}>
 
@@ -105,7 +121,9 @@ const ServicesSection = () => {
                                         </div>
                                     </div>
                                     <div className="contact-button">
-                                        <Link href='/contact-us' className='btn'>Talk To Our Experts</Link>
+                                    <button onClick={handleContactClick} className='btn'>
+                                    Talk To Our Experts
+                                </button>
                                     </div>
                                 </div>
                                 <div className='service-image'>
@@ -123,6 +141,10 @@ const ServicesSection = () => {
 
                     ))}
             </div>
+            <ContactPopup 
+                isOpen={isPopupOpen}
+                onClose={() => setIsPopupOpen(false)}
+            />
         </div>
     );
 };
