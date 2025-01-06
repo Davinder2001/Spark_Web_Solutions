@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import SecondForm from './components/forms/SecondForm';
+import SecondForm from './components/forms/secondForm' 
 import ThirdForm from './components/forms/ThirdForm';
 
 const StickeyForm = ({ onClose }) => {
@@ -101,6 +101,7 @@ const StickeyForm = ({ onClose }) => {
       {/* Step 2 */}
       {currentStep === 2 && (
         <>
+        
           {formData.step1 === 'option2' && (
             <SecondForm formData={formData} setFormData={setFormData} />
           )}
