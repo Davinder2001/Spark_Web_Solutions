@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import SecondForm from './components/forms/secondForm' 
-import ThirdForm from './components/forms/ThirdForm';
+import ThirdForm from './components/forms/thirdForm'
 
 const StickeyForm = ({ onClose }) => {
   const [formData, setFormData] = useState({
