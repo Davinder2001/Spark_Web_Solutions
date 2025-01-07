@@ -1,6 +1,6 @@
 import React from "react";
 
-const SecondForm = ({ formData, setFormData }) => {
+const SecondForm = ({ formData, setFormData, goBack }) => {
   const handleFieldChange = (e, formType) => {
     const { name, value, files } = e.target;
     setFormData((prev) => ({
@@ -53,10 +53,14 @@ const SecondForm = ({ formData, setFormData }) => {
   };
 
   return (
+      <div className="class-stickey-popup-formss second-form">
     <form onSubmit={handleSubmitOption2}>
+      <div className="form-inner">
+
       <div className="form-group">
         <label>
-          <span>Name:</span>
+        Name:
+          </label>
           <input
             type="text"
             name="name"
@@ -64,74 +68,83 @@ const SecondForm = ({ formData, setFormData }) => {
             value={formData?.additionalFields?.option2?.name || ""}
             onChange={(e) => handleFieldChange(e, "option2")}
           />
-        </label>
       </div>
       <div className="form-group">
         <label>
-          <span>Email Address:</span>
+          Email Address:
+        </label>
+
           <input
             type="email"
             name="email"
             placeholder="Enter your email address"
             value={formData?.additionalFields?.option2?.email || ""}
             onChange={(e) => handleFieldChange(e, "option2")}
-          />
-        </label>
+            />
       </div>
       <div className="form-group">
         <label>
-          <span>Current Location:</span>
+          Current Location:
+          </label>
+
           <input
             type="text"
             name="location"
             placeholder="Enter your current location"
             value={formData?.additionalFields?.option2?.location || ""}
             onChange={(e) => handleFieldChange(e, "option2")}
-          />
-        </label>
+            />
       </div>
       <div className="form-group">
         <label>
-          <span>Current Status:</span>
+          Current Status:
+          </label>
           <select
             name="status"
             value={formData?.additionalFields?.option2?.status || ""}
             onChange={(e) => handleFieldChange(e, "option2")}
-          >
+            >
             <option value="" disabled>
               Select your status
             </option>
             <option value="experienced">Experienced</option>
             <option value="fresher">Fresher</option>
           </select>
-        </label>
       </div>
       <div className="form-group">
         <label>
-          <span>Resume:</span>
+          Resume:
+          </label>
           <input
             type="file"
             name="resume"
             onChange={(e) => handleFieldChange(e, "option2")}
-          />
-        </label>
+            />
       </div>
       <div className="form-group">
         <label>
-          <span>Additional Information:</span>
+          Additional Information:
+          </label>
           <textarea
             name="additionalInfo"
             placeholder="Provide any additional information"
             rows="4"
             value={formData?.additionalFields?.option2?.additionalInfo || ""}
             onChange={(e) => handleFieldChange(e, "option2")}
-          ></textarea>
-        </label>
+            ></textarea>
       </div>
-      <button type="submit" className="submit-button">
-        Submit
-      </button>
+            </div>
+      <div className="next-btn-st-form">
+        <button type="button" className="go-back-button proceed-button" onClick={goBack}>
+          Go Back
+        </button>
+
+        <button type="submit" className="submit-button proceed-button">
+          Submit
+        </button>
+      </div>
     </form>
+            </div>
   );
 };
 

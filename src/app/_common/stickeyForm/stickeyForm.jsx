@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import SecondForm from './components/forms/secondForm' 
-import ThirdForm from './components/forms/thirdForm'
+import SecondForm from './components/forms/secondForm';
+import ThirdForm from './components/forms/thirdForm';
 
 const StickeyForm = ({ onClose }) => {
   const [formData, setFormData] = useState({
     step1: '',
     additionalFields: {},
   });
-
-
 
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -19,10 +17,11 @@ const StickeyForm = ({ onClose }) => {
       ...prev,
       [name]: value,
     }));
+  };
 
-    // Redirect to the "Our Services" page for option 1
-    if (name === 'step1') {
-      if (value === 'option1') {
+  const proceed = () => {
+    if (formData.step1) {
+      if (formData.step1 === 'option1') {
         window.location.href = '/our-services';
       } else {
         setTimeout(() => {
@@ -30,6 +29,10 @@ const StickeyForm = ({ onClose }) => {
         }, 300);
       }
     }
+  };
+
+  const goBack = () => {
+    setCurrentStep((prevStep) => Math.max(prevStep - 1, 1));
   };
 
   return (
@@ -46,6 +49,7 @@ const StickeyForm = ({ onClose }) => {
               layout="responsive"
               width={100}
               height={100}
+              alt="Close"
             />
           </button>
         </div>
@@ -53,60 +57,92 @@ const StickeyForm = ({ onClose }) => {
 
       {/* Step 1 */}
       {currentStep === 1 && (
-        <div className="step">
-          <h3>What brings you to our website today?</h3>
-          <div className="form-group">
-            <div className="option-container">
-              <label>
-                <span>Looking for Web Solutions?</span>
-                <input
-                  type="radio"
-                  name="step1"
-                  value="option1"
-                  checked={formData.step1 === 'option1'}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-            <div className="option-container">
-              <label>
-                <span>Join Our Team</span>
-                <input
-                  type="radio"
-                  name="step1"
-                  value="option2"
-                  checked={formData.step1 === 'option2'}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-            <div className="option-container">
-              <label>
-                <span>Looking for Training</span>
-                <input
-                  type="radio"
-                  name="step1"
-                  value="option3"
-                  checked={formData.step1 === 'option3'}
-                  onChange={handleChange}
-                />
-              </label>
+        <>
+          <div className="step">
+            <h3>What brings you to our website today?</h3>
+            <div className="form-group">
+              <div className="option-container">
+                <label>
+                <div className="heading">
+                  <span>Looking for Web Solutions?</span>
+                  </div>
+                  <div className="input-area">
+
+                  <input
+                    type="radio"
+                    name="step1"
+                    value="option1"
+                    checked={formData.step1 === 'option1'}
+                    onChange={handleChange}
+                    />
+                    </div>
+                </label>
+              </div>
+              <div className="option-container">
+                <label>
+                  
+                <div className="heading">
+
+                  <span>Join Our Team</span>
+                </div>
+                <div className="input-area">
+                  <input
+                    type="radio"
+                    name="step1"
+                    value="option2"
+                    checked={formData.step1 === 'option2'}
+                    onChange={handleChange}
+                  />
+              </div>
+                </label>
+              </div>
+              <div className="option-container">
+                <label>
+                  <div className="heading">
+                  <span>Looking for Training</span>
+
+                  </div>
+                  <div className="input-area">
+                  <input
+                    type="radio"
+                    name="step1"
+                    value="option3"
+                    checked={formData.step1 === 'option3'}
+                    onChange={handleChange}
+                  />
+              </div>
+                </label>
+              </div>
             </div>
           </div>
-        </div>
+          <div className="next-btn-st-form">
+            <button
+              className="proceed-button"
+              onClick={proceed}
+              disabled={!formData.step1} // Disable the button if no option is selected
+            >
+              Next
+            </button>
+          </div>
+        </>
       )}
-
-
 
       {/* Step 2 */}
       {currentStep === 2 && (
         <>
-        
           {formData.step1 === 'option2' && (
-            <SecondForm formData={formData} setFormData={setFormData} />
+            <SecondForm
+              formData={formData}
+              setFormData={setFormData}
+              goBack={goBack}
+            />
           )}
           {formData.step1 === 'option3' && (
-            <ThirdForm formData={formData} setFormData={setFormData} />
+            <ThirdForm
+              formData={formData}
+              setFormData={setFormData}
+              goBack={goBack}
+            />
           )}
         </>
       )}

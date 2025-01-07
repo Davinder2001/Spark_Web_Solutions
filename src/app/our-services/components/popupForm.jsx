@@ -24,13 +24,14 @@ const ContactPopup = ({ isOpen, onClose, serviceNames, selectedService }) => {
 
         const formDataToSend = new FormData();
         formDataToSend.append('service', formData.service);
-        formDataToSend.append('name', formData.name);
-        formDataToSend.append('email', formData.email);
-        formDataToSend.append('number', formData.number);
-        formDataToSend.append('message', formData.message);
+        formDataToSend.append('your-name', formData.name);
+        formDataToSend.append('your-email', formData.email);
+        formDataToSend.append('your-number', formData.number);
+        formDataToSend.append('your-message', formData.message);
+        formDataToSend.append('_wpcf7_unit_tag', '478');
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/contact-form-7/v1/contact-forms/478/feedback`, {
                 method: 'POST',
                 body: formDataToSend,
             });
