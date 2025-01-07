@@ -1,4 +1,5 @@
 "use client";
+import Image from 'next/image';
 import React, { useState } from 'react';
 
 const EnquiryPopup = ({ onClose }) => {
@@ -55,7 +56,14 @@ const EnquiryPopup = ({ onClose }) => {
       <div className='popup-content'>
       <div className='form-top-bar'>
         <h2></h2>
-        <button type='button' onClick={onClose}>Close</button>
+        <button type='button' onClick={onClose}>
+        <Image
+              src="/images/123.png"
+              layout="responsive"
+              width={100}
+              height={100}
+            />  
+        </button>
       </div>
         <p>Please fill in your details:</p>
         <form onSubmit={handleSubmit}>

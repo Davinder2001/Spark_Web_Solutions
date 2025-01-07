@@ -1,100 +1,141 @@
-import { useState, React } from 'react';
-// import { X } from 'lucide-react';
+import React, { useState } from 'react';
+import Image from 'next/image';
 
-const ContactPopup = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
-    onClose();
-  };
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
+const ContactPopup = ({ isOpen, onClose, serviceNames, selectedService }) => {
+    const [formData, setFormData] = useState({
+        service: selectedService || '',
+        name: '',
+        email: '',
+        number: '',
+        message: ''
     });
-  };
+    const [statusMessage, setStatusMessage] = useState('');
 
-  if (!isOpen) return null;
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
 
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-8 max-w-md w-full relative">
-        <button
-          onClick={onClose}
-          className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
-        >
-          {/* <X size={24} /> */}
-        </button>
-        
-        <h2 className="text-2xl font-bold mb-6">Contact Our Experts</h2>
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-1">Name</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-          
-          <div>
-            <label className="block text-sm font-medium mb-1">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-          
-          <div>
-            <label className="block text-sm font-medium mb-1">Phone</label>
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-          
-          <div>
-            <label className="block text-sm font-medium mb-1">Message</label>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 h-32"
-              required
-            ></textarea>
-          </div>
-          
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
-  );
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const formDataToSend = new FormData();
+        formDataToSend.append('service', formData.service);
+        formDataToSend.append('name', formData.name);
+        formDataToSend.append('email', formData.email);
+        formDataToSend.append('number', formData.number);
+        formDataToSend.append('message', formData.message);
+
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, {
+                method: 'POST',
+                body: formDataToSend,
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setStatusMessage('Enquiry sent successfully!');
+                setFormData({ service: '', name: '', email: '', number: '', message: '' });
+            } else {
+                setStatusMessage(`Error: ${result.message}`);
+            }
+        } catch (error) {
+            setStatusMessage(`Error: ${error.message}`);
+        }
+    };
+
+    if (!isOpen) return null;
+
+    return (
+        <div className='service-popup'>
+            <div className="popup-overlay">
+                <div className="popup-content">
+                    <button className="close-btn" onClick={onClose}>
+                        <Image
+                            src="/images/123.png"
+                            layout="responsive"
+                            width={100}
+                            height={100}
+                        />
+                    </button>
+                    <h2>Contact Our Experts</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="service">Select a Service</label>
+                            <select
+                                id="service"
+                                name="service"
+                                required
+                                value={formData.service}
+                                onChange={handleInputChange}
+                            >
+                                <option value="" disabled>
+                                    Select a Service
+                                </option>
+                                {serviceNames.map((service, index) => (
+                                    <option key={index} value={service}>
+                                        {service}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="name">Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                required
+                                value={formData.name}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                                value={formData.email}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="number">Number</label>
+                            <input
+                                type="text"
+                                id="number"
+                                name="number"
+                                required
+                                value={formData.number}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="message">Message</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="4"
+                                required
+                                value={formData.message}
+                                onChange={handleInputChange}
+                            ></textarea>
+                        </div>
+                        <button type="submit" className="submit-btn">
+                            Submit
+                        </button>
+                    </form>
+                    {statusMessage && <p className="status-message">{statusMessage}</p>}
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default ContactPopup;

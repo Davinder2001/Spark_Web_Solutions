@@ -19,19 +19,19 @@ const ThirdForm = ({ formData, setFormData }) => {
     e.preventDefault();
 
     const formDataToSend = new FormData();
-    formDataToSend.append('steps', formData.step1); // Step (option3)
-    formDataToSend.append('name', formData.additionalFields?.option3?.name || '');
-    formDataToSend.append('mobile', formData.additionalFields?.option3?.mobile || '');
-    formDataToSend.append('email', formData.additionalFields?.option3?.email || '');
-    formDataToSend.append('course', formData.additionalFields?.option3?.course || '');
-    formDataToSend.append('schedule', formData.additionalFields?.option3?.schedule || '');
-    formDataToSend.append('qualification', formData.additionalFields?.option3?.qualification || '');
-    formDataToSend.append('additionalInfo', formData.additionalFields?.option3?.additionalInfo || '');
-    formDataToSend.append('_wpcf7_unit_tag', '414'); // Replace with your actual value
+    formDataToSend.append('subject', 'Looking for Training');
+    formDataToSend.append('name', formData.additionalFields?.option3?.name);
+    formDataToSend.append('mobile-number', formData.additionalFields?.option3?.mobile);
+    formDataToSend.append('email', formData.additionalFields?.option3?.email);
+    formDataToSend.append('course', formData.additionalFields?.option3?.course);
+    formDataToSend.append('schedule', formData.additionalFields?.option3?.schedule);
+    formDataToSend.append('qualification', formData.additionalFields?.option3?.qualification);
+    formDataToSend.append('additional-info', formData.additionalFields?.option3?.additionalInfo);
+    formDataToSend.append('_wpcf7_unit_tag', '476'); 
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/contact-form-7-endpoint-option3`,
+        `${process.env.NEXT_PUBLIC_API_URL}/wp-json/contact-form-7/v1/contact-forms/476/feedback`,
         {
           method: 'POST',
           body: formDataToSend,

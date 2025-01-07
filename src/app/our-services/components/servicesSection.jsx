@@ -2,22 +2,21 @@
 import { useContext, useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { SectorDataContext } from '@/context/apiContext';
-// import Link from 'next/link';
-import ContactPopup from './popupForm';
+import ContactPopup from './popupForm'; // Import the ContactPopup component
 import { gsap } from 'gsap';
 
 const ServicesSection = () => {
     const pagesDataApi = useContext(SectorDataContext);
     const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'our-services')?.acf;
     const [isPopupOpen, setIsPopupOpen] = useState(false); // Add state for popup
-
     const [activeIndex, setActiveIndex] = useState(0);
+    const [selectedService, setSelectedService] = useState(''); // Add state for selected service
     const serviceCardsRef = useRef([]);
     const isScrolling = useRef(false);
 
-    
-    const handleContactClick = (e) => {
+    const handleContactClick = (e, serviceName) => {
         e.preventDefault(); // Prevent the default link behavior
+        setSelectedService(serviceName); // Set the selected service name
         setIsPopupOpen(true);
     };
 
@@ -46,7 +45,6 @@ const ServicesSection = () => {
             setTimeout(() => {
                 isScrolling.current = false;
             }, 800);
-
         };
 
         window.addEventListener('wheel', handleScroll, { passive: false });
@@ -70,25 +68,14 @@ const ServicesSection = () => {
         });
     }, [activeIndex]);
 
-
-
-    
-    console.log('isPopupOpen', isPopupOpen)
-
-
-
-
     return (
         <div className='services' style={{ overflow: 'hidden', height: '80vh' }}>
-
             <div className='page-title'>
                 <h1>{mainData?.page_title}</h1>
             </div>
-
             <div className="service-cards-container" style={{ position: 'relative', height: '80vh' }}>
                 {mainData &&
                     mainData.services?.map((service, index) => (
-
                         <div
                             key={index}
                             className="service-card-outer"
@@ -103,7 +90,6 @@ const ServicesSection = () => {
                             }}
                             ref={(el) => (serviceCardsRef.current[index] = el)}
                         >
-
                             <div className="service-card">
                                 <div className='service-description'>
                                     <div className='service-count'>
@@ -121,9 +107,12 @@ const ServicesSection = () => {
                                         </div>
                                     </div>
                                     <div className="contact-button">
-                                    <button onClick={handleContactClick} className='btn'>
-                                    Talk To Our Experts
-                                </button>
+                                        <button
+                                            onClick={(e) => handleContactClick(e, service.service_name)}
+                                            className='btn'
+                                        >
+                                            Talk To Our Experts
+                                        </button>
                                     </div>
                                 </div>
                                 <div className='service-image'>
@@ -138,12 +127,13 @@ const ServicesSection = () => {
                             </div>
                             <div className="overlay"></div>
                         </div>
-
                     ))}
             </div>
-            <ContactPopup 
+            <ContactPopup
                 isOpen={isPopupOpen}
                 onClose={() => setIsPopupOpen(false)}
+                serviceNames={mainData?.services?.map(service => service.service_name) || []}
+                selectedService={selectedService} // Pass the selected service name
             />
         </div>
     );
