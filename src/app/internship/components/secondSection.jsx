@@ -1,36 +1,45 @@
 'use client';
 import { useContext, useState } from 'react';
-import Link from 'next/link';
 import { SectorDataContext } from '@/context/apiContext';
+import PopupForm from './popup';
 
 const ThirdSection = () => {
   const pagesDataApi = useContext(SectorDataContext);
   const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'internship')?.acf?.third_section;
 
-  // State to track the active tab
-  const [activeTab, setActiveTab] = useState('all'); 
+
+  const [activeTab, setActiveTab] = useState('all');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [formData, setFormData] = useState({ additionalFields: { option3: {} } });
+
   const filteredCourses = activeTab === 'all'
-    ? mainData?.flatMap(tab => tab.courses_details) // Show all courses when 'all' is selected
+    ? mainData?.flatMap(tab => tab.courses_details) 
     : mainData?.find(tab => tab.course_name === activeTab)?.courses_details;
 
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
+
+  const goBack = () => {
+    setIsPopupOpen(false); 
+  };
+
   return (
-    <div className='courses-main-outer container'>
+    <div className="courses-main-outer container">
       {/* Tabs Navigation */}
-      <div className='tabs-container-btns'>
-        {/* "All Courses" Button */}
+      <div className="tabs-container-btns">
         <button
           onClick={() => setActiveTab('all')}
-          className={`tabs-button ${activeTab === 'all' ? 'active' : ''}`} 
+          className={`tabs-button ${activeTab === 'all' ? 'active' : ''}`}
         >
           All Courses
         </button>
 
-        {/* Dynamic Buttons for Each Tab */}
-        {mainData?.map((tab) => (
+        {mainData?.map(tab => (
           <button
             key={tab.course_name}
             onClick={() => setActiveTab(tab.course_name)}
-            className={`tabs-button ${activeTab === tab.course_name ? 'active' : ''}`} 
+            className={`tabs-button ${activeTab === tab.course_name ? 'active' : ''}`}
           >
             {tab.course_name}
           </button>
@@ -38,15 +47,32 @@ const ThirdSection = () => {
       </div>
 
       {/* Tab Content */}
-      <div className='tab-content-wrapper'>
+      <div className="tab-content-wrapper">
         {filteredCourses?.map((course, index) => (
-          <div key={index} className='single-course-wrapper'>
+          <div key={index} className="single-course-wrapper">
             <h3>{course.course_heading}</h3>
             <p dangerouslySetInnerHTML={{ __html: course.course_description }}></p>
-            <Link className='join-cource-btn' href='/contact-us'>Join Courses</Link>
+            <button
+              className="join-cource-btn"
+              onClick={togglePopup}
+            >
+              Join Courses
+            </button>
           </div>
         ))}
       </div>
+
+      {/* Popup Form */}
+      {isPopupOpen && (
+        <div className="intership-popup-outer popup-overlay">
+          <PopupForm
+            formData={formData}
+            setFormData={setFormData}
+            goBack={goBack}
+            mainData={mainData}
+          />
+        </div>
+      )}
     </div>
   );
 };

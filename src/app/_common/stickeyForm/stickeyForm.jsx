@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import SecondForm from './components/forms/secondForm';
-import ThirdForm from './components/forms/thirdForm';
+import SecondForm from './components/secondForm';
 
 const StickeyForm = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -22,14 +21,20 @@ const StickeyForm = ({ onClose }) => {
   const proceed = () => {
     if (formData.step1) {
       if (formData.step1 === 'option1') {
+        // Redirect for the first option
         window.location.href = '/our-services';
+      } else if (formData.step1 === 'option3') {
+        // Redirect for the third option
+        window.location.href = '/internship';
       } else {
+        // Proceed to step 2 for other options
         setTimeout(() => {
           setCurrentStep(2);
         }, 300);
       }
     }
   };
+  
 
   const goBack = () => {
     setCurrentStep((prevStep) => Math.max(prevStep - 1, 1));
@@ -137,13 +142,7 @@ const StickeyForm = ({ onClose }) => {
               goBack={goBack}
             />
           )}
-          {formData.step1 === 'option3' && (
-            <ThirdForm
-              formData={formData}
-              setFormData={setFormData}
-              goBack={goBack}
-            />
-          )}
+
         </>
       )}
     </div>
