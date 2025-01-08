@@ -29,7 +29,7 @@ export const ThreeRenderScene = () => {
         const colors = new Float32Array(count * 3);
 
         for (let i = 0; i < count * 3; i++) {
-            positions[i] = (Math.random() - 0.5) * 20;
+            positions[i] = (Math.random() - 0.5)*10;
             colors[i] = Math.random();
         }
 
@@ -38,7 +38,7 @@ export const ThreeRenderScene = () => {
         particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
         const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.02,
+            size: 0.01,
             sizeAttenuation: true,
             color: new THREE.Color(PARTICLE_GEOMETRY__COLOR),
             depthWrite: false,
@@ -69,10 +69,11 @@ export const ThreeRenderScene = () => {
 
          // 4. Sphere Geometry and Material
          const sphere = new THREE.Mesh(
-            new THREE.SphereGeometry(1, 32, 32), // Sphere geometry
+            new THREE.SphereGeometry(1.5, 32, 32), // Sphere geometry
             new THREE.MeshBasicMaterial({ wireframe: true,   map:texture }) // Material with texture
         );
         scene.add(sphere);
+        sphere.position.y=0.1
 
         settings.add(sphere.position, 'y').min(-3).max(3).step(0.1).name('PositionY');
         settings.add(sphere.position, 'x').min(-3).max(3).step(0.1).name('PositionX');
