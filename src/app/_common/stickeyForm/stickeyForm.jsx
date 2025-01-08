@@ -1,6 +1,8 @@
+'use client'
 import React, { useState } from 'react';
 import Image from 'next/image';
 import SecondForm from './components/secondForm';
+import { useRouter } from 'next/navigation'; // Import the useRouter hook
 
 const StickeyForm = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -9,6 +11,7 @@ const StickeyForm = ({ onClose }) => {
   });
 
   const [currentStep, setCurrentStep] = useState(1);
+  const router = useRouter(); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,13 +24,12 @@ const StickeyForm = ({ onClose }) => {
   const proceed = () => {
     if (formData.step1) {
       if (formData.step1 === 'option1') {
-        // Redirect for the first option
-        window.location.href = '/our-services';
+        router.push('/our-services');
+        onClose(); 
       } else if (formData.step1 === 'option3') {
-        // Redirect for the third option
-        window.location.href = '/internship';
+        router.push('/internship');
+        onClose();
       } else {
-        // Proceed to step 2 for other options
         setTimeout(() => {
           setCurrentStep(2);
         }, 300);
@@ -68,54 +70,50 @@ const StickeyForm = ({ onClose }) => {
             <div className="form-group">
               <div className="option-container">
                 <label>
-                <div className="heading">
-                  <span>Looking for Web Solutions?</span>
+                  <div className="heading">
+                    <span>Looking for Web Solutions?</span>
                   </div>
                   <div className="input-area">
-
-                  <input
-                    type="radio"
-                    name="step1"
-                    value="option1"
-                    checked={formData.step1 === 'option1'}
-                    onChange={handleChange}
+                    <input
+                      type="radio"
+                      name="step1"
+                      value="option1"
+                      checked={formData.step1 === 'option1'}
+                      onChange={handleChange}
                     />
-                    </div>
-                </label>
-              </div>
-              <div className="option-container">
-                <label>
-                  
-                <div className="heading">
-
-                  <span>Join Our Team</span>
-                </div>
-                <div className="input-area">
-                  <input
-                    type="radio"
-                    name="step1"
-                    value="option2"
-                    checked={formData.step1 === 'option2'}
-                    onChange={handleChange}
-                  />
-              </div>
+                  </div>
                 </label>
               </div>
               <div className="option-container">
                 <label>
                   <div className="heading">
-                  <span>Looking for Training</span>
-
+                    <span>Join Our Team</span>
                   </div>
                   <div className="input-area">
-                  <input
-                    type="radio"
-                    name="step1"
-                    value="option3"
-                    checked={formData.step1 === 'option3'}
-                    onChange={handleChange}
-                  />
+                    <input
+                      type="radio"
+                      name="step1"
+                      value="option2"
+                      checked={formData.step1 === 'option2'}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </label>
               </div>
+              <div className="option-container">
+                <label>
+                  <div className="heading">
+                    <span>Looking for Training</span>
+                  </div>
+                  <div className="input-area">
+                    <input
+                      type="radio"
+                      name="step1"
+                      value="option3"
+                      checked={formData.step1 === 'option3'}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </label>
               </div>
             </div>
@@ -142,7 +140,6 @@ const StickeyForm = ({ onClose }) => {
               goBack={goBack}
             />
           )}
-
         </>
       )}
     </div>
