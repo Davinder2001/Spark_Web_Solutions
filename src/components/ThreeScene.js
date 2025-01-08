@@ -4,7 +4,7 @@ import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import GUI from 'lil-gui';
-import {COUNT_OF_VERTEXES,ANIMATION_SPEED, LIL_GUI_COLOR, PARTICLE_GEOMETRY__COLOR} from '@/utils/constents'
+import { COUNT_OF_VERTEXES, ANIMATION_SPEED, LIL_GUI_COLOR, PARTICLE_GEOMETRY__COLOR } from '@/utils/constents';
 
 export const ThreeRenderScene = () => {
     const canvasRef = useRef(null);
@@ -20,16 +20,26 @@ export const ThreeRenderScene = () => {
         const textureLoader = new THREE.TextureLoader();
         const texture = textureLoader.load('./images/water.jpg');
 
-       
+        // 4. Initial Properties
+        const initialProps = {
+            radius: 1.7,
+            widthSegments: 32,
+            heightSegments: 32,
+            color: LIL_GUI_COLOR,
+            positionX: 0,
+            positionY: 0.1,
+        };
+
+        const prop = { ...initialProps }; // Clone initial properties
 
         // 5. Particles Geometry and Material
         const particlesGeometry = new THREE.BufferGeometry();
-        const count =COUNT_OF_VERTEXES ;
+        const count = COUNT_OF_VERTEXES;
         const positions = new Float32Array(count * 3);
         const colors = new Float32Array(count * 3);
 
         for (let i = 0; i < count * 3; i++) {
-            positions[i] = (Math.random() - 0.5)*10;
+            positions[i] = (Math.random() - 0.5) * 10;
             colors[i] = Math.random();
         }
 
@@ -43,40 +53,32 @@ export const ThreeRenderScene = () => {
             color: new THREE.Color(PARTICLE_GEOMETRY__COLOR),
             depthWrite: false,
             blending: THREE.AdditiveBlending,
-            vertexColors: true, // Enable vertex colors
+            vertexColors: true,
         });
 
         // Create particles
         const particles = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particles);
 
-        // 6. Create GUI
-        const gui = new GUI({
-            title: 'Play With 3D Scene',
-            closeFolders: true,
-        });
+        // 6. Sphere Geometry and Material
+        const sphere = new THREE.Mesh(
+            new THREE.SphereGeometry(prop.radius, prop.widthSegments, prop.heightSegments),
+            new THREE.MeshBasicMaterial({ wireframe: true, map: texture })
+        );
+        scene.add(sphere);
+
+         
+        sphere.position.y = 0.13;
+
+        // 7. Create GUI
+        const gui = new GUI({ title: 'Play With 3D Scene', closeFolders: true });
         gui.close();
 
         const heightAndWidth = gui.addFolder('Height Width');
         const settings = gui.addFolder('Scene Settings');
 
-        const prop = {
-            radius: 1,
-            widthSegments: 32,
-            heightSegments: 32,
-            color: LIL_GUI_COLOR,
-        };
-
-         // 4. Sphere Geometry and Material
-         const sphere = new THREE.Mesh(
-            new THREE.SphereGeometry(1.5, 32, 32), // Sphere geometry
-            new THREE.MeshBasicMaterial({ wireframe: true,   map:texture }) // Material with texture
-        );
-        scene.add(sphere);
-        sphere.position.y=0.1
-
-        settings.add(sphere.position, 'y').min(-3).max(3).step(0.1).name('PositionY');
-        settings.add(sphere.position, 'x').min(-3).max(3).step(0.1).name('PositionX');
+        settings.add(sphere.position, 'y').min(-3).max(3).step(0.1).name('Position Y');
+        settings.add(sphere.position, 'x').min(-3).max(3).step(0.1).name('Position X');
         settings.add(sphere.material, 'wireframe').name('Wireframe');
         settings.addColor(prop, 'color').onChange(() => {
             sphere.material.color.set(prop.color);
@@ -91,27 +93,45 @@ export const ThreeRenderScene = () => {
         heightAndWidth.add(prop, 'widthSegments').min(3).max(64).step(1).name('Width Segments').onChange(updateGeometry);
         heightAndWidth.add(prop, 'heightSegments').min(3).max(64).step(1).name('Height Segments').onChange(updateGeometry);
 
-        // 7. Sizes
+        gui.add(
+            {
+                reset: () => {
+                    // Reset properties to initial values
+                    Object.assign(prop, initialProps);
+                    sphere.material.color.set(prop.color);
+                    sphere.geometry.dispose();
+                    sphere.geometry = new THREE.SphereGeometry(prop.radius, prop.widthSegments, prop.heightSegments);
+                    sphere.position.x = prop.positionX;
+                    sphere.position.y = prop.positionY;
+
+                    // Update GUI controls
+                    gui.controllers.forEach((controller) => controller.updateDisplay());
+                },
+            },
+            'reset'
+        ).name('Reset');
+
+        // 8. Sizes
         const sizes = {
             width: window.innerWidth,
             height: window.innerHeight,
         };
 
-        // 8. Camera
+        // 9. Camera
         const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
         camera.position.z = 3;
         scene.add(camera);
 
-        // 9. Controls
+        // 10. Controls
         const controls = new OrbitControls(camera, canvas);
         controls.enableDamping = true;
 
-        // 10. Renderer
+        // 11. Renderer
         const renderer = new THREE.WebGLRenderer({ canvas });
         renderer.setSize(sizes.width, sizes.height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // 11. Handle Window Resize
+        // 12. Handle Window Resize
         window.addEventListener('resize', () => {
             sizes.width = window.innerWidth;
             sizes.height = window.innerHeight;
@@ -121,7 +141,7 @@ export const ThreeRenderScene = () => {
             renderer.setSize(sizes.width, sizes.height);
         });
 
-        // 12. Animation
+        // 13. Animation
         const clock = new THREE.Clock();
 
         const tick = () => {
