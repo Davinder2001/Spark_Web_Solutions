@@ -1,6 +1,7 @@
 "use client";
 import Image from 'next/image';
 import React, { useState } from 'react';
+import {toast} from 'sonner';
 
 const EnquiryPopup = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,6 @@ const EnquiryPopup = ({ onClose }) => {
     yourmessage: '',
   });
 
-  const [statusMessage, setStatusMessage] = useState(null);
 
   // Handle form field changes
   const handleChange = (e) => {
@@ -42,35 +42,47 @@ const EnquiryPopup = ({ onClose }) => {
       const result = await response.json();
 
       if (response.ok) {
-        setStatusMessage('Enquiry sent successfully!');
+        toast.success('Enquiry sent successfully!');
+        onClose()
       } else {
-        setStatusMessage(`Error: ${result.message}`);
+        toast.error(`Error: ${result.message}`);
       }
     } catch (error) {
-      setStatusMessage(`Error: ${error.message}`);
+      toast.error(`Error: ${error.message}`);
     }
   };
 
   return (
-    <div className='popup-container popup'>
-      <div className='popup-content'>
+    <div className='enquery-popup-container'>
+      <div className='enquery-popup-content'
+        style={{
+          backgroundImage: "url('/images/377dfb3a6f6be92038a856784c55436b.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      
+      >
+        <div className="form-inner-overlay"></div>
+        <div className='main-enq-pop-area-frm'>
       <div className='form-top-bar'>
         <h2></h2>
-        <button type='button' onClick={onClose}>
+        <button type='button' onClick={onClose} className='close-btn-x'>
         <Image
               src="/images/123.png"
               layout="responsive"
               width={100}
               height={100}
+              className='close-button-x-img'
             />  
         </button>
       </div>
-        <p>Please fill in your details:</p>
+       
         <form onSubmit={handleSubmit}>
           <div className='container-for-four'>
             <div className='form-control'>
               <label htmlFor='yourfirstname'>First Name</label>
               <input
+              className='form-input-design'
                 type='text'
                 id='yourfirstname'
                 name='yourfirstname'
@@ -83,6 +95,7 @@ const EnquiryPopup = ({ onClose }) => {
             <div className='form-control'>
               <label htmlFor='yourlastname'>Last Name</label>
               <input
+              className='form-input-design'
                 type='text'
                 id='yourlastname'
                 name='yourlastname'
@@ -95,6 +108,7 @@ const EnquiryPopup = ({ onClose }) => {
             <div className='form-control'>
               <label htmlFor='youremail'>Email Address</label>
               <input
+                className='form-input-design'
                 type='email'
                 id='youremail'
                 name='youremail'
@@ -107,6 +121,7 @@ const EnquiryPopup = ({ onClose }) => {
             <div className='form-control'>
               <label htmlFor='yournumber'>Mobile Number</label>
               <input
+                className='form-input-design'
                 type='tel' // Changed to 'tel' for mobile number
                 id='yournumber'
                 name='yournumber'
@@ -120,6 +135,7 @@ const EnquiryPopup = ({ onClose }) => {
           <div className='form-control'>
             <label htmlFor='yourmessage'>Your Message</label>
             <textarea
+              className='form-input-design'
               id='yourmessage'
               name='yourmessage'
               value={formData.yourmessage}
@@ -127,9 +143,9 @@ const EnquiryPopup = ({ onClose }) => {
             ></textarea>
           </div>
 
-          <button type='submit'>Send Enquiry</button>
+          <button className='hover-effect-btn' type='submit'>Send Enquiry</button>
         </form>
-        {statusMessage && <p>{statusMessage}</p>}
+        </div>
       </div>
     </div>
   );

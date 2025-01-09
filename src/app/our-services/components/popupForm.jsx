@@ -54,7 +54,7 @@ const ContactPopup = ({ isOpen, onClose, serviceNames, selectedService }) => {
     return (
         <div className='service-popup'>
             <div className="popup-overlay">
-                <div className="popup-content">
+                <div className="service-popup-content">
                     <button className="close-btn" onClick={onClose}>
                         <Image
                             src="/images/123.png"
@@ -63,8 +63,9 @@ const ContactPopup = ({ isOpen, onClose, serviceNames, selectedService }) => {
                             height={100}
                         />
                     </button>
-                    <h2>Contact Our Experts</h2>
-                    <form onSubmit={handleSubmit}>
+                    {/* <h2>Contact Our Experts</h2> */}
+                    <form onSubmit={handleSubmit} className='service-popup-form'>
+                        <div className='service-popup-form-inner'>
                         <div className="form-group">
                             <label htmlFor="service">Select a Service</label>
                             <select
@@ -127,6 +128,7 @@ const ContactPopup = ({ isOpen, onClose, serviceNames, selectedService }) => {
                                 value={formData.message}
                                 onChange={handleInputChange}
                             ></textarea>
+                        </div>
                         </div>
                         <button type="submit" className="submit-btn">
                             Submit

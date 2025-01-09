@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import SecondForm from './components/secondForm';
-import { useRouter } from 'next/navigation'; // Import the useRouter hook
+import { useRouter } from 'next/navigation';
 
 const StickeyForm = ({ onClose }) => {
   const [formData, setFormData] = useState({

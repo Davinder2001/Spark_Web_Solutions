@@ -13,7 +13,7 @@ const ThirdSection = () => {
   const [formData, setFormData] = useState({ additionalFields: { option3: {} } });
 
   const filteredCourses = activeTab === 'all'
-    ? mainData?.flatMap(tab => tab.courses_details) 
+    ? mainData?.flatMap(tab => tab.courses_details)
     : mainData?.find(tab => tab.course_name === activeTab)?.courses_details;
 
   const togglePopup = () => {
@@ -21,7 +21,7 @@ const ThirdSection = () => {
   };
 
   const goBack = () => {
-    setIsPopupOpen(false); 
+    setIsPopupOpen(false);
   };
 
   return (
@@ -70,6 +70,7 @@ const ThirdSection = () => {
             setFormData={setFormData}
             goBack={goBack}
             mainData={mainData}
+            activeTab={activeTab}
           />
         </div>
       )}

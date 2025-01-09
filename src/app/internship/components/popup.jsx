@@ -1,6 +1,9 @@
+'use client'
 import React from 'react';
+import Image from 'next/image';
+import {toast} from 'sonner';
 
-const PopupForm = ({ mainData, formData, setFormData, goBack }) => {
+const PopupForm = ({ mainData, formData, setFormData, goBack, activeTab }) => {
   const handleFieldChange = (e, formType) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -17,7 +20,7 @@ const PopupForm = ({ mainData, formData, setFormData, goBack }) => {
 
   const handleSubmitOption3 = async (e) => {
     e.preventDefault();
-
+  
     const formDataToSend = new FormData();
     formDataToSend.append('subject', 'Looking for Training');
     formDataToSend.append('name', formData.additionalFields?.option3?.name);
@@ -26,7 +29,7 @@ const PopupForm = ({ mainData, formData, setFormData, goBack }) => {
     formDataToSend.append('course', formData.additionalFields?.option3?.course);
     formDataToSend.append('additional-info', formData.additionalFields?.option3?.additionalInfo);
     formDataToSend.append('_wpcf7_unit_tag', '476');
-
+  
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/wp-json/contact-form-7/v1/contact-forms/476/feedback`,
@@ -35,22 +38,45 @@ const PopupForm = ({ mainData, formData, setFormData, goBack }) => {
           body: formDataToSend,
         }
       );
-
+  
       if (response.ok) {
-        const result = await response.json();
-        console.log('Form submitted successfully for Training!', result);
+        toast.success('Form Submitted Successfully');
+        goBack()
       } else {
         const error = await response.json();
-        console.error(`Error Option 3: ${error.message || 'Something went wrong'}`);
+        toast.error(`Submission Failed: ${error.message || 'Unknown error'}`);
       }
     } catch (error) {
-      console.error(`Error Option 3: ${error.message}`);
+      toast.error(`Submission Failed: ${error.message || 'Unknown error'}`);
     }
   };
 
   return (
     <div className="internsip-popup">
-      <form onSubmit={handleSubmitOption3}>
+
+      <div className=''>
+        <div className="main-heading">
+          <h2>Welcome To</h2>
+        </div>
+        <div className="sub-heading">
+          <h5>Spark Web Solutions</h5>
+        </div>
+        <div>
+        <button type="button" className="go-back-button proceed-button" onClick={goBack}>
+            <Image
+                src="/images/123.png"
+                layout="responsive"
+                width={100}
+                height={100}
+                alt="Close"
+              />
+          </button>
+        </div>
+      </div>
+
+
+
+      <form onSubmit={handleSubmitOption3} className='internsip-popup-form'>
         <div className="form-group">
           <label>Name</label>
           <input
@@ -85,7 +111,7 @@ const PopupForm = ({ mainData, formData, setFormData, goBack }) => {
           <label>Course Interested:</label>
           <select
             name="course"
-            value={formData?.additionalFields?.option3?.course || ''}
+            value={formData?.additionalFields?.option3?.course ?? activeTab}
             onChange={(e) => handleFieldChange(e, 'option3')}
           >
             <option value="">Select a course</option>
@@ -95,6 +121,7 @@ const PopupForm = ({ mainData, formData, setFormData, goBack }) => {
               </option>
             ))}
           </select>
+
         </div>
         <div className="form-group full-width">
           <label>Additional Information:</label>
@@ -107,9 +134,7 @@ const PopupForm = ({ mainData, formData, setFormData, goBack }) => {
           ></textarea>
         </div>
         <div className="next-btn-st-form">
-          <button type="button" className="go-back-button proceed-button" onClick={goBack}>
-            Go Back
-          </button>
+   
           <button type="submit" className="submit-button proceed-button">
             Submit
           </button>

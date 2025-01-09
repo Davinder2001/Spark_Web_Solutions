@@ -138,7 +138,7 @@ const HeaderContent = () => {
 
       {/* Enquiry Popup */}
       {isPopupOpen && (
-        <div className="popup" ref={popupRef}>
+        <div className="enquery-popup" ref={popupRef}>
           <EnquiryPopup onClose={togglePopup} />
         </div>
       )}
