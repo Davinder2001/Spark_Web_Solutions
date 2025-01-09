@@ -138,6 +138,7 @@ const StickeyForm = ({ onClose }) => {
               formData={formData}
               setFormData={setFormData}
               goBack={goBack}
+              onClose={onClose}
             />
           )}
         </>

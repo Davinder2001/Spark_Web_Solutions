@@ -64,7 +64,7 @@ const ThirdSection = () => {
 
       {/* Popup Form */}
       {isPopupOpen && (
-        <div className="intership-popup-outer popup-overlay">
+        <div className="intership-popup-outer internship-popup-overlay">
           <PopupForm
             formData={formData}
             setFormData={setFormData}

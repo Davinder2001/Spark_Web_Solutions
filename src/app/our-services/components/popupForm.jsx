@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import {toast} from 'sonner';
 
 const ContactPopup = ({ isOpen, onClose, serviceNames, selectedService }) => {
     const [formData, setFormData] = useState({
@@ -9,7 +10,6 @@ const ContactPopup = ({ isOpen, onClose, serviceNames, selectedService }) => {
         number: '',
         message: ''
     });
-    const [statusMessage, setStatusMessage] = useState('');
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -39,13 +39,14 @@ const ContactPopup = ({ isOpen, onClose, serviceNames, selectedService }) => {
             const result = await response.json();
 
             if (response.ok) {
-                setStatusMessage('Enquiry sent successfully!');
+                toast.success('Enquiry sent successfully!');
                 setFormData({ service: '', name: '', email: '', number: '', message: '' });
+                onClose(); 
             } else {
-                setStatusMessage(`Error: ${result.message}`);
+                toast.error(`Error: ${result.message}`);
             }
         } catch (error) {
-            setStatusMessage(`Error: ${error.message}`);
+            toast.error(`Error: ${error.message}`);
         }
     };
 
@@ -54,87 +55,103 @@ const ContactPopup = ({ isOpen, onClose, serviceNames, selectedService }) => {
     return (
         <div className='service-popup'>
             <div className="popup-overlay">
+            <div className='popup-image-container'
+        style={{
+          backgroundImage: "url('/images/377dfb3a6f6be92038a856784c55436b.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      
+      >
                 <div className="service-popup-content">
-                    <button className="close-btn" onClick={onClose}>
-                        <Image
-                            src="/images/123.png"
-                            layout="responsive"
-                            width={100}
-                            height={100}
-                        />
-                    </button>
-                    {/* <h2>Contact Our Experts</h2> */}
+                    <div className='form-top-bar'>
+                        <h2></h2>
+                        <button className="close-btn-x" onClick={onClose}>
+                            <Image
+                                src="/images/123.png"
+                                layout="responsive"
+                                width={100}
+                                height={100}
+                            />
+                        </button>
+                    </div>
+
                     <form onSubmit={handleSubmit} className='service-popup-form'>
                         <div className='service-popup-form-inner'>
-                        <div className="form-group">
-                            <label htmlFor="service">Select a Service</label>
-                            <select
-                                id="service"
-                                name="service"
-                                required
-                                value={formData.service}
-                                onChange={handleInputChange}
-                            >
-                                <option value="" disabled>
-                                    Select a Service
-                                </option>
-                                {serviceNames.map((service, index) => (
-                                    <option key={index} value={service}>
-                                        {service}
+                            <div className="form-group">
+                                <label htmlFor="service">Select a Service</label>
+                                <select
+                                    id="service"
+                                    name="service"
+                                    className='form-input-design'
+                                    required
+                                    value={formData.service}
+                                    onChange={handleInputChange}
+                                >
+                                    <option value="" disabled>
+                                        Select a Service
                                     </option>
-                                ))}
-                            </select>
+                                    {serviceNames.map((service, index) => (
+                                        <option key={index} value={service}>
+                                            {service}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="name">Name</label>
+                                <input
+                                    type="text"
+                                    className='form-input-design'
+                                    id="name"
+                                    name="name"
+                                    required
+                                    value={formData.name}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="email">Email</label>
+                                <input
+                                    type="email"
+                                    className='form-input-design'
+                                    id="email"
+                                    name="email"
+                                    required
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="number">Number</label>
+                                <input
+                                    type="text"
+                                    id="number"
+                                    className='form-input-design'
+                                    name="number"
+                                    required
+                                    value={formData.number}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="message">Message</label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    className='form-input-design'
+                                    rows="4"
+                                    required
+                                    value={formData.message}
+                                    onChange={handleInputChange}
+                                ></textarea>
+                            </div>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="name">Name</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                required
-                                value={formData.name}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="email">Email</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                required
-                                value={formData.email}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="number">Number</label>
-                            <input
-                                type="text"
-                                id="number"
-                                name="number"
-                                required
-                                value={formData.number}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="message">Message</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                rows="4"
-                                required
-                                value={formData.message}
-                                onChange={handleInputChange}
-                            ></textarea>
-                        </div>
-                        </div>
-                        <button type="submit" className="submit-btn">
+                        <button type="submit" className="hover-effect-btn">
                             Submit
                         </button>
                     </form>
-                    {statusMessage && <p className="status-message">{statusMessage}</p>}
+                </div>
                 </div>
             </div>
         </div>

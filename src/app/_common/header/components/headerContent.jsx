@@ -131,7 +131,7 @@ const HeaderContent = () => {
 
       {/* Popup Component for Sticky Form */}
       {isStickyFormOpen && (
-        <div className="popup" ref={stickyFormRef}>
+        <div className="stikey-side-popup" ref={stickyFormRef}>
           <StickeyForm onClose={toggleStickyForm} />
         </div>
       )}

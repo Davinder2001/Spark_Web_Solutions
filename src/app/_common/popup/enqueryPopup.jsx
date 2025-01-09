@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import {toast} from 'sonner';
 
-const EnquiryPopup = ({ onClose }) => {
+const EnquiryPopup = ({ goBack, onClose }) => {
   const [formData, setFormData] = useState({
     yourfirstname: '',
     yourlastname: '',
@@ -66,7 +66,7 @@ const EnquiryPopup = ({ onClose }) => {
         <div className='main-enq-pop-area-frm'>
       <div className='form-top-bar'>
         <h2></h2>
-        <button type='button' onClick={onClose} className='close-btn-x'>
+        <button type='button' onClick={goBack} className='close-btn-x'>
         <Image
               src="/images/123.png"
               layout="responsive"
@@ -82,7 +82,7 @@ const EnquiryPopup = ({ onClose }) => {
             <div className='form-control'>
               <label htmlFor='yourfirstname'>First Name</label>
               <input
-              className='form-input-design'
+                className='form-input-design'
                 type='text'
                 id='yourfirstname'
                 name='yourfirstname'
