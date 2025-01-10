@@ -1,15 +1,14 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import GUI from 'lil-gui';
 import { COUNT_OF_VERTEXES, ANIMATION_SPEED, LIL_GUI_COLOR, PARTICLE_GEOMETRY__COLOR } from '@/utils/constents';
 
-
-
 export const ThreeRenderScene = () => {
     const canvasRef = useRef(null);
+    const [message, setMessage] = useState(''); // State for the message
 
     useEffect(() => {
         // 1. Create Scene
@@ -24,7 +23,7 @@ export const ThreeRenderScene = () => {
 
         // 4. Initial Properties
         const initialProps = {
-            radius: 1.7,
+            radius: 1.2,
             widthSegments: 32,
             heightSegments: 32,
             color: LIL_GUI_COLOR,
@@ -69,7 +68,6 @@ export const ThreeRenderScene = () => {
         );
         scene.add(sphere);
 
-
         sphere.position.y = 0.13;
 
         // 7. Create GUI
@@ -113,9 +111,6 @@ export const ThreeRenderScene = () => {
             'reset'
         ).name('Reset');
 
-     
-
-     
         // 8. Sizes
         const sizes = {
             width: window.innerWidth,
@@ -130,8 +125,24 @@ export const ThreeRenderScene = () => {
         // 10. Controls
         const controls = new OrbitControls(camera, canvas);
         controls.enableDamping = true;
-        controls.maxDistance=4
-    
+        controls.maxDistance = 5;
+
+        // Handle scroll to the next section
+        const nextSection = document.querySelector('#next_section_wrapper');
+        const handleScroll = (event) => {
+            const distance = camera.position.distanceTo(controls.target);
+            if (distance >= controls.maxDistance) {
+                event.preventDefault(); // Stop default zoom behavior
+                setMessage('Moves to next section');  
+                setTimeout(() => {
+                    nextSection.scrollIntoView({ behavior: 'smooth' });  
+                    setMessage(''); 
+                }, 60000);  
+            }
+        };
+
+        canvas.addEventListener('wheel', handleScroll, { passive: false });
+
         // 11. Renderer
         const renderer = new THREE.WebGLRenderer({ canvas });
         renderer.setSize(sizes.width, sizes.height);
@@ -153,8 +164,6 @@ export const ThreeRenderScene = () => {
         const tick = () => {
             const elapsedTime = clock.getElapsedTime();
 
-            camera.position.y
-
             // Rotate particles and sphere
             particles.rotation.y = elapsedTime * ANIMATION_SPEED;
             sphere.rotation.y = elapsedTime * ANIMATION_SPEED;
@@ -170,15 +179,18 @@ export const ThreeRenderScene = () => {
         };
 
         tick();
- 
+
         return () => {
             gui.destroy();
-            window.removeEventListener('resize', () => { });
+            canvas.removeEventListener('wheel', handleScroll);
             renderer.dispose();
         };
-        
     }, []);
-   
 
-    return <canvas ref={canvasRef} className="app" />;
+    return (
+        <>
+            <canvas ref={canvasRef} className="app" />
+            {message && <div className="message">{message}</div>}  
+        </>
+    );
 };
