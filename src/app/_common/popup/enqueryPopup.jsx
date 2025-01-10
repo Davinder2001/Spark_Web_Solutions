@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import {toast} from 'sonner';
 
-const EnquiryPopup = ({ goBack, onClose }) => {
+const EnquiryPopup = ({ onClose }) => {
   const [formData, setFormData] = useState({
     yourfirstname: '',
     yourlastname: '',
@@ -66,7 +66,7 @@ const EnquiryPopup = ({ goBack, onClose }) => {
         <div className='main-enq-pop-area-frm'>
       <div className='form-top-bar'>
         <h2></h2>
-        <button type='button' onClick={goBack} className='close-btn-x'>
+        <button type='button' onClick={onClose} className='close-btn-x'>
         <Image
               src="/images/123.png"
               layout="responsive"
@@ -122,7 +122,7 @@ const EnquiryPopup = ({ goBack, onClose }) => {
               <label htmlFor='yournumber'>Mobile Number</label>
               <input
                 className='form-input-design'
-                type='tel' // Changed to 'tel' for mobile number
+                type='tel' 
                 id='yournumber'
                 name='yournumber'
                 value={formData.yournumber}

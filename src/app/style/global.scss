@@ -738,6 +738,9 @@ body.light-mode .footer {
       font-weight: 600;
       line-height: 34.1px;
     }
+    option {
+      background-color: rgba(17, 18, 22, 0.9607843137);
+    }
   }
 
   .form-group.full-width {
@@ -1885,6 +1888,15 @@ button.navbar-buttons-main.navigation-contact-btn {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 25px;
+
+
+
+      .form-group {
+        option{
+          background-color: rgba(17, 18, 22, 0.9607843137);
+        }
+      }
+
     }
 
     .class-stickey-popup-formss.third-form form {

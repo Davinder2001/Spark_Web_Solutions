@@ -1,7 +1,7 @@
 import React from "react";
 import {toast} from 'sonner';
 
-const SecondForm = ({ formData, setFormData, goBack }) => {
+const SecondForm = ({ formData, setFormData, goBack, onClose }) => {
   const handleFieldChange = (e, formType) => {
     const { name, value, files } = e.target;
     setFormData((prev) => ({
@@ -43,6 +43,7 @@ const SecondForm = ({ formData, setFormData, goBack }) => {
       if (response.ok) {
            toast.success("Form submitted successfully!");
            goBack();
+           onClose();
       } else {
         const error = await response.json();
         console.error("Error submitting form:", error);

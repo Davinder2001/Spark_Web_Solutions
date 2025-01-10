@@ -50,7 +50,7 @@ const StickeyForm = ({ onClose }) => {
           <h5>Spark Web Solutions</h5>
         </div>
         <div className="close-popup">
-          <button className="close-button" onClick={onClose}>
+          <button className="close-btn-x" onClick={onClose}>
             <Image
               src="/images/123.png"
               layout="responsive"

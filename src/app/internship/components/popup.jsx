@@ -20,7 +20,7 @@ const PopupForm = ({ mainData, formData, setFormData, goBack, activeTab }) => {
 
   const handleSubmitOption3 = async (e) => {
     e.preventDefault();
-
+  
     const formDataToSend = new FormData();
     formDataToSend.append('subject', 'Looking for Training');
     formDataToSend.append('name', formData.additionalFields?.option3?.name);
@@ -29,7 +29,7 @@ const PopupForm = ({ mainData, formData, setFormData, goBack, activeTab }) => {
     formDataToSend.append('course', formData.additionalFields?.option3?.course);
     formDataToSend.append('additional-info', formData.additionalFields?.option3?.additionalInfo);
     formDataToSend.append('_wpcf7_unit_tag', '476');
-
+  
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/wp-json/contact-form-7/v1/contact-forms/476/feedback`,
@@ -38,10 +38,26 @@ const PopupForm = ({ mainData, formData, setFormData, goBack, activeTab }) => {
           body: formDataToSend,
         }
       );
-
+  
       if (response.ok) {
         toast.success('Form Submitted Successfully');
-        goBack()
+  
+        // Clear form data
+        setFormData((prev) => ({
+          ...prev,
+          additionalFields: {
+            ...prev.additionalFields,
+            option3: {
+              name: '',
+              mobile: '',
+              email: '',
+              course: '',
+              additionalInfo: '',
+            },
+          },
+        }));
+  
+        goBack();
       } else {
         const error = await response.json();
         toast.error(`Submission Failed: ${error.message || 'Unknown error'}`);
@@ -50,6 +66,7 @@ const PopupForm = ({ mainData, formData, setFormData, goBack, activeTab }) => {
       toast.error(`Submission Failed: ${error.message || 'Unknown error'}`);
     }
   };
+  
 
   return (
     <div className="internsip-popup"
