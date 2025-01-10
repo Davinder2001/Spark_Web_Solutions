@@ -137,7 +137,7 @@ export const ThreeRenderScene = () => {
                 setTimeout(() => {
                     nextSection.scrollIntoView({ behavior: 'smooth' });  
                     setMessage(''); 
-                }, 60000);  
+                }, 2000);  
             }
         };
 
