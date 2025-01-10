@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-import SecondSection from './Components/secondSection'
-import HeroSection from './Components/heroSection'
-import OurServices from './Components/ourServices'
-import ProjectSection from './Components/projectSection'
-import TestimonialSection from './Components/testimonialSection'
-import AboutUsSection from './Components/aboutUsSection'
-// import {ThreeRenderScene} from '@/components/ThreeScene'
-=======
 'use client';
 import React, { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
@@ -21,7 +11,6 @@ import { ThreeRenderScene } from '@/components/ThreeScene';
 
 gsap.registerPlugin(ScrollToPlugin);
 
->>>>>>> bc6f8817ff9ee2cd737f3773bbe583ef675d8061
 const HomePage = () => {
   const sectionsRef = useRef([]);
   const [activeIndex, setActiveIndex] = useState(null); // Initial state is null
@@ -67,13 +56,6 @@ const HomePage = () => {
 
   return (
     <>
-<<<<<<< HEAD
-  
-      
-       {/* <ThreeRenderScene/> */}
-     
-=======
->>>>>>> bc6f8817ff9ee2cd737f3773bbe583ef675d8061
     
 
       <div className="navigation_buttons">
