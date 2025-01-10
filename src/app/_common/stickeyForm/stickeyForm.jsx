@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import SecondForm from './components/secondForm';
-import { useRouter } from 'next/navigation'; // Import the useRouter hook
+import { useRouter } from 'next/navigation';
 
 const StickeyForm = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -50,7 +50,7 @@ const StickeyForm = ({ onClose }) => {
           <h5>Spark Web Solutions</h5>
         </div>
         <div className="close-popup">
-          <button className="close-button" onClick={onClose}>
+          <button className="close-btn-x" onClick={onClose}>
             <Image
               src="/images/123.png"
               layout="responsive"
@@ -138,6 +138,7 @@ const StickeyForm = ({ onClose }) => {
               formData={formData}
               setFormData={setFormData}
               goBack={goBack}
+              onClose={onClose}
             />
           )}
         </>

@@ -209,7 +209,7 @@ body {
   background-color: #111216;
   color: white;
 
-  .popup .popup-content {
+  .stikey-side-popup .popup-content {
     background-color: #111216;
 
     input,
@@ -246,6 +246,64 @@ p {
   flex-direction: column;
   gap: 40px;
 }
+
+
+
+
+// Universal input form design
+.form-input-design {
+  border: 1px solid #242A34;
+  background: linear-gradient(95.49deg, #18191D 1.53%, #1D1E21 50.01%, #363C48 99.61%);
+  border-radius: 8px;
+  padding: 14px;
+  color: white;
+  font-size: 18px;
+}
+
+// Universal button with hover effect
+
+
+.hover-effect-btn {
+  background-color: white;
+  padding: 10px 50px;
+  border-radius: 30px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  color: #F24B74;
+  font-size: 20px;
+  font-family: 'saira';
+  font-weight: 700;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.hover-effect-btn:hover {
+  background-color: #F24B74;
+  color: white;
+  transform: scale(1.05);
+}
+
+// Univercel close x button
+.close-btn-x {
+  box-shadow: 3.13px -1.56px 4.69px 0px #E9476094 inset;
+  box-shadow: 0px -1.56px 4.69px 0px #E9476099 inset;
+  box-shadow: -0.78px 0.78px 1.56px 0px #F689A4DB inset;
+  background: radial-gradient(6.15% 6.55% at 92.04% 7.51%, rgba(247, 137, 164, 0.86) 0%, rgba(247, 137, 164, 0.86) 100%);
+  border: unset;
+  border-radius: 3px;
+  padding: 7px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -652,42 +710,55 @@ body.light-mode .footer {
 
 
 // internship Popup
-.popup-overlay {
+
+.internsip-popup {
+  .internsip-popup-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .internsip-popup-heading-section {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 calc(50% - 16px);
+    min-width: 250px;
+    gap: 10px;
+
+    label {
+      font-family: "Nunito";
+      font-size: 25px;
+      font-weight: 600;
+      line-height: 34.1px;
+    }
+    option {
+      background-color: rgba(17, 18, 22, 0.9607843137);
+    }
+  }
+
+  .form-group.full-width {
+    flex: 1 1 100%;
+  }
+
+}
+
+.internship-popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
   z-index: 1000;
 }
 
-.popup-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 500px;
-  width: 100%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.popup-content h2 {
-  margin-bottom: 10px;
-}
-
-.popup-content button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
 
 
 
@@ -696,16 +767,14 @@ body.light-mode .footer {
 
 
 
-.popup {
+
+.stikey-side-popup {
   position: fixed;
-  top: 10%;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  // background-color: rgba(0, 0, 0, 0.5);
-  max-width: 1200px;
-  width: 100%;
-  margin: auto;
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
   /* Ensure it appears on top */
 
@@ -767,11 +836,6 @@ body.light-mode .footer {
     /* Slight hover effect */
   }
 
-  .container-for-four {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
 
   .form-control {
     display: flex;
@@ -1446,6 +1510,7 @@ button.sticky-form-button {
   border: none;
   border-radius: 4px;
   font-size: 16px;
+  z-index: 99;
   cursor: pointer;
   transition: background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1), color 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -1461,7 +1526,7 @@ button.sticky-form-button:hover {
   justify-content: space-between;
 }
 
-.popup .stickey-form {
+.stikey-side-popup .stickey-form {
   background-color: #111216;
   padding: 30px;
   border-radius: 20px;
@@ -1470,7 +1535,21 @@ button.sticky-form-button:hover {
 
 .stickey-form .form-group {
   display: flex;
-  gap: 18px;
+  gap: 10px;
+
+
+  label {
+    font-family: "Nunito";
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 34.1px;
+  }
+  .resume-inp-typ {
+    height: 100%;
+  }
+  
+
+
 }
 
 
@@ -1509,11 +1588,161 @@ button.navbar-buttons-main.navigation-contact-btn {
 
 
 
+.enquery-popup {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: #111216F5;
+
+  // Enquery Main Popup CSS
+  .enquery-popup-container {
+
+    height: 100%;
+
+
+    .enquery-popup-content {
+      position: relative;
+      max-width: 1200px;
+      margin: auto;
+      width: 100%;
+      background-color: #111216F5;
+      padding: 30px;
+      border-radius: 20px;
+      top: 15%;
+
+      .form-top-bar {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .form-inner-overlay {
+        background-color: #111216F5;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 8px;
+      }
+
+      .main-enq-pop-area-frm {
+        position: relative;
+        z-index: 99;
+      }
+    }
+
+    .container-for-four {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 20px;
+    }
+
+
+    .form-control {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+
+      label {
+        font-family: 'Nunito';
+        font-size: 25px;
+        font-weight: 600;
+        line-height: 34.1px;
+      }
+    }
+
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Service Popup
 
 .service-popup {
+
+  .popup-image-container {
+    border-radius: 20px;
+  }
+
+  .service-popup-content {
+    background-color: rgba(17, 18, 22, 0.9607843137);
+    padding: 40px;
+    border-radius: 20px;
+    
+
+
+    .form-top-bar {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .service-popup-form {
+      .service-popup-form-inner {
+
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        width: 100%;
+        box-sizing: border-box;
+
+
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          flex: 1 1 calc(50% - 16px);
+          min-width: 250px;
+          margin: 0;
+
+
+          label {
+            font-family: "Nunito";
+            font-size: 25px;
+            font-weight: 600;
+            line-height: 34.1px;
+          }
+
+          option {
+            background-color: #111216F5;
+            cursor: pointer;
+          }
+
+          select {
+            cursor: pointer;
+          }
+
+
+        }
+
+        .form-group.full-width {
+          flex: 1 1 100%;
+        }
+
+        .form-group select {
+          height: 100%;
+        }
+      }
+
+    }
+
+  }
+
 
   .popup-overlay {
     position: fixed;
@@ -1537,7 +1766,7 @@ button.navbar-buttons-main.navigation-contact-btn {
   }
 
   .close-btn {
-    position: absolute;
+    position: relative;
     top: 10px;
     right: 10px;
     background: transparent;
@@ -1555,13 +1784,6 @@ button.navbar-buttons-main.navigation-contact-btn {
     margin-bottom: 5px;
   }
 
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
 
   .submit-btn {
     background-color: #F24B74;
@@ -1585,8 +1807,16 @@ button.navbar-buttons-main.navigation-contact-btn {
 
 
 
-.popup {
+.stikey-side-popup {
   .stickey-form {
+
+    position: relative;
+    top: 10%;
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+
+
     .form-header .headings {
       h2 {
         color: #FFFFFF;
@@ -1623,6 +1853,11 @@ button.navbar-buttons-main.navigation-contact-btn {
     }
 
     .next-btn-st-form {
+
+      display: flex;
+      gap: 50px;
+
+
       button.proceed-button {
         background-color: white;
         padding: 10px 50px;
@@ -1643,47 +1878,51 @@ button.navbar-buttons-main.navigation-contact-btn {
         transform: scale(1.05);
       }
     }
+
     .class-stickey-popup-formss .form-group {
       flex-direction: column;
-      gap: 0;
-  }
+    }
 
 
     .class-stickey-popup-formss.second-form .form-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap:25px;
-  }
-  .class-stickey-popup-formss.third-form form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px; /* Space between form elements */
-  }
-  
-  .class-stickey-popup-formss.third-form .form-group {
-    display: flex;
-    flex-direction: column;
-    width: calc(50% - 10px); /* Two columns with spacing */
-  }
-  
-  .class-stickey-popup-formss.third-form .form-group.full-width {
-    width: 100%; /* Full width for the textarea */
-  }
-  
-  .class-stickey-popup-formss.third-form label {
-    font-weight: bold;
-  }
-  
-  .class-stickey-popup-formss select,
-  .class-stickey-popup-formss input,
-  .class-stickey-popup-formss textarea {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-  }
-  
+      gap: 25px;
+
+
+
+      .form-group {
+        option{
+          background-color: rgba(17, 18, 22, 0.9607843137);
+        }
+      }
+
+    }
+
+    .class-stickey-popup-formss.third-form form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      /* Space between form elements */
+    }
+
+    .class-stickey-popup-formss.third-form .form-group {
+      display: flex;
+      flex-direction: column;
+      width: calc(50% - 10px);
+      /* Two columns with spacing */
+    }
+
+    .class-stickey-popup-formss.third-form .form-group.full-width {
+      width: 100%;
+      /* Full width for the textarea */
+    }
+
+    .class-stickey-popup-formss.third-form label {
+      font-weight: bold;
+    }
+
+
 
 
   }
@@ -1707,7 +1946,7 @@ button.navbar-buttons-main.navigation-contact-btn {
     border-radius: 8px;
     cursor: pointer;
   }
-  
+
 }
 
 
@@ -1790,6 +2029,8 @@ button.navbar-buttons-main.navigation-contact-btn {
     font-size: 25px;
     font-family: 'Saira';
     cursor: pointer;
+    background: transparent;
+    border: unset;
     font-weight: 600;
   }
 
@@ -1820,10 +2061,19 @@ button.navbar-buttons-main.navigation-contact-btn {
 
 
 // Inr=etrinship 
-.intership-popup-outer{
-  .internsip-popup{
-    background-color: black;
+.intership-popup-outer {
+  .internsip-popup {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    top: 20%;
+    position: relative;
+    border-radius: 22px;
+  }
+  .internsip-popup-inner {
+    background-color: rgba(17, 18, 22, 0.9607843137);
     padding: 20px;
+    border-radius: 20px;
   }
 }
 

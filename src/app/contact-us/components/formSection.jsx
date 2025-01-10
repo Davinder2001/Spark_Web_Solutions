@@ -1,6 +1,7 @@
 'use client';
 import { useContext, useState } from 'react';
 import Image from 'next/image';
+import {toast} from 'sonner';
 import { SectorDataContext } from '@/context/apiContext';
 
 const FormSection = () => {
@@ -15,8 +16,6 @@ const FormSection = () => {
         message: '',
     });
 
-    const [statusMessage, setStatusMessage] = useState(null);
-
     // Handle form field changes
     const handleChange = (e) => {
         setFormData({
@@ -25,10 +24,9 @@ const FormSection = () => {
         });
     };
 
-    // Submit form data using FormData
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         // Create a FormData object
         const formDataToSend = new FormData();
         formDataToSend.append('yourname', formData.name);
@@ -36,25 +34,32 @@ const FormSection = () => {
         formDataToSend.append('yournumber', formData.phone);
         formDataToSend.append('yourmessage', formData.message);
         formDataToSend.append('_wpcf7_unit_tag', 289);
-
+    
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wp-json/contact-form-7/v1/contact-forms/289/feedback`, {
                 method: 'POST',
                 body: formDataToSend, // Send FormData object
             });
-
+    
             const result = await response.json();
     
             if (response.ok) {
-                alert(result.message)
+                   toast.success("Form submitted successfully!");
+
+                setFormData({
+                    name: '',
+                    email: '',
+                    phone: '',
+                    message: '',
+                });
             } else {
-                setStatusMessage(`Error: ${result.message}`);
+                toast.error(`Error: ${result.message}`);
             }
         } catch (error) {
-            setStatusMessage(`Error: ${error.message}`);
+            toast.error(`Error: ${error.message}`);
         }
     };
-
+    
     return (
         <div className='form_section'>
         <div className='inner-section'>
@@ -122,8 +127,6 @@ const FormSection = () => {
            
             />
 
-            {/* Status Message */}
-            {statusMessage && <p>{statusMessage}</p>}
             </div>
         </div>
         </div>

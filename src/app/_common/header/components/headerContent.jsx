@@ -131,14 +131,14 @@ const HeaderContent = () => {
 
       {/* Popup Component for Sticky Form */}
       {isStickyFormOpen && (
-        <div className="popup" ref={stickyFormRef}>
+        <div className="stikey-side-popup" ref={stickyFormRef}>
           <StickeyForm onClose={toggleStickyForm} />
         </div>
       )}
 
       {/* Enquiry Popup */}
       {isPopupOpen && (
-        <div className="popup" ref={popupRef}>
+        <div className="enquery-popup" ref={popupRef}>
           <EnquiryPopup onClose={togglePopup} />
         </div>
       )}

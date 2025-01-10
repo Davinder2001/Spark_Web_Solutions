@@ -1,6 +1,7 @@
 import React from "react";
+import {toast} from 'sonner';
 
-const SecondForm = ({ formData, setFormData, goBack }) => {
+const SecondForm = ({ formData, setFormData, goBack, onClose }) => {
   const handleFieldChange = (e, formType) => {
     const { name, value, files } = e.target;
     setFormData((prev) => ({
@@ -40,111 +41,115 @@ const SecondForm = ({ formData, setFormData, goBack }) => {
       );
 
       if (response.ok) {
-        alert("Form submitted successfully!");
+           toast.success("Form submitted successfully!");
+           goBack();
+           onClose();
       } else {
         const error = await response.json();
         console.error("Error submitting form:", error);
-        alert("Failed to submit the form. Please check the input data.");
+        toast.error("Failed to submit the form. Please check the input data.");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("An unexpected error occurred. Please try again.");
+      toast.error("An unexpected error occurred. Please try again.");
     }
   };
 
   return (
-      <div className="class-stickey-popup-formss second-form">
-    <form onSubmit={handleSubmitOption2}>
-      <div className="form-inner">
+    <div className="class-stickey-popup-formss second-form">
+      <form onSubmit={handleSubmitOption2}>
+        <div className="form-inner">
 
-      <div className="form-group">
-        <label>
-        Name:
-          </label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter your full name"
-            value={formData?.additionalFields?.option2?.name || ""}
-            onChange={(e) => handleFieldChange(e, "option2")}
-          />
-      </div>
-      <div className="form-group">
-        <label>
-          Email Address:
-        </label>
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter your email address"
-            value={formData?.additionalFields?.option2?.email || ""}
-            onChange={(e) => handleFieldChange(e, "option2")}
+          <div className="form-group">
+            <label>
+              Name:
+            </label>
+            <input
+              type="text"
+              name="name"
+              className='form-input-design'
+              value={formData?.additionalFields?.option2?.name || ""}
+              onChange={(e) => handleFieldChange(e, "option2")}
             />
-      </div>
-      <div className="form-group">
-        <label>
-          Current Location:
-          </label>
+          </div>
+          <div className="form-group">
+            <label>
+              Email Address:
+            </label>
 
-          <input
-            type="text"
-            name="location"
-            placeholder="Enter your current location"
-            value={formData?.additionalFields?.option2?.location || ""}
-            onChange={(e) => handleFieldChange(e, "option2")}
+            <input
+              type="email"
+              name="email"
+              className='form-input-design'
+              value={formData?.additionalFields?.option2?.email || ""}
+              onChange={(e) => handleFieldChange(e, "option2")}
             />
-      </div>
-      <div className="form-group">
-        <label>
-          Current Status:
-          </label>
-          <select
-            name="status"
-            value={formData?.additionalFields?.option2?.status || ""}
-            onChange={(e) => handleFieldChange(e, "option2")}
+          </div>
+          <div className="form-group">
+            <label>
+              Current Location:
+            </label>
+
+            <input
+              type="text"
+              name="location"
+              className='form-input-design'
+              value={formData?.additionalFields?.option2?.location || ""}
+              onChange={(e) => handleFieldChange(e, "option2")}
+            />
+          </div>
+          <div className="form-group">
+            <label>
+              Current Status:
+            </label>
+            <select
+              name="status"
+              className='form-input-design'
+              value={formData?.additionalFields?.option2?.status || ""}
+              onChange={(e) => handleFieldChange(e, "option2")}
             >
-            <option value="" disabled>
-              Select your status
-            </option>
-            <option value="experienced">Experienced</option>
-            <option value="fresher">Fresher</option>
-          </select>
-      </div>
-      <div className="form-group">
-        <label>
-          Resume:
-          </label>
-          <input
-            type="file"
-            name="resume"
-            onChange={(e) => handleFieldChange(e, "option2")}
+              <option value="" disabled>
+                Select your status
+              </option>
+              <option value="experienced">Experienced</option>
+              <option value="fresher">Fresher</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label>
+              Resume:
+            </label>
+            <input
+              type="file"
+              name="resume"
+              className='form-input-design resume-inp-typ'
+              onChange={(e) => handleFieldChange(e, "option2")}
             />
-      </div>
-      <div className="form-group">
-        <label>
-          Additional Information:
-          </label>
-          <textarea
-            name="additionalInfo"
-            placeholder="Provide any additional information"
-            rows="4"
-            value={formData?.additionalFields?.option2?.additionalInfo || ""}
-            onChange={(e) => handleFieldChange(e, "option2")}
+          </div>
+          <div className="form-group">
+            <label>
+              Additional Information:
+            </label>
+            <textarea
+              name="additionalInfo"
+              rows="4"
+              className='form-input-design'
+              value={formData?.additionalFields?.option2?.additionalInfo || ""}
+              onChange={(e) => handleFieldChange(e, "option2")}
             ></textarea>
-      </div>
-            </div>
-      <div className="next-btn-st-form">
-        <button type="button" className="go-back-button proceed-button" onClick={goBack}>
-          Go Back
-        </button>
+          </div>
+        </div>
+        <div className="next-btn-st-form">
+          <button type="button" className="go-back-button proceed-button" onClick={goBack}>
+            Go Back
+          </button>
 
-        <button type="submit" className="submit-button proceed-button">
-          Submit
-        </button>
-      </div>
-    </form>
-            </div>
+          <button type="submit" className="submit-button proceed-button">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
