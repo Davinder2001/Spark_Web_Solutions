@@ -2,21 +2,23 @@
 import { useContext, useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { SectorDataContext } from '@/context/apiContext';
-import ContactPopup from './popupForm'; // Import the ContactPopup component
+import ContactPopup from './popupForm';
 import { gsap } from 'gsap';
 
 const ServicesSection = () => {
     const pagesDataApi = useContext(SectorDataContext);
     const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'our-services')?.acf;
-    const [isPopupOpen, setIsPopupOpen] = useState(false); // Add state for popup
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
-    const [selectedService, setSelectedService] = useState(''); // Add state for selected service
+    const [selectedService, setSelectedService] = useState('');
     const serviceCardsRef = useRef([]);
     const isScrolling = useRef(false);
 
+
+
     const handleContactClick = (e, serviceName) => {
-        e.preventDefault(); // Prevent the default link behavior
-        setSelectedService(serviceName); // Set the selected service name
+        e.preventDefault();
+        setSelectedService(serviceName);
         setIsPopupOpen(true);
     };
 
@@ -24,35 +26,35 @@ const ServicesSection = () => {
         const handleScroll = (e) => {
             e.preventDefault();
             if (isScrolling.current) return;
-
+    
             const isScrollDown = e.deltaY > 0;
+            const isScrollUP = e.deltaY < 0;
 
-            // Scroll Forward
+            // Scroll
             if (isScrollDown && activeIndex < serviceCardsRef.current.length - 1) {
                 isScrolling.current = true;
                 setActiveIndex((prevIndex) => prevIndex + 1);
             }
-
-            // Scroll Backward
-            else if (!isScrollDown && activeIndex > 0) {
+            else if (isScrollUP && activeIndex > 0 && window.scrollY === 0) {
                 isScrolling.current = true;
                 setActiveIndex((prevIndex) => prevIndex - 1);
             } else {
                 window.scrollBy(0, e.deltaY);
                 return;
             }
-
+    
             setTimeout(() => {
                 isScrolling.current = false;
             }, 800);
         };
-
+    
         window.addEventListener('wheel', handleScroll, { passive: false });
-
+    
         return () => {
             window.removeEventListener('wheel', handleScroll);
         };
     }, [activeIndex]);
+    
 
     useEffect(() => {
         serviceCardsRef.current.forEach((card, index) => {
@@ -69,11 +71,11 @@ const ServicesSection = () => {
     }, [activeIndex]);
 
     return (
-        <div className='services' style={{ overflow: 'hidden', height: '80vh' }}>
+        <div className='services' style={{ overflow: 'hidden', height: '100vh' }}>
             <div className='page-title'>
                 <h1>{mainData?.page_title}</h1>
             </div>
-            <div className="service-cards-container" style={{ position: 'relative', height: '80vh' }}>
+            <div className="service-cards-container">
                 {mainData &&
                     mainData.services?.map((service, index) => (
                         <div
@@ -81,11 +83,9 @@ const ServicesSection = () => {
                             className="service-card-outer"
                             style={{
                                 backgroundImage: `url(${service.service_background_image})`,
-                                position: 'absolute',
                                 top: 0,
                                 left: 0,
                                 width: '100%',
-                                height: '62vh',
                                 display: activeIndex === index ? 'block' : 'none',
                             }}
                             ref={(el) => (serviceCardsRef.current[index] = el)}
@@ -133,7 +133,7 @@ const ServicesSection = () => {
                 isOpen={isPopupOpen}
                 onClose={() => setIsPopupOpen(false)}
                 serviceNames={mainData?.services?.map(service => service.service_name) || []}
-                selectedService={selectedService} // Pass the selected service name
+                selectedService={selectedService}
             />
         </div>
     );

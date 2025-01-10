@@ -1596,7 +1596,7 @@ button.navbar-buttons-main.navigation-contact-btn {
   right: 0;
   bottom: 0;
   z-index: 999;
-  background-color: #111216F5;
+  background-color: rgba(0, 0, 0, 0.9);
 
   // Enquery Main Popup CSS
   .enquery-popup-container {
@@ -1610,7 +1610,7 @@ button.navbar-buttons-main.navigation-contact-btn {
       margin: auto;
       width: 100%;
       background-color: #111216F5;
-      padding: 30px;
+      padding: 40px;
       border-radius: 20px;
       top: 15%;
 
@@ -2066,13 +2066,13 @@ button.navbar-buttons-main.navigation-contact-btn {
     max-width: 1200px;
     width: 100%;
     margin: auto;
-    top: 20%;
+    top: 15%;
     position: relative;
     border-radius: 22px;
   }
   .internsip-popup-inner {
     background-color: rgba(17, 18, 22, 0.9607843137);
-    padding: 20px;
+    padding: 40px;
     border-radius: 20px;
   }
 }
