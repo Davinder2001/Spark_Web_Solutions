@@ -8,7 +8,7 @@ import { COUNT_OF_VERTEXES, ANIMATION_SPEED, LIL_GUI_COLOR, PARTICLE_GEOMETRY__C
 
 export const ThreeRenderScene = () => {
     const canvasRef = useRef(null);
-    const [message, setMessage] = useState(''); // State for the message
+ 
 
     useEffect(() => {
         // 1. Create Scene
@@ -133,11 +133,11 @@ export const ThreeRenderScene = () => {
             const distance = camera.position.distanceTo(controls.target);
             if (distance >= controls.maxDistance) {
                 event.preventDefault(); // Stop default zoom behavior
-                setMessage('Moves to next section');  
+               
                 setTimeout(() => {
                     nextSection.scrollIntoView({ behavior: 'smooth' });  
-                    setMessage(''); 
-                }, 2000);  
+                   
+                }, 1000);  
             }
         };
 
@@ -190,7 +190,7 @@ export const ThreeRenderScene = () => {
     return (
         <>
             <canvas ref={canvasRef} className="app" />
-            {message && <div className="message">{message}</div>}  
+            
         </>
     );
 };
