@@ -113,9 +113,9 @@ export const ThreeRenderScene = () => {
             'reset'
         ).name('Reset');
 
+     
 
-
-
+     
         // 8. Sizes
         const sizes = {
             width: window.innerWidth,
@@ -130,10 +130,8 @@ export const ThreeRenderScene = () => {
         // 10. Controls
         const controls = new OrbitControls(camera, canvas);
         controls.enableDamping = true;
-        controls.maxDistance=5
-     
-		 
-
+        controls.maxDistance=4
+    
         // 11. Renderer
         const renderer = new THREE.WebGLRenderer({ canvas });
         renderer.setSize(sizes.width, sizes.height);
@@ -155,6 +153,8 @@ export const ThreeRenderScene = () => {
         const tick = () => {
             const elapsedTime = clock.getElapsedTime();
 
+            camera.position.y
+
             // Rotate particles and sphere
             particles.rotation.y = elapsedTime * ANIMATION_SPEED;
             sphere.rotation.y = elapsedTime * ANIMATION_SPEED;
@@ -170,14 +170,15 @@ export const ThreeRenderScene = () => {
         };
 
         tick();
-
-        // Cleanup on unmount
+ 
         return () => {
             gui.destroy();
             window.removeEventListener('resize', () => { });
             renderer.dispose();
         };
+        
     }, []);
+   
 
     return <canvas ref={canvasRef} className="app" />;
 };

@@ -5,22 +5,25 @@ import OurServices from './Components/ourServices'
 import ProjectSection from './Components/projectSection'
 import TestimonialSection from './Components/testimonialSection'
 import AboutUsSection from './Components/aboutUsSection'
-import {ThreeRenderScene} from '@/components/ThreeScene'
+import { ThreeRenderScene } from '@/components/ThreeScene'
 const HomePage = () => {
 
   return (
     <>
+
+
+
+      <ThreeRenderScene/>
+
   
-      
-       <ThreeRenderScene/>
-     
-    
-    <HeroSection/>
-    <SecondSection/>
-    <AboutUsSection/>
-    <OurServices/>
-    <ProjectSection/>
-    <TestimonialSection/>
+ 
+
+      <SecondSection />
+      <AboutUsSection />
+      <OurServices />
+      <ProjectSection />
+      <TestimonialSection />
+ 
     </>
   )
 }
