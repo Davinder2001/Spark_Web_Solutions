@@ -13,10 +13,10 @@ gsap.registerPlugin(ScrollToPlugin);
 
 const HomePage = () => {
   const sectionsRef = useRef([]);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null); // Initial state is null
 
   const scrollToSection = (index) => {
-    setActiveIndex(index);
+    setActiveIndex(index); // Update active index
     gsap.to(window, {
       duration: 1.5,
       scrollTo: sectionsRef.current[index],
@@ -36,7 +36,7 @@ const HomePage = () => {
         if (entry.isIntersecting) {
           const index = sectionsRef.current.indexOf(entry.target);
           if (index !== -1) {
-            setActiveIndex(index);
+            setActiveIndex(index); // Update active index only on scroll
           }
         }
       });
@@ -50,13 +50,13 @@ const HomePage = () => {
     });
 
     return () => {
-      observer.disconnect(); // Cleanup observer on component unmount
+      observer.disconnect(); 
     };
   }, []);
 
   return (
     <>
-      <ThreeRenderScene />
+    
 
       <div className="navigation_buttons">
         <button
@@ -89,36 +89,51 @@ const HomePage = () => {
         >
           <p></p>
         </button>
+        <button
+          className={activeIndex === 5 ? 'active' : ''}
+          onClick={() => scrollToSection(5)}
+        >
+          <p></p>
+        </button>
       </div>
+
+      <div
+          className={`section_0 ${activeIndex === 0 ? 'active' : ''}`}
+          ref={(el) => (sectionsRef.current[0] = el)}
+        >
+           <ThreeRenderScene />
+        </div>
+
+    
 
       <div id="next_section_wrapper">
         <div
-          className={`section_1 ${activeIndex === 0 ? 'active' : ''}`}
-          ref={(el) => (sectionsRef.current[0] = el)}
+          className={`section_1 ${activeIndex === 1 ? 'active' : ''}`}
+          ref={(el) => (sectionsRef.current[1] = el)}
         >
           <SecondSection />
         </div>
         <div
-          className={`section_2 ${activeIndex === 1 ? 'active' : ''}`}
-          ref={(el) => (sectionsRef.current[1] = el)}
+          className={`section_2 ${activeIndex === 2 ? 'active' : ''}`}
+          ref={(el) => (sectionsRef.current[2] = el)}
         >
           <AboutUsSection />
         </div>
         <div
-          className={`section_3 ${activeIndex === 2 ? 'active' : ''}`}
-          ref={(el) => (sectionsRef.current[2] = el)}
+          className={`section_3 ${activeIndex === 3 ? 'active' : ''}`}
+          ref={(el) => (sectionsRef.current[3] = el)}
         >
           <OurServices />
         </div>
         <div
-          className={`section_4 ${activeIndex === 3 ? 'active' : ''}`}
-          ref={(el) => (sectionsRef.current[3] = el)}
+          className={`section_4 ${activeIndex === 4 ? 'active' : ''}`}
+          ref={(el) => (sectionsRef.current[4] = el)}
         >
           <ProjectSection />
         </div>
         <div
-          className={`section_5 ${activeIndex === 4 ? 'active' : ''}`}
-          ref={(el) => (sectionsRef.current[4] = el)}
+          className={`section_5 ${activeIndex === 5 ? 'active' : ''}`}
+          ref={(el) => (sectionsRef.current[5] = el)}
         >
           <TestimonialSection />
         </div>
