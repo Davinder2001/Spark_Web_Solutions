@@ -1,7 +1,8 @@
 "use client";
 import Image from 'next/image';
 import React, { useState } from 'react';
-import {toast} from 'sonner';
+import { toast } from 'sonner';
+ 
 
 const EnquiryPopup = ({ onClose }) => {
   const [formData, setFormData] = useState({
