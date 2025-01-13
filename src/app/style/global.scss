@@ -301,7 +301,129 @@ p {
 
 
 
+// Service section animation css
+.services-section {
 
+  
+  .services-section {
+    position: relative;
+    overflow: hidden; /* Prevent overflow */
+  }
+  
+  .panel {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+  }
+  
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  z-index: 1;
+  text-shadow: 1px 1px 3px black;
+}
+
+
+
+
+} 
+
+
+
+.services-page{
+
+  
+  
+  h1 {
+    font-size: 5rem;
+  }
+h2 {
+  font-size: 2rem;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  background: #f0f0f0;
+}
+
+ul {
+  padding-left: 1rem;
+  list-style: none;
+}
+
+li {
+  flex-shrink: 0;
+  width: clamp(500px, 60vw, 800px);
+  padding-right: 1rem;
+}
+
+header {
+  height: 100vh;
+}
+footer {
+  height: 50vh;
+}
+
+.any-link {
+  color: #4e9815;
+}
+
+.df {
+  display: flex;
+}
+.aic {
+  align-items: center;
+}
+.jcc {
+  justify-content: center;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: black;
+  color: white;
+  z-index: 10;
+}
+
+.demo-wrapper {
+  overflow-x: hidden;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.demo-gallery:not(.last) {
+  padding-bottom: 1rem;
+}
+
+.demo-text .text {
+  font-size: clamp(8rem, 15vw, 16rem);
+  line-height: 1;
+  font-weight: 900;
+}
+
+}
 
 
 
@@ -2058,6 +2180,93 @@ button.navbar-buttons-main.navigation-contact-btn {
     gap: 30px;
   }
 }
+
+
+
+
+
+
+
+// Service animation css
+
+main {
+
+  .services-section {
+    position: relative;
+    overflow: hidden; /* Required for ScrollSmoother */
+  }
+  
+  .services-content {
+    position: relative;
+  will-change: transform; /* Optimize scrolling performance */
+}
+
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  height: 100vh; /* Uniform height for all panels */
+}
+
+.blue {
+  background-color: #007bff;
+}
+
+.red {
+  background-color: #dc3545;
+}
+
+.orange {
+  background-color: #fd7e14;
+}
+
+.purple {
+  background-color: #6f42c1;
+}
+
+.green {
+  background-color: #28a745;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.scroll-down {
+  margin-top: 1rem;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  margin: 0.5rem auto 0;
+}
+
+.footer {
+  height: 50vh; /* Adjust as needed */
+  background-color: #222;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+}
+
+
+
+
+
+
 
 
 

@@ -80,10 +80,8 @@ div[class^='section_'] {
 
 /*raaj css ends*/
 
- 
+/* Service gsap */
 
-
- 
 
  
 
@@ -98,6 +96,14 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+
+
+
+
+
+
+
 
 @media (prefers-color-scheme: dark) {
   html {

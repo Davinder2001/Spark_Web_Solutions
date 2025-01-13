@@ -1,50 +1,103 @@
-'use client';
-import { useContext } from 'react';
-import { SectorDataContext } from '@/context/apiContext';
+"use client";
+import React, { useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import imagesLoaded from "imagesloaded"; // Install this dependency: npm install imagesloaded
 
+gsap.registerPlugin(ScrollTrigger);
 
 const ExpertiseSection = () => {
-    const pagesDataApi = useContext(SectorDataContext);
-    const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'our-services')?.acf;
+  useEffect(() => {
+    const images = gsap.utils.toArray("img");
+    const loader = document.querySelector(".loader--text");
+
+    const updateProgress = (instance) => {
+      loader.textContent = `${Math.round(
+        (instance.progressedCount * 100) / images.length
+      )}%`;
+    };
+
+    const showDemo = () => {
+      document.body.style.overflow = "auto"; // Allow scrolling
+      document.scrollingElement.scrollTo(0, 0); // Reset scroll position
+      gsap.to(document.querySelector(".loader"), { autoAlpha: 0 }); // Hide loader
+
+      gsap.utils.toArray("section").forEach((section, index) => {
+        const wrapper = section.querySelector(".wrapper");
+        if (!wrapper) return;
+
+        const [x, xEnd] =
+          index % 2
+            ? ["100%", (wrapper.scrollWidth - section.offsetWidth) * -1]
+            : [wrapper.scrollWidth * -1, 0];
+
+        gsap.fromTo(
+          wrapper,
+          { x },
+          {
+            x: xEnd,
+            scrollTrigger: {
+              trigger: section,
+              scrub: 0.5, // Smooth animation
+            },
+          }
+        );
+      });
+    };
+
+    imagesLoaded(images).on("progress", updateProgress).on("always", showDemo);
+  }, []);
+
   return (
-    <div className='expertise'>
-        <h2>{mainData?.expertise_section_heading}</h2>
-        <div className='expertises-list' >
-        {mainData && (
-            mainData?.expertise?.map((card, index) => (
-                <div key={index} className="expertise-card">
-                <div className='card_1'>
-                    <img src={card.expertise_icon} alt={card.card_heading} />
-                    <h3>{card.expertise_heading}</h3>
-                    <p>{card.expertise_sub_heading}</p>
-
-                </div>
-                
-                </div>
-            ))
-        )
-
-        }    {mainData && (
-            mainData?.expertise_2?.map((card, index) => (
-                <div key={index} className="expertise-card">
-                <div className='card_1'>
-                    <img src={card.expertise_icon} alt={card.card_heading} />
-                    <h3>{card.expertise_heading}</h3>
-                    <p>{card.expertise_sub_heading}</p>
-
-                </div>
-                
-                </div>
-            ))
-        )
-
-        }
-            
+    <div className="expertise-section">
+      <div className="loader df aic jcc">
+        <div>
+          <h1>Loading</h1>
+          <h2 className="loader--text">0%</h2>
         </div>
-       
-        
-    </div>
-  )
-}
+      </div>
 
-export default ExpertiseSection
+      <div className="demo-wrapper">
+        {/* <header className="df aic jcc">
+          <div>
+            <h1>ScrollTrigger</h1>
+            <h2>Demo</h2>
+          </div>
+        </header> */}
+
+        <section className="demo-text">
+          <div className="wrapper text">EXPERTISE</div>
+        </section>
+
+        {[...Array(4)].map((_, i) => (
+          <section className="demo-gallery" key={i}>
+            <ul className="wrapper">
+              {[...Array(Math.floor(Math.random() * 2) + 3)].map((_, j) => (
+                <li key={j}>
+                  <img
+                    src={`/images/pexels-eberhardgross-448714.jpg`}
+                    width="1240"
+                    height="874"
+                    alt="Random"
+                  />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+
+        <section className="demo-text">
+          <div className="wrapper text">EXPERTISE</div>
+        </section>
+
+        {/* <footer className="df aic jcc">
+          <p>
+            Images from <a href="https://unsplash.com/">Unsplash</a>
+          </p>
+        </footer> */}
+      </div>
+    </div>
+  );
+};
+
+export default ExpertiseSection;
