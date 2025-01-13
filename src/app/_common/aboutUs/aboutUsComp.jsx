@@ -3,11 +3,9 @@ import { useContext, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { SectorDataContext } from '@/context/apiContext';
 
-const AboutUsComp = () => {
+const AboutUsMain = () => {
     const pagesDataApi = useContext(SectorDataContext);
     const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'about-us')?.acf?.third_section;
-
-    // Set the initial main image to the first image in the gallery on component load
     const [mainImage, setMainImage] = useState(null);
 
     // Ensure the first image is set as the main image on initial render
@@ -82,4 +80,4 @@ const AboutUsComp = () => {
     );
 };
 
-export default AboutUsComp;
+export default AboutUsMain;

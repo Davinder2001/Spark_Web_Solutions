@@ -122,7 +122,7 @@ const SecondForm = ({ formData, setFormData, goBack, onClose }) => {
             <input
               type="file"
               name="resume"
-              className='form-input-design resume-inp-typ'
+              className='form-input-design'
               onChange={(e) => handleFieldChange(e, "option2")}
             />
           </div>
@@ -130,13 +130,14 @@ const SecondForm = ({ formData, setFormData, goBack, onClose }) => {
             <label>
               Additional Information:
             </label>
-            <textarea
+
+              <input
+              type="text"
               name="additionalInfo"
-              rows="4"
               className='form-input-design'
               value={formData?.additionalFields?.option2?.additionalInfo || ""}
               onChange={(e) => handleFieldChange(e, "option2")}
-            ></textarea>
+            />
           </div>
         </div>
         <div className="next-btn-st-form">
