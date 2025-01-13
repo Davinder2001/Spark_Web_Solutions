@@ -8,7 +8,7 @@ import { COUNT_OF_VERTEXES, ANIMATION_SPEED, LIL_GUI_COLOR, PARTICLE_GEOMETRY__C
 
 export const ThreeRenderScene = () => {
     const canvasRef = useRef(null);
- 
+
 
     useEffect(() => {
         // 1. Create Scene
@@ -31,7 +31,7 @@ export const ThreeRenderScene = () => {
             positionY: 0.1,
         };
 
-        const prop = { ...initialProps }; // Clone initial properties
+        const prop = { ...initialProps };  
 
         // 5. Particles Geometry and Material
         const particlesGeometry = new THREE.BufferGeometry();
@@ -96,7 +96,7 @@ export const ThreeRenderScene = () => {
         gui.add(
             {
                 reset: () => {
-                    // Reset properties to initial values
+                   
                     Object.assign(prop, initialProps);
                     sphere.material.color.set(prop.color);
                     sphere.geometry.dispose();
@@ -104,7 +104,7 @@ export const ThreeRenderScene = () => {
                     sphere.position.x = prop.positionX;
                     sphere.position.y = prop.positionY;
 
-                    // Update GUI controls
+                   
                     gui.controllers.forEach((controller) => controller.updateDisplay());
                 },
             },
@@ -133,11 +133,11 @@ export const ThreeRenderScene = () => {
             const distance = camera.position.distanceTo(controls.target);
             if (distance >= controls.maxDistance) {
                 event.preventDefault(); // Stop default zoom behavior
-               
+
                 setTimeout(() => {
-                    nextSection.scrollIntoView({ behavior: 'smooth' });  
-                   
-                }, 1000);  
+                    nextSection.scrollIntoView({ behavior: 'smooth' });
+
+                }, 1000);
             }
         };
 
@@ -190,7 +190,7 @@ export const ThreeRenderScene = () => {
     return (
         <>
             <canvas ref={canvasRef} className="app" />
-            
+
         </>
     );
 };
