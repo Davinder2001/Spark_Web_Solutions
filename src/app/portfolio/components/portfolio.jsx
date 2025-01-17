@@ -20,7 +20,12 @@ const Portfolio = () => {
                             <div key={index} className="portfolio-card">
                                 <Link href={card.link} target='blank'>
                                     <div className='project-image'>
-                                        <Image src={card.image} alt={card.project_name} className='' width={1000} height={500} />
+                                        <Image  src={card.image}
+                                                alt={card.project_name}
+                                                className='' 
+                                                layout="responsive"
+                                                width={100} height={100} 
+                                                />
                                         <div className='overlay'>
                                             <p>{card.description}</p>
                                         </div>
