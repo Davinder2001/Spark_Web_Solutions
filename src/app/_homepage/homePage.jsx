@@ -7,7 +7,7 @@ import OurServices from './Components/ourServices';
 import ProjectSection from './Components/projectSection';
 import TestimonialSection from './Components/testimonialSection';
 import AboutUsSection from './Components/aboutUsSection';
-// import { ThreeRenderScene } from '@/components/ThreeScene';
+import { ThreeRenderScene } from '@/components/ThreeScene';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -101,7 +101,7 @@ const HomePage = () => {
           className={`section_0 ${activeIndex === 0 ? 'active' : ''}`}
           ref={(el) => (sectionsRef.current[0] = el)}
         >
-           {/* <ThreeRenderScene /> */}
+           <ThreeRenderScene />
         </div>
 
     

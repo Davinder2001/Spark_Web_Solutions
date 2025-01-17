@@ -1,69 +1,88 @@
-"use client"; // Enable client-side rendering for Next.js
-import React, { useEffect } from "react";
+"use client";
+import React, { useEffect, useContext, useState } from "react";
 import { gsap } from "gsap";
+import ContactPopup from './popupForm';
 import { ScrollTrigger } from "gsap/all";
+import { SectorDataContext } from '@/context/apiContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ServicesSection = () => {
+  const pagesDataApi = useContext(SectorDataContext);
+  const [selectedService, setSelectedService] = useState('');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'our-services')?.acf;
+
+  console.log('mainData', mainData);
+
+  const handleContactClick = (e, serviceName) => {
+    e.preventDefault();
+    setSelectedService(serviceName);
+    setIsPopupOpen(true);
+  };
+
   useEffect(() => {
     const getRatio = (el) =>
       window.innerHeight / (window.innerHeight + el.offsetHeight);
 
-    // Select all sections and apply animations
-    gsap.utils.toArray("section").forEach((section, i) => {
+    gsap.utils.toArray("section").forEach((section) => {
       const bgElement = section.querySelector(".bg");
-
-      // Skip if there's no .bg element
       if (!bgElement) return;
 
-      // Assign a background image dynamically
       section.bg = bgElement;
-      section.bg.style.backgroundImage = `url(https://picsum.photos/1600/800?random=${i})`;
 
-      // Apply GSAP animation for parallax effect
       gsap.fromTo(
         section.bg,
         {
-          backgroundPosition: "50% 0px", // Initial background position
+          backgroundPosition: "50% 0px",
         },
         {
           backgroundPosition: `50% ${window.innerHeight * (1 - getRatio(section))}px`,
           ease: "none",
           scrollTrigger: {
             trigger: section,
-            start: "top top", // Animation starts when section hits the top
+            start: "top top",
             end: "bottom top",
             scrub: true,
-            invalidateOnRefresh: true, // Ensures responsiveness
+            invalidateOnRefresh: true,
           },
         }
       );
     });
-  }, []);
+  }, [mainData]);
 
   return (
     <div className="services-section">
-      <section className="panel">
-        <div className="bg"></div>
-        <h1>Simple parallax sections</h1>
-      </section>
-      <section className="panel">
-        <div className="bg"></div>
-        <h1>Hey look, a title</h1>
-      </section>
-      <section className="panel">
-        <div className="bg"></div>
-        <h1>They just keep coming</h1>
-      </section>
-      <section className="panel">
-        <div className="bg"></div>
-        <h1>So smooth though</h1>
-      </section>
-      <section className="panel">
-        <div className="bg"></div>
-        <h1>Nice, right?</h1>
-      </section>
+      {mainData?.services.map((service, index) => (
+        <div key={index}>
+          <section className="panel">
+            <div
+              className="bg"
+              style={{ backgroundImage: `url(${service.service_background_image})` }}
+            >
+              <h1>{service.service_name}</h1>
+              <p>{service.short_description}</p>
+              <p>{service.long_description}</p>
+              <div className="contact-button">
+                <button
+                  onClick={(e) => handleContactClick(e, service.service_name)}
+                  className="btn"
+                >
+                  Talk To Our Experts
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      ))}
+
+      <ContactPopup
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        serviceNames={mainData?.services?.map(service => service.service_name) || []}
+        selectedService={selectedService}
+      />
     </div>
   );
 };

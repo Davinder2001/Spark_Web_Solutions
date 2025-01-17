@@ -1,103 +1,156 @@
-"use client";
-import React, { useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/all";
-import imagesLoaded from "imagesloaded"; // Install this dependency: npm install imagesloaded
+'use client';
+import React, { useContext, useEffect, useRef } from 'react';
+import { SectorDataContext } from '@/context/apiContext';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ExpertiseSection = () => {
-  useEffect(() => {
-    const images = gsap.utils.toArray("img");
-    const loader = document.querySelector(".loader--text");
+    const pagesDataApi = useContext(SectorDataContext);
+    const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'our-services')?.acf;
 
-    const updateProgress = (instance) => {
-      loader.textContent = `${Math.round(
-        (instance.progressedCount * 100) / images.length
-      )}%`;
-    };
+    const expertiseList1Ref = useRef(null);
+    const expertiseList2Ref = useRef(null);
+    const scrollDirection = useRef('down'); // Keeps track of scroll direction
 
-    const showDemo = () => {
-      document.body.style.overflow = "auto"; // Allow scrolling
-      document.scrollingElement.scrollTo(0, 0); // Reset scroll position
-      gsap.to(document.querySelector(".loader"), { autoAlpha: 0 }); // Hide loader
+    const list1AnimRef = useRef(null);
+    const list2AnimRef = useRef(null);
 
-      gsap.utils.toArray("section").forEach((section, index) => {
-        const wrapper = section.querySelector(".wrapper");
-        if (!wrapper) return;
+    useEffect(() => {
+        let lastScroll = 0;
 
-        const [x, xEnd] =
-          index % 2
-            ? ["100%", (wrapper.scrollWidth - section.offsetWidth) * -1]
-            : [wrapper.scrollWidth * -1, 0];
+        const updateScrollDirection = () => {
+            const currentScroll = window.scrollY;
+            scrollDirection.current = currentScroll > lastScroll ? 'down' : 'up';
+            lastScroll = currentScroll;
+        };
 
-        gsap.fromTo(
-          wrapper,
-          { x },
-          {
-            x: xEnd,
-            scrollTrigger: {
-              trigger: section,
-              scrub: 0.5, // Smooth animation
+        window.addEventListener('scroll', updateScrollDirection);
+
+        const duplicateContentIfNeeded = (container) => {
+            const items = Array.from(container.children);
+            const parentWidth = container.parentElement.offsetWidth;
+            let contentWidth = container.scrollWidth;
+
+            // Duplicate the content until it fills at least 3x the parent width
+            while (contentWidth < parentWidth * 3) {
+                items.forEach((item) => {
+                    container.appendChild(item.cloneNode(true));
+                });
+                contentWidth = container.scrollWidth;
+            }
+        };
+
+        // Duplicate content for both lists
+        if (expertiseList1Ref.current) duplicateContentIfNeeded(expertiseList1Ref.current);
+        if (expertiseList2Ref.current) duplicateContentIfNeeded(expertiseList2Ref.current);
+
+        // Animation for first list
+        const animateList1 = () => {
+            const container = expertiseList1Ref.current;
+            return gsap.to(container, {
+                x: () => (scrollDirection.current === 'down' ? -container.scrollWidth / 3 : container.scrollWidth / 3),
+                repeat: -1,
+                duration: 20,
+                ease: 'none',
+                modifiers: {
+                    x: gsap.utils.unitize((x) => parseFloat(x) % (container.scrollWidth / 3)), // Seamless loop
+                },
+            });
+        };
+
+        // Animation for second list
+        const animateList2 = () => {
+            const container = expertiseList2Ref.current;
+            return gsap.to(container, {
+                x: () => (scrollDirection.current === 'down' ? container.scrollWidth / 3 : -container.scrollWidth / 3),
+                repeat: -1,
+                duration: 20,
+                ease: 'none',
+                modifiers: {
+                    x: gsap.utils.unitize((x) => parseFloat(x) % (container.scrollWidth / 3)), // Seamless loop
+                },
+            });
+        };
+
+        // Store animations in refs
+        list1AnimRef.current = animateList1();
+        list2AnimRef.current = animateList2();
+
+        ScrollTrigger.create({
+            onUpdate: () => {
+                list1AnimRef.current.invalidate().restart(); // Restart animation with updated direction
+                list2AnimRef.current.invalidate().restart();
             },
-          }
-        );
-      });
+        });
+
+        return () => {
+            window.removeEventListener('scroll', updateScrollDirection);
+            list1AnimRef.current.kill();
+            list2AnimRef.current.kill();
+        };
+    }, []);
+
+    // Pause animations on hover
+    const handleMouseEnter = () => {
+        list1AnimRef.current.pause();
+        list2AnimRef.current.pause();
     };
 
-    imagesLoaded(images).on("progress", updateProgress).on("always", showDemo);
-  }, []);
+    // Resume animations on mouse leave
+    const handleMouseLeave = () => {
+        list1AnimRef.current.play();
+        list2AnimRef.current.play();
+    };
 
-  return (
-    <div className="expertise-section">
-      <div className="loader df aic jcc">
-        <div>
-          <h1>Loading</h1>
-          <h2 className="loader--text">0%</h2>
+    return (
+        <div className='expertise'>
+            <h2>{mainData?.expertise_section_heading}</h2>
+            {/* First list: Left to right or reversed */}
+            <div
+                className='expertises-list'
+                ref={expertiseList1Ref}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
+                {mainData?.expertise?.map((card, index) => (
+                    <div key={index} className="expertise-card">
+                        <div className='card_1'>
+                            <div className="card-icon">
+                                <img src={card.expertise_icon} alt={card.card_heading} />
+                            </div>
+                            <div className="card-description">
+                                <h3>{card.expertise_heading}</h3>
+                                <p>{card.expertise_sub_heading}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            {/* Second list: Right to left or reversed */}
+            <div
+                className='expertises-list reverse'
+                ref={expertiseList2Ref}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
+                {mainData?.expertise_2?.map((card, index) => (
+                    <div key={index} className="expertise-card">
+                        <div className='card_1'>
+                            <div className="card-icon">
+                                <img src={card.expertise_icon} alt={card.card_heading} />
+                            </div>
+                            <div className="card-description">
+                                <h3>{card.expertise_heading}</h3>
+                                <p>{card.expertise_sub_heading}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
-      </div>
-
-      <div className="demo-wrapper">
-        {/* <header className="df aic jcc">
-          <div>
-            <h1>ScrollTrigger</h1>
-            <h2>Demo</h2>
-          </div>
-        </header> */}
-
-        <section className="demo-text">
-          <div className="wrapper text">EXPERTISE</div>
-        </section>
-
-        {[...Array(4)].map((_, i) => (
-          <section className="demo-gallery" key={i}>
-            <ul className="wrapper">
-              {[...Array(Math.floor(Math.random() * 2) + 3)].map((_, j) => (
-                <li key={j}>
-                  <img
-                    src={`/images/pexels-eberhardgross-448714.jpg`}
-                    width="1240"
-                    height="874"
-                    alt="Random"
-                  />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
-
-        <section className="demo-text">
-          <div className="wrapper text">EXPERTISE</div>
-        </section>
-
-        {/* <footer className="df aic jcc">
-          <p>
-            Images from <a href="https://unsplash.com/">Unsplash</a>
-          </p>
-        </footer> */}
-      </div>
-    </div>
-  );
+    );
 };
 
 export default ExpertiseSection;

@@ -356,7 +356,7 @@ h2 {
   font-size: 2rem;
 }
 
-img {
+.expertise-section img {
   width: 100%;
   height: auto;
   background: #f0f0f0;
@@ -1511,10 +1511,40 @@ body.light-mode .testimonials {
   //  Expertise Css
 
   .expertise {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+
     .expertises-list {
       display: flex;
       gap: 30px;
+      
     }
+
+    .expertise-card  {
+
+        padding: 20px;
+        background: linear-gradient(95.49deg, #18191D 1.53%, #1D1E21 50.01%, #363C48 99.61%);
+        border-radius: 10px;
+  
+      .card_1{
+        display: flex;
+        width: 300px;
+        height: 100px;
+        justify-content: center;
+  gap: 32px;
+  align-items: center;
+        
+        img {
+          width: 60px;
+        }
+        
+      }
+    } 
+
   }
 
 

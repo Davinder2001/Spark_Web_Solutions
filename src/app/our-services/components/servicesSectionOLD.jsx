@@ -88,7 +88,7 @@ const ServicesSection = () => {
                                 width: '100%',
                                 display: activeIndex === index ? 'block' : 'none',
                             }}
-                            ref={(el) => (serviceCardsRef.current[index] = el)}
+                           
                         >
                             <div className="service-card">
                                 <div className='service-description'>

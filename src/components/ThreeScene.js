@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import GUI from 'lil-gui';
 import { COUNT_OF_VERTEXES, ANIMATION_SPEED, LIL_GUI_COLOR, PARTICLE_GEOMETRY__COLOR } from '@/utils/constents';
+import { FontLoader, TextGeometry, TTFLoader } from 'three/examples/jsm/Addons.js';
 
 export const ThreeRenderScene = () => {
     const canvasRef = useRef(null);
@@ -31,7 +32,7 @@ export const ThreeRenderScene = () => {
             positionY: 0.1,
         };
 
-        const prop = { ...initialProps };  
+        const prop = { ...initialProps };
 
         // 5. Particles Geometry and Material
         const particlesGeometry = new THREE.BufferGeometry();
@@ -68,6 +69,76 @@ export const ThreeRenderScene = () => {
         );
         scene.add(sphere);
 
+        // Load Fonts
+        const loader = new TTFLoader();
+        const fontLoader = new FontLoader();
+        let textMesh = null;
+
+        loader.load('./fonts/Montserrat-Regular.ttf', function (json) {
+            const font = fontLoader.parse(json);
+
+            // Initial empty geometry
+            const textGeometry = new TextGeometry('', {
+                font: font,
+                size: 11,
+                height: 0,
+                bevelEnabled: false,
+                bevelThickness: 0,
+                bevelSize: 0,
+                bevelOffset: 0,
+                bevelSegments: 0
+
+            });
+            const textMaterial = new THREE.MeshBasicMaterial({ color: '#F24B74' });
+
+            // Create text mesh
+            textMesh = new THREE.Mesh(textGeometry, textMaterial);
+            scene.add(textMesh);
+
+            textMesh.position.y = -1.5
+            textMesh.position.x = -4
+            textMesh.scale.set(0.1, 0.1, 0.1)
+
+            // Typing effect logic
+            const fullText = `welcome to the starkweb solutions`;
+            let index = 0;
+
+            function typeText() {
+                // Update current index
+                index++;
+
+                // Restart typing from the beginning if it reaches the end
+                if (index > fullText.length) {
+                    index = 0;
+                }
+
+                // Update text geometry
+                textMesh.geometry.dispose(); // Dispose old geometry
+                textMesh.geometry = new TextGeometry(fullText.substring(0, index), {
+                    font: font,
+                    size: 1,
+                    height: 0,
+                    bevelEnabled: false,
+                    bevelThickness: 0,
+                    bevelSize: 0,
+                    bevelOffset: 0,
+                    bevelSegments: 0
+                });
+
+                setTimeout(typeText, 100); // Typing speed in milliseconds
+            }
+
+            typeText();
+        });
+
+
+
+
+
+
+
+
+
         sphere.position.y = 0.13;
 
         // 7. Create GUI
@@ -96,7 +167,7 @@ export const ThreeRenderScene = () => {
         gui.add(
             {
                 reset: () => {
-                   
+
                     Object.assign(prop, initialProps);
                     sphere.material.color.set(prop.color);
                     sphere.geometry.dispose();
@@ -104,7 +175,7 @@ export const ThreeRenderScene = () => {
                     sphere.position.x = prop.positionX;
                     sphere.position.y = prop.positionY;
 
-                   
+
                     gui.controllers.forEach((controller) => controller.updateDisplay());
                 },
             },
@@ -117,10 +188,16 @@ export const ThreeRenderScene = () => {
             height: window.innerHeight,
         };
 
+
+
+
+
+
         // 9. Camera
         const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
         camera.position.z = 3;
-        scene.add(camera);
+        scene.add(camera)
+;
 
         // 10. Controls
         const controls = new OrbitControls(camera, canvas);
