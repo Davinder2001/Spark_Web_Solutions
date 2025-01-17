@@ -59,18 +59,24 @@ const ServicesSection = () => {
           <section className="panel">
             <div
               className="bg"
-              style={{ backgroundImage: `url(${service.service_background_image})` }}
+              style={{ 
+                        backgroundImage: `url(${service.service_background_image})`, 
+                        
+                      }}
             >
-              <h1>{service.service_name}</h1>
-              <p>{service.short_description}</p>
-              <p>{service.long_description}</p>
-              <div className="contact-button">
-                <button
-                  onClick={(e) => handleContactClick(e, service.service_name)}
-                  className="btn"
-                >
-                  Talk To Our Experts
-                </button>
+                </div>
+              <div className="inner-service-content">
+
+                <h1>{service.service_name}</h1>
+                <p>{service.short_description}</p>
+                <p>{service.long_description}</p>
+                <div className="contact-button">
+                  <button
+                    onClick={(e) => handleContactClick(e, service.service_name)}
+                    className="btn"
+                  >
+                    Talk To Our Experts
+                  </button>
               </div>
             </div>
           </section>

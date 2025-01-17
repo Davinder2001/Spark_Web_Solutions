@@ -106,8 +106,7 @@ const ExpertiseSection = () => {
 
     return (
         <div className='expertise'>
-            <h2>{mainData?.expertise_section_heading}</h2>
-            {/* First list: Left to right or reversed */}
+            <h1>{mainData?.expertise_section_heading}</h1>
             <div
                 className='expertises-list'
                 ref={expertiseList1Ref}

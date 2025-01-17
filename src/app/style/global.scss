@@ -309,16 +309,22 @@ p {
     position: relative;
     overflow: hidden; /* Prevent overflow */
   }
+  .inner-service-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
   
   .panel {
     position: relative;
     height: 100vh;
-    display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
     color: white;
     text-align: center;
+    display: flex;
   }
   
   .bg {
@@ -327,10 +333,12 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-  z-index: -1;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: all;
+    filter: grayscale(100%);
 }
 
 h1 {
@@ -342,6 +350,19 @@ h1 {
 
 
 } 
+
+// Services Page Lite mode
+body.light-mode{
+  .services-section {
+    .bg {
+      filter: grayscale(0%);
+    }
+  }
+}
+
+
+
+
 
 
 
@@ -1516,6 +1537,7 @@ body.light-mode .testimonials {
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    padding: 100px 0;
 
 
     .expertises-list {
@@ -2219,78 +2241,78 @@ button.navbar-buttons-main.navigation-contact-btn {
 
 // Service animation css
 
-main {
+// main {
 
-  .services-section {
-    position: relative;
-    overflow: hidden; /* Required for ScrollSmoother */
-  }
+//   .services-section {
+//     position: relative;
+//     overflow: hidden; /* Required for ScrollSmoother */
+//   }
   
-  .services-content {
-    position: relative;
-  will-change: transform; /* Optimize scrolling performance */
-}
+//   .services-content {
+//     position: relative;
+//   will-change: transform; /* Optimize scrolling performance */
+// }
 
-.panel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  color: white;
-  text-align: center;
-  height: 100vh; /* Uniform height for all panels */
-}
+// .panel {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: 2rem;
+//   color: white;
+//   text-align: center;
+//   height: 100vh; /* Uniform height for all panels */
+// }
 
-.blue {
-  background-color: #007bff;
-}
+// .blue {
+//   background-color: #007bff;
+// }
 
-.red {
-  background-color: #dc3545;
-}
+// .red {
+//   background-color: #dc3545;
+// }
 
-.orange {
-  background-color: #fd7e14;
-}
+// .orange {
+//   background-color: #fd7e14;
+// }
 
-.purple {
-  background-color: #6f42c1;
-}
+// .purple {
+//   background-color: #6f42c1;
+// }
 
-.green {
-  background-color: #28a745;
-}
+// .green {
+//   background-color: #28a745;
+// }
 
-.description {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
+// .description {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   text-align: center;
+// }
 
-.scroll-down {
-  margin-top: 1rem;
-}
+// .scroll-down {
+//   margin-top: 1rem;
+// }
 
-.arrow {
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  margin: 0.5rem auto 0;
-}
+// .arrow {
+//   width: 20px;
+//   height: 20px;
+//   background: #fff;
+//   margin: 0.5rem auto 0;
+// }
 
-.footer {
-  height: 50vh; /* Adjust as needed */
-  background-color: #222;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-}
+// .footer {
+//   height: 50vh; /* Adjust as needed */
+//   background-color: #222;
+//   color: white;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: 1.5rem;
+// }
 
-}
+// }
 
 
 
@@ -2468,4 +2490,92 @@ body.light-mode .blogs {
     font-size: 30px;
     font-weight: 600;
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ******************************************** Meadia Query Start ******************************************************//
+
+
+
+
+
+
+//****** 1024 PX ******//
+@media only screen and (max-width: 1024px) {
+
+// Service page meadia query
+.services-page {
+
+  .inner-service-content{
+    h1 {
+      font-size: 45px;
+    }
+    p {
+      font-size: 30px;
+    }
+  } 
+
+
+}
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+//****** 768 PX ******//
+@media only screen and (max-width: 768px) {
+
+
+}
+
+
+
+
+
+//****** 468 PX ******//
+@media only screen and (max-width: 468px) {
+
+
 }
