@@ -456,6 +456,17 @@ footer {
 .header-section {
   position: relative;
   transition: all 0.3s ease;
+
+  .scroll-img {
+    max-width: 100px !important;
+    width: 100% !important;
+    position: fixed;
+    bottom: 50px;
+    z-index: 9999999999999;
+  }
+
+
+
 }
 
 .sticky-header {
@@ -657,6 +668,9 @@ nav.main-header-navigation ul li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+
+
 
   .call-header-buttons {
     .mobile-menu-1-icons{

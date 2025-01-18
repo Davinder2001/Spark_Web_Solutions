@@ -10,7 +10,8 @@ import { gsap } from 'gsap';
 const Navigation = () => {
   const [isNavVisible, setNavVisible] = useState(false);
   const [isLoremVisible, setLoremVisible] = useState(false);
-
+  const [isScrolling, setScrolling] = useState(false);
+  const [isHovered, setHovered] = useState(false);
   const navRef = useRef(null);
   const loremRef = useRef(null);
 
@@ -22,12 +23,12 @@ const Navigation = () => {
 
   const toggleNav = () => {
     setNavVisible(true);
-    setLoremVisible(false); // Hide Lorem Ipsum when Navigation is shown
+    setLoremVisible(false); 
   };
 
   const toggleLorem = () => {
     setLoremVisible(true);
-    setNavVisible(false); // Hide Navigation when Lorem Ipsum is shown
+    setNavVisible(false);
   };
 
   const closeBoth = () => {
@@ -35,7 +36,6 @@ const Navigation = () => {
     setLoremVisible(false);
   };
 
-  // Animation for opening and closing
   useEffect(() => {
     if (isNavVisible) {
       gsap.fromTo(
@@ -60,12 +60,47 @@ const Navigation = () => {
     }
   }, [isLoremVisible]);
 
+  useEffect(() => {
+  
+  
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+   };
+    
+    window.addEventListener('scroll', handleScroll);
+  
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+
   const handleNavLinkClick = () => {
     setNavVisible(false);
   };
 
   return (
     <div className="navigation-container">
+          
+
+      <div className="scroll-img"
+      onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+          {isScrolling && (
+      <Image
+          className='nav-logo-menu'
+          src={mainDataHeader?.scroll_image_menu}
+          alt="Logo"
+          layout="responsive"
+          width={100}
+          height={100}
+        />
+      )}
+      </div>
+      {(!isScrolling || isHovered) && (
       <div className="navigation-inner">
         {isNavVisible && (
           <div className="nav-wrapper" ref={navRef}>
@@ -206,6 +241,8 @@ const Navigation = () => {
           )}
         </div>
       </div>
+      
+        )}
     </div>
   );
 };
