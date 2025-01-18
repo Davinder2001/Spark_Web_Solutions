@@ -2758,5 +2758,15 @@ body.light-mode {
 //****** 468 PX ******//
 @media only screen and (max-width: 468px) {
 
+  .header {
+    .header-logo-main {
+      img {
+        max-width: 200px;
+        width: 100%;
+    }
+    } 
+  } 
+
+
 
 }
