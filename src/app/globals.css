@@ -67,14 +67,14 @@ button.active {
   transition: background 0.3s ease, padding 0.3s ease;
 }
 
-div[class^='section_'] {
+/* div[class^='section_'] {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 24px;
   color: #fff;
-}
+} */
 
 
 
@@ -85,9 +85,32 @@ div[class^='section_'] {
 
 
 
-
+.home-section {
+  height: calc(var(--vh, 1vh) * 100);
+}
  
 
+.panel {
+  height: 100vh;
+  top: 0;
+  will-change: transform;
+  /* Optional: to visually differentiate sections */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+}
+.blue { background: #3498db; }
+.red { background: #e74c3c; }
+.orange { background: #e67e22; }
+.purple { background: #9b59b6; }
+.green { background: #2ecc71; }
+
+.scroll-down {
+  top: 6vh;
+  position: relative;
+}
 
 
 

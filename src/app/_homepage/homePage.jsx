@@ -7,36 +7,66 @@ import OurServices from './Components/ourServices';
 import ProjectSection from './Components/projectSection';
 import TestimonialSection from './Components/testimonialSection';
 import AboutUsSection from './Components/aboutUsSection';
-import { ThreeRenderScene } from '@/components/ThreeScene';
+import HeroSection from './Components/heroSection';
 
 gsap.registerPlugin(ScrollToPlugin);
 
 const HomePage = () => {
   const sectionsRef = useRef([]);
-  const [activeIndex, setActiveIndex] = useState(null); // Initial state is null
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollTween = useRef(null);
 
   const scrollToSection = (index) => {
-    setActiveIndex(index); // Update active index
-    gsap.to(window, {
+    const clampedIndex = Math.max(0, Math.min(index, sectionsRef.current.length - 1));
+    setActiveIndex(clampedIndex); 
+    scrollTween.current = gsap.to(window, {
       duration: 1.5,
-      scrollTo: sectionsRef.current[index],
+      scrollTo: { y: sectionsRef.current[clampedIndex], autoKill: false },
       ease: 'power2.inOut',
+      onComplete: () => {
+        scrollTween.current = null;
+      },
+      overwrite: true,
     });
   };
+
+  useEffect(() => {
+    const handleWheel = (e) => {
+      if (scrollTween.current) {
+        e.preventDefault();
+        return;
+      }
+      
+      e.preventDefault();
+      
+      const deltaY = e.deltaY;
+      if (deltaY > 0 && activeIndex < sectionsRef.current.length - 1) {
+        scrollToSection(activeIndex + 1);
+      } else if (deltaY < 0 && activeIndex > 0) {
+        scrollToSection(activeIndex - 1);
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+    };
+  }, [activeIndex]);
 
   useEffect(() => {
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.5, // Section is considered visible when 50% of it is in the viewport
+      threshold: 0.5,
     };
 
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const index = sectionsRef.current.indexOf(entry.target);
-          if (index !== -1) {
-            setActiveIndex(index); // Update active index only on scroll
+          if (index !== -1 && scrollTween.current === null) {
+            setActiveIndex(index);
           }
         }
       });
@@ -50,61 +80,30 @@ const HomePage = () => {
     });
 
     return () => {
-      observer.disconnect(); 
+      observer.disconnect();
     };
   }, []);
 
   return (
     <>
-    
-
       <div className="navigation_buttons">
-        <button
-          className={activeIndex === 0 ? 'active' : ''}
-          onClick={() => scrollToSection(0)}
-        >
-          <p></p>
-        </button>
-        <button
-          className={activeIndex === 1 ? 'active' : ''}
-          onClick={() => scrollToSection(1)}
-        >
-          <p></p>
-        </button>
-        <button
-          className={activeIndex === 2 ? 'active' : ''}
-          onClick={() => scrollToSection(2)}
-        >
-          <p></p>
-        </button>
-        <button
-          className={activeIndex === 3 ? 'active' : ''}
-          onClick={() => scrollToSection(3)}
-        >
-          <p></p>
-        </button>
-        <button
-          className={activeIndex === 4 ? 'active' : ''}
-          onClick={() => scrollToSection(4)}
-        >
-          <p></p>
-        </button>
-        <button
-          className={activeIndex === 5 ? 'active' : ''}
-          onClick={() => scrollToSection(5)}
-        >
-          <p></p>
-        </button>
+        {sectionsRef.current.map((_, i) => (
+          <button
+            key={i}
+            className={activeIndex === i ? 'active' : ''}
+            onClick={() => scrollToSection(i)}
+          >
+            <p></p>
+          </button>
+        ))}
       </div>
 
       <div
-          className={`section_0 ${activeIndex === 0 ? 'active' : ''}`}
-          ref={(el) => (sectionsRef.current[0] = el)}
-        >
-           <ThreeRenderScene />
-        </div>
-
-    
+        className={`section_0 ${activeIndex === 0 ? 'active' : ''}`}
+        ref={(el) => (sectionsRef.current[0] = el)}
+      >
+        <HeroSection />
+      </div>
 
       <div id="next_section_wrapper">
         <div

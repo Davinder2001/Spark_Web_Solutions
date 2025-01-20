@@ -303,6 +303,116 @@ p {
 
 
 
+.about-us-home {
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+  .main-description {
+    font-size: 40px;
+    color: #FFFFFFA6;
+    font-family: 'Nunito';
+    line-height: 66px;
+  }
+
+  .about-home-inr-cont {
+    display: flex;
+    gap: 20px;
+    
+    .about-sec-right {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      
+
+      h2.fade-bt-heading {
+        position: absolute;
+        font-size: 70px;
+        z-index: -1;
+        top: 35%;
+        color: rgba(255, 255, 255, 0.1);
+        left: 16%;
+    }
+
+
+      .short-description {
+        font-size: 40px;
+        color: #FFFFFFA6;
+        font-family: 'Nunito';
+        line-height: 66px;
+        position: relative;
+        left:-175px;
+      }
+      .gallery {
+        display: flex;
+            gap: 20px;
+            position: relative;
+            left: -270px;
+            bottom: 65px;
+            .thumb-image {
+              width: 150px;
+              height: 100px;
+              cursor: pointer;
+            }
+            .about-card.active {
+              position: relative;
+              
+              .overlay {
+                position: absolute;
+                background-color: #F24B74;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+              }
+              
+              
+            }
+          }
+    
+    }
+    .about-sec-left {
+    width: 60%;
+    .preview-img {
+      max-height: 660px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+}
+  
+}
+
+.our-service-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Service section animation css
 .services-section {
 
