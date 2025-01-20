@@ -1658,8 +1658,18 @@ body.light-mode .portfolio {
 
   .project-image {
     border-radius: 30px;
+    max-height: 500px;
+    height: 100%;
     overflow: hidden;
+    
+    img{
+      border-radius: 30px;
+      height: 100% !important;
+      width: 100% !important;
+      object-fit: cover;
+    }
   }
+  
 
   .card-small-headings h3 {
     font-size: 25px;
@@ -2716,10 +2726,19 @@ body.light-mode {
 .portfolio {
   .portfolio-inner {
     .cards{
-      grid-template-columns: 1fr;
+      display: block;
     }
   
   } 
+  .overlay {
+    padding: 20px;
+    p {
+      font-size: 20px;
+    }
+    
+  } 
+
+
 
 } 
 
