@@ -573,6 +573,10 @@ footer {
     position: fixed;
     bottom: 50px;
     z-index: 9999999999999;
+    background-color: black;
+    background-color: #ffffff;
+    padding: 19px;
+    border-radius:25px;
   }
 
 
@@ -779,7 +783,9 @@ nav.main-header-navigation ul li {
   justify-content: space-between;
   align-items: center;
 
-
+  .mobile-menu {
+    display:none;
+  }
 
 
   .call-header-buttons {
@@ -1357,6 +1363,19 @@ body.light-mode .about-us-page {
     justify-content: space-between;
     gap: 50px;
 
+    
+    h2.lite-bg-heading {
+      position: absolute;
+      top: 30%;
+      left: 52%;
+      font-size: 70px;
+      z-index: -1;
+      color: rgba(255, 255, 255, 0.1);
+  }
+
+
+  
+
   }
 
   .image-gallery.inline-thumbnails {
@@ -1420,6 +1439,8 @@ body.light-mode .about-us-page {
     .desc-inner {
       width: 75%;
     }
+
+
 
     .card-img-sec {
       width: 25%;
@@ -1691,8 +1712,8 @@ body.light-mode .testimonials {
         width: 300px;
         height: 100px;
         justify-content: center;
-  gap: 32px;
-  align-items: center;
+        gap: 32px;
+        align-items: center;
         
         img {
           width: 60px;
@@ -2684,9 +2705,45 @@ body.light-mode .blogs {
 
 
 
+  .about-us-page {
+    .image-gallery-container {
+      
+      flex-direction:column;
+
+      .top-big-image {
+        width:100%;
+      }
+
+      .description-column-main {
+        width:100%;
+        position:unset;
+
+        h2.lite-bg-heading{
+          position:unset;
+          text-align:center;
+        }
+
+      }
+      .image-gallery.inline-thumbnails {
+          position:unset;
+          order:-1;
+          justify-content:center;
+          flex-wrap:wrap;
+      }
+
+    }
+  }
+    
+
+
+
 
 //Header CSS
 .header-section{
+  // position:unset;
+
+
+
   .navigation-container {
     display: none;
   }
@@ -2737,14 +2794,31 @@ body.light-mode {
 
 } 
 .mobile-menu {
-  position: absolute;
+  position: fixed;
   right: 0;
-  display: flex;
+  left:0;
+  bottom:0;
+  display: flex !important;
   flex-direction: column;
   background-color: black;
-  padding: 20px;
+  padding: 50px 20px;
   gap: 20px;
-  z-index: 999999999999;
+  z-index: 99999999999999999999;
+  top:80px;
+  width:100%;
+
+
+  nav ul {
+    
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      
+    li a {
+      font-size:30px;
+    }
+  } 
+  
 }
   
 

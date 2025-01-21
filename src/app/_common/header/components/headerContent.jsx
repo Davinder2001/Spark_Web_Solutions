@@ -9,7 +9,6 @@ import StickeyForm from '../../stickeyForm/stickeyForm';
 import Logo from '../../logo/logo';
 import { gsap } from 'gsap';
 
-
 const HeaderContent = () => {
   const { headerDataApi } = useContext(SectorDataContext);
   const mainData = headerDataApi?.find((page) => page.slug === 'header')?.acf;
@@ -25,6 +24,7 @@ const HeaderContent = () => {
   const stickyFormRef = useRef(null);
   const mobileMenuRef = useRef(null);
 
+  // Setup audio
   useEffect(() => {
     if (mainData?.music) {
       const audioFile = new Audio(mainData.music);
@@ -44,6 +44,7 @@ const HeaderContent = () => {
         if (audio.paused) audio.play();
       }
       setIsPlaying(!isPlaying);
+      // Close mobile menu after toggling music
       setIsMobileMenuOpen(false);
     }
   };
@@ -71,30 +72,59 @@ const HeaderContent = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };
 
+  // Automatically close mobile menu if the window width is more than 1024px
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      gsap.fromTo(
-        mobileMenuRef.current,
-        { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.5, ease: 'power4.out' }
-      );
-    } else if (mobileMenuRef.current) {
-      gsap.to(mobileMenuRef.current, { opacity: 0, y: -20, duration: 0.5, ease: 'power3.in' });
+    const handleResize = () => {
+      if (window.innerWidth > 1024 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Check initial width (in case user refreshes on a wide screen)
+    if (window.innerWidth > 1024) {
+      setIsMobileMenuOpen(false);
+    }
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Animate mobile menu appearance/disappearance using GSAP
+  useEffect(() => {
+    if (mobileMenuRef.current) {
+      if (isMobileMenuOpen) {
+        gsap.fromTo(
+          mobileMenuRef.current,
+          { opacity: 0, y: -20 },
+          { opacity: 1, y: 0, duration: 0.5, ease: 'power4.out' }
+        );
+      } else {
+        gsap.to(mobileMenuRef.current, {
+          opacity: 0,
+          y: -20,
+          duration: 0.5,
+          ease: 'power3.in',
+        });
+      }
     }
   }, [isMobileMenuOpen]);
+
+  // Function to close mobile menu after clicking a link.
+  const handleMobileLinkClick = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <div>
       <div className="header">
         <div className="call-header-buttons">
-
-          <Link href={`tel:${mainData?.contact_no}`}
-            className='desktop-call'
-          >
+          <Link href={`tel:${mainData?.contact_no}`} className="desktop-call">
             <h3>{mainData?.contact_no}</h3>
           </Link>
-
-          <div className='mobile-call mobile-menu-1-icons'>
+          <div className="mobile-call mobile-menu-1-icons">
             <div className="menu-item" onClick={togglePopup}>
               <Image src={mainData?.enquery_icon} alt="Enquiry Icon" width={30} height={30} />
             </div>
@@ -105,7 +135,7 @@ const HeaderContent = () => {
         </div>
 
         {/* Header Logo */}
-        <div className='header-logo-main'>
+        <div className="header-logo-main">
           <Link href="/">
             <Logo isLiteMode={isLiteMode} />
           </Link>
@@ -141,7 +171,6 @@ const HeaderContent = () => {
         </div>
 
         <div className="mobile-menu-2-icons">
-
           <div className="menu-item" onClick={toggleDarkMode}>
             <Image
               src={isLiteMode ? mainData?.dark_mode_icon : mainData?.light_mode_icon}
@@ -150,7 +179,6 @@ const HeaderContent = () => {
               height={30}
             />
           </div>
-
           {/* Hamburger Menu for Mobile */}
           <div className="hamburger-menu" onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? <FiX size={30} /> : <FiMenu size={30} />}
@@ -160,50 +188,45 @@ const HeaderContent = () => {
         {/* Mobile Menu Dropdown with Icons */}
         {isMobileMenuOpen && (
           <div className="mobile-menu" ref={mobileMenuRef}>
-            <nav className="">
+            <nav>
               <ul>
                 <li>
-                  <Link href="/">
+                  <Link href="/" onClick={handleMobileLinkClick}>
                     Home
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about-us">
+                  <Link href="/about-us" onClick={handleMobileLinkClick}>
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link href="/internship">
+                  <Link href="/internship" onClick={handleMobileLinkClick}>
                     Internship
                   </Link>
                 </li>
                 <li>
-                  <Link href="/portfolio">
+                  <Link href="/portfolio" onClick={handleMobileLinkClick}>
                     Portfolio
                   </Link>
                 </li>
                 <li>
-                  <Link href="/our-services">
+                  <Link href="/our-services" onClick={handleMobileLinkClick}>
                     Our Services
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog">
+                  <Link href="/blog" onClick={handleMobileLinkClick}>
                     Blogs
                   </Link>
                 </li>
+                <li>
+                  <Link href="/contact-us" onClick={handleMobileLinkClick}>
+                    Get In Touch
+                  </Link>
+                </li>
               </ul>
-              <div className="after-nav-area">
-                <ul>
-                  <li>
-                    <Link href="/contact-us" >
-                      Get In Touch
-                    </Link>
-                  </li>
-                </ul>
-              </div>
             </nav>
-
           </div>
         )}
       </div>

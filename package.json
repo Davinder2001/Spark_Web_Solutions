@@ -12,6 +12,7 @@
     "@gsap/react": "^2.1.1",
     "@react-three/drei": "^9.116.3",
     "@react-three/fiber": "^8.17.10",
+    "animejs": "^3.2.2",
     "gsap": "^3.12.5",
     "imagesloaded": "^5.0.0",
     "lil-gui": "^0.20.0",
