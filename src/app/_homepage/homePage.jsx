@@ -50,13 +50,13 @@ const HomePage = () => {
     });
 
     return () => {
-      observer.disconnect(); 
+      observer.disconnect();
     };
   }, []);
 
   return (
     <>
-    
+
 
       <div className="navigation_buttons">
         <button
@@ -98,13 +98,13 @@ const HomePage = () => {
       </div>
 
       <div
-          className={`section_0 ${activeIndex === 0 ? 'active' : ''}`}
-          ref={(el) => (sectionsRef.current[0] = el)}
-        >
-           <ThreeRenderScene />
-        </div>
+        className={`section_0 ${activeIndex === 0 ? 'active' : ''}`}
+        ref={(el) => (sectionsRef.current[0] = el)}
+      >
+        <ThreeRenderScene />
+      </div>
 
-    
+
 
       <div id="next_section_wrapper">
         <div

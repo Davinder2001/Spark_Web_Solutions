@@ -80,7 +80,7 @@ const ExpertiseSection = () => {
         ))}
 
         <section className="demo-text">
-          <div className="wrapper text">EXPERTISE</div>
+        
         </section>
       </div>
     </div>

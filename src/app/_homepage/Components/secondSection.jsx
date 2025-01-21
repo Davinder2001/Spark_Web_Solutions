@@ -9,7 +9,8 @@ const SecondSection = () => {
   const pagesDataApi = useContext(SectorDataContext);
   const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'home')?.acf?.second_section;
 
-  console.log(mainData);
+  // Log `mainData` to debug any potential `RegExp` objects
+  console.log("mainData:", JSON.stringify(mainData, null, 2));
 
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
@@ -18,7 +19,6 @@ const SecondSection = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Section 1: Fade In
     gsap.fromTo(
       ".section-red",
       { opacity: 0, y: 50 },
@@ -29,7 +29,6 @@ const SecondSection = () => {
           trigger: ".section-red",
           start: "top 80%",
           end: "bottom 20%",
-       
         },
       }
     );
@@ -61,40 +60,36 @@ const SecondSection = () => {
   };
 
   return (
-    <div className="main-wrapper" >
-
-       
+    <div className="main-wrapper">
+      {/* Tabs Section */}
       <div className="tabs_outer">
-
-        <img src="./images/circle.png" alt="" />
-
-<div className="tabs_holder">
-
-
-      <div className="tabs">
-        {mainData?.map((section, sectionIndex) => (
-          <div
-            key={sectionIndex}
-            className={`tab ${activeIndex === sectionIndex ? 'active' : ''}`}
-            style={{
-              padding: '0.5rem 1rem',
-              cursor: 'pointer',
-              backgroundColor: activeIndex === sectionIndex ? '#007bff' : '#f0f0f0',
-              color: activeIndex === sectionIndex ? '#fff' : '#000',
-              marginBottom: '0.5rem',
-              borderRadius: '5px',
-              textAlign: 'center',
-            }}
-            onClick={() => scrollToSection(sectionIndex)}
-          >
-            {section.main_heading}
+        <img src="./images/circle.png" alt="Decorative circle" />
+        <div className="tabs_holder">
+          <div className="tabs">
+            {Array.isArray(mainData) &&
+              mainData.map((section, sectionIndex) => (
+                <div
+                  key={sectionIndex}
+                  className={`tab ${activeIndex === sectionIndex ? 'active' : ''}`}
+                  style={{
+                    padding: '0.5rem 1rem',
+                    cursor: 'pointer',
+                    backgroundColor: activeIndex === sectionIndex ? '#007bff' : '#f0f0f0',
+                    color: activeIndex === sectionIndex ? '#fff' : '#000',
+                    marginBottom: '0.5rem',
+                    borderRadius: '5px',
+                    textAlign: 'center',
+                  }}
+                  onClick={() => scrollToSection(sectionIndex)}
+                >
+                  {String(section?.main_heading || 'Untitled')}
+                </div>
+              ))}
           </div>
-        ))}
-      </div>
-      </div>
+        </div>
       </div>
 
-      {/ Content Section /}
+      {/* Content Section */}
       <div
         ref={containerRef}
         className="inner_container"
@@ -106,31 +101,33 @@ const SecondSection = () => {
         }}
       >
         <div className="second_section" style={{ height: '100%' }}>
-          {mainData?.map((section, sectionIndex) => (
-            <div
-              key={sectionIndex}
-              className={`inner-section section-red ${activeIndex === sectionIndex ? 'active' : ''}`}
-              ref={(el) => (sectionRefs.current[sectionIndex] = el)}
-              style={{
-                height: '100vh',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                scrollSnapAlign: 'start',
-                opacity: activeIndex === sectionIndex ? 1 : 0.4,
-                transition: 'opacity 0.3s ease',
-              }}
-            >
-              <div className="description_outer">
-                {section?.scroll_menu?.map((item, itemIndex) => (
-                  <div key={itemIndex} className="description">
-                    <h3>{item?.heading}</h3>
-                    <p>{item?.description}</p>
-                  </div>
-                ))}
+          {Array.isArray(mainData) &&
+            mainData.map((section, sectionIndex) => (
+              <div
+                key={sectionIndex}
+                className={`inner-section section-red ${activeIndex === sectionIndex ? 'active' : ''}`}
+                ref={(el) => (sectionRefs.current[sectionIndex] = el)}
+                style={{
+                  height: '100vh',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  scrollSnapAlign: 'start',
+                  opacity: activeIndex === sectionIndex ? 1 : 0.4,
+                  transition: 'opacity 0.3s ease',
+                }}
+              >
+                <div className="description_outer">
+                  {Array.isArray(section?.scroll_menu) &&
+                    section.scroll_menu.map((item, itemIndex) => (
+                      <div key={itemIndex} className="description">
+                        <h3>{String(item?.heading || 'No Title')}</h3>
+                        <p>{String(item?.description || 'No Description')}</p>
+                      </div>
+                    ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>
@@ -138,5 +135,3 @@ const SecondSection = () => {
 };
 
 export default SecondSection;
-
-
