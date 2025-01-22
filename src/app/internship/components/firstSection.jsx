@@ -18,12 +18,18 @@ const FirstSection = () => {
   return (
     <div className='container'>
       <div className='page-title'>
-        <h1>{mainData?.programe}</h1>
-        <Image src={mainData?.program_icon}
-          alt='img'
-          width={100}
-          height={100} />
-        <h1>{mainData?.programe_name}</h1>
+        <div className="programe-heading">
+          <h1>{mainData?.programe}</h1>
+        </div>
+        <div className="programe-img">
+          <Image src={mainData?.program_icon}
+            alt='img'
+            width={100}
+            height={100} />
+        </div>
+        <div className="programe-name-heading">
+          <h1>{mainData?.programe_name}</h1>
+        </div>
       </div>
       <div className='first-section'>
         <div className='paragraph-section'>
