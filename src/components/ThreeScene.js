@@ -205,7 +205,7 @@ export const ThreeRenderScene = () => {
         controls.maxDistance = 5;
 
         // Handle scroll to the next section
-        const nextSection = document.querySelector('#next_section_wrapper');
+        const nextSection = document.querySelector('.section_1');
         const handleScroll = (event) => {
             const distance = camera.position.distanceTo(controls.target);
             if (distance >= controls.maxDistance) {
@@ -214,11 +214,45 @@ export const ThreeRenderScene = () => {
                 setTimeout(() => {
                     nextSection.scrollIntoView({ behavior: 'smooth' });
 
-                }, 1000);
+                },500);
             }
         };
 
         canvas.addEventListener('wheel', handleScroll, { passive: false });
+
+
+        const toggleGUI = () => {
+            const section1 = document.querySelector('.section_1');
+            const section0 = document.querySelector('.section_0');
+
+            if (section1 && section0) {
+                const section1Rect = section1.getBoundingClientRect();
+                const section0Rect = section0.getBoundingClientRect();
+
+                if (section1Rect.top <= window.innerHeight / 2 && section1Rect.bottom >= 0) {
+                    gui.hide(); // Hide GUI in section_1
+                } else if (section0Rect.top <= window.innerHeight / 2 && section0Rect.bottom >= 0) {
+                    gui.show(); // Show GUI in section_0
+                }
+            }
+        };
+
+        window.addEventListener('scroll', toggleGUI);
+
+        // 11. Handle Window Resize
+        window.addEventListener('resize', () => {
+            sizes.width = window.innerWidth;
+            sizes.height = window.innerHeight;
+            camera.aspect = sizes.width / sizes.height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(sizes.width, sizes.height);
+        });
+
+
+
+
+
+
 
         // 11. Renderer
         const renderer = new THREE.WebGLRenderer({ canvas });

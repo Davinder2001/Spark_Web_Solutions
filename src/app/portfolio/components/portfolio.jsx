@@ -24,7 +24,8 @@ const Portfolio = () => {
                                                 alt={card.project_name}
                                                 className='' 
                                                 layout="responsive"
-                                                width={100} height={100} 
+                                                width={100} 
+                                                height={100} 
                                                 />
                                         <div className='overlay'>
                                             <p>{card.description}</p>

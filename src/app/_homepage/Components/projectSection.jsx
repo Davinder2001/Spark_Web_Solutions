@@ -1,103 +1,84 @@
 'use client';
-
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SectorDataContext } from '@/context/apiContext';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import './project.css';
 
-const ProjectSection = () => {
+gsap.registerPlugin(ScrollTrigger);
+
+const ProjectSection = ({ section_4 }) => {
     const pagesDataApi = useContext(SectorDataContext);
-    const projectsData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'home')?.acf?.projects_section;
-
-    const [activeIndex, setActiveIndex] = useState(0);  
-    const [visibleSections, setVisibleSections] = useState([0, 1, 2]);  
-    const sectionRefs = useRef([]);
+    const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'home')?.acf?.projects_section;
+    const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
+        if (!section_4) return;
 
-        sectionRefs.current = sectionRefs.current.slice(0, projectsData?.projects.length || 0);
+        let sections = gsap.utils.toArray('.prog_content');
+        if (sections.length === 0) return;
 
-        sectionRefs.current.forEach((section, index) => {
-            if (!section) return;
-
-            ScrollTrigger.create({
-                trigger: section,
-                start: 'top 85%', // Adjusted start for better smoothness
-                end: 'bottom 60%',
-                scrub: 10, // Adds smooth effect
-                onEnter: () => {
-                    gsap.delayedCall(0.8, () => { // Increased delay for smoother transition
-                        setActiveIndex(index); // Activate only 1 section at a time
-                        setVisibleSections(prev => {
-                            if (!prev.includes(index)) {
-                                return [...prev.slice(1), index]; // Move visible sections forward
-                            }
-                            return prev;
-                        });
-                    });
+        gsap.to(sections, {
+            yPercent: -100 * (sections.length - 1),
+            scrollTrigger: {
+                trigger: `.${section_4}`,
+                pin: true,
+                start: 'top top',
+                scrub: true,
+                
+                onUpdate: (self) => {
+                    let progress = self.progress.toFixed(2);
+                    let newIndex = Math.round(progress * (sections.length - 1));
+                    setActiveIndex(newIndex);
                 },
-                onEnterBack: () => {
-                    gsap.delayedCall(0.8, () => { // Increased delay for smoother transition
-                        setActiveIndex(index); // Activate only 1 section at a time
-                        setVisibleSections(prev => {
-                            if (!prev.includes(index)) {
-                                return [index, ...prev.slice(0, 2)]; // Move visible sections backward
-                            }
-                            return prev;
-                        });
-                    });
-                }
-            });
+            },
         });
 
-        return () => ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    }, [projectsData]);
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+    }, [section_4]);
 
     return (
-        <div className="container project_wrapper">
-            <h2>{projectsData?.heading}</h2>
+        <div className='container' id='proj_container'>
+            <div className="proj_heading">
 
-            <div className="proj_section">
-                {/* Left Side - Image Display */}
-                <div className="proj_section_first">
-                    {projectsData?.projects.map((project, index) => (
-                        <div
-                            key={index}
-                            className={`proj_image ${activeIndex === index ? 'active' : ''}`}
-                            style={{
-                                opacity: visibleSections.includes(index) ? 1 : 0, 
-                                transition: 'opacity 1s ease-in-out', 
-                                position: 'absolute',
-                                width: '100%',
-                            }}
-                        >
-                            <img src={project.image} alt={project.name} />
-                        </div>
-                    ))}
-                </div>
+          <h2>{mainData?.heading}</h2>
+            </div>
+            
+            <div className="proj_left_section">
+                {mainData?.projects.map((project, index) => (
+                    <>
+                         
+                    <div key={index} className={`proj_images ${index === activeIndex ? 'active' : ''}`}>
+                        <img src={project.image} alt={project.name} />
+                    </div>
+               
+                    </>
+                ))}
+            </div>
 
-                {/* Right Side - Text Content with Smooth Entry & Distance */}
-                <div className="proj_section_second">
-                    {projectsData?.projects.map((project, index) => (
-                        <div
-                            key={index}
-                            ref={el => (sectionRefs.current[index] = el)}
-                            className={`proj_text ${activeIndex === index ? 'active' : ''}`}
-                            style={{
-                                display: visibleSections.includes(index) ? 'block' : 'none', // Keep first 3 visible
-                                opacity: activeIndex === index ? 1 : 0.2, // Only 1 active
-                                transition: 'opacity 1s ease-in-out, transform 1s ease-in-out', // Smooth transition
-                               
-                                transitionDelay: '0.4s', // Delays the appearance for smoothness
-                            }}
-                        >
-                            <h4>{project.name}</h4>
-                            <p>{project.description}</p>
-                        </div>
-                    ))}
+          
+            <div className="proj_right_section">
+                <div className='proj_section'>
+                    {mainData?.projects?.length > 0 ? (
+                        mainData.projects.map((project, index) => (
+                            <div 
+                                key={index} 
+                                className={`prog_content ${index === activeIndex ? 'active' : ''}`}
+                            >
+                                <h1>{index+1}</h1>
+                                <h4>{project.name}</h4>
+                                <p>{project.description}</p>
+                                
+                            </div>
+                        ))
+                    ) : (
+                        <p>No projects available.</p>
+                    )}
                 </div>
             </div>
+            
         </div>
     );
 };

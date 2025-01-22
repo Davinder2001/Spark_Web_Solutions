@@ -19,7 +19,7 @@ const HeaderContent = () => {
   const [isLiteMode, setIsDarkMode] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isStickyFormOpen, setIsStickyFormOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const popupRef = useRef(null);
   const stickyFormRef = useRef(null);
@@ -105,9 +105,11 @@ const HeaderContent = () => {
         </div>
 
         {/* Header Logo */}
-        <Link href="/">
-          <Logo isLiteMode={isLiteMode} />
-        </Link>
+        <div className='header-logo-main'>
+          <Link href="/">
+            <Logo isLiteMode={isLiteMode} />
+          </Link>
+        </div>
 
         {/* Desktop Icons (Hidden in Mobile) */}
         <div className="icons desktop-icons">

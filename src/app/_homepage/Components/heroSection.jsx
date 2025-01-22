@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const HeroSection = () => {
   return (
-    <>
+    <div className='' style={{height:"100vh"}}>
 
         <Image  src='/image.png' 
                 alt='Image'
@@ -12,7 +12,7 @@ const HeroSection = () => {
                 height={50} 
         />
       
-</>
+</div>
   )
 }
 

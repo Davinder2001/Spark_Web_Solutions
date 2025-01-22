@@ -4,134 +4,109 @@ import { useContext, useState, useRef, useEffect } from 'react';
 import { SectorDataContext } from '@/context/apiContext';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import './secondSection.css';
 
-const SecondSection = () => {
-  const pagesDataApi = useContext(SectorDataContext);
-  const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'home')?.acf?.second_section;
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-  // Log `mainData` to debug any potential `RegExp` objects
-  console.log("mainData:", JSON.stringify(mainData, null, 2));
+const SecondSection = ({ section_1 }) => {
+    const pagesDataApi = useContext(SectorDataContext);
+    const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'home')?.acf?.second_section || [];
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const containerRef = useRef(null);
-  const sectionRefs = useRef([]);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const sectionRefs = useRef([]);
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    useEffect(() => {
+        if (!section_1 || mainData.length === 0) return;
 
-    gsap.fromTo(
-      ".section-red",
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        scrollTrigger: {
-          trigger: ".section-red",
-          start: "top 80%",
-          end: "bottom 20%",
-        },
-      }
-    );
+        let sections = gsap.utils.toArray('.content_section_wrapper');
+        if (sections.length === 0) return;
 
-    const handleScroll = () => {
-      if (!containerRef.current) return;
+        gsap.to(sections, {
+            yPercent: -100 * (sections.length - 1),
+            scrollTrigger: {
+                trigger: `.${section_1}`,
+                pin: true,
+                start: 'top top',
+                scrub: true,
+                onUpdate: (self) => {
+                    let newIndex = Math.round(self.progress * (mainData.length - 1));
+                    setActiveIndex(newIndex);
+                },
+            },
+        });
+    }, [section_1, mainData]);
 
-      const scrollTop = containerRef.current.scrollTop;
-      const sectionHeight = containerRef.current.offsetHeight;
-      const newIndex = Math.round(scrollTop / sectionHeight);
+   
+    const scrollToSection = (index) => {
+        if (sectionRefs.current[index]) {
+            setActiveIndex(index);  
 
-      if (newIndex !== activeIndex) {
-        setActiveIndex(newIndex);
-      }
+            gsap.to(window, {
+                scrollTo: {
+                    y: sectionRefs.current[index].offsetTop, 
+                    autoKill: false
+                },
+                duration: 1.2, 
+                ease: 'power2.inOut',
+            });
+        }
     };
 
-    const container = containerRef.current;
-    container.addEventListener('scroll', handleScroll);
-
-    return () => {
-      container.removeEventListener('scroll', handleScroll);
-    };
-  }, [activeIndex]);
-
-  const scrollToSection = (index) => {
-    if (sectionRefs.current[index]) {
-      sectionRefs.current[index].scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <div className="main-wrapper">
-      {/* Tabs Section */}
-      <div className="tabs_outer">
-        <img src="./images/circle.png" alt="Decorative circle" />
-        <div className="tabs_holder">
-          <div className="tabs">
-            {Array.isArray(mainData) &&
-              mainData.map((section, sectionIndex) => (
-                <div
-                  key={sectionIndex}
-                  className={`tab ${activeIndex === sectionIndex ? 'active' : ''}`}
-                  style={{
-                    padding: '0.5rem 1rem',
-                    cursor: 'pointer',
-                    backgroundColor: activeIndex === sectionIndex ? '#007bff' : '#f0f0f0',
-                    color: activeIndex === sectionIndex ? '#fff' : '#000',
-                    marginBottom: '0.5rem',
-                    borderRadius: '5px',
-                    textAlign: 'center',
-                  }}
-                  onClick={() => scrollToSection(sectionIndex)}
-                >
-                  {String(section?.main_heading || 'Untitled')}
+    return (
+        <div className="container" id="section_section">
+        
+            {/* Left Section - Tabs */}
+            <div className="left_section">
+              <div className="tab_left_img">
+              <img src="./images/circle.png" alt="" />
+              </div>
+                <div className="tabs_holder">
+                    <div className="tabs">
+                        {mainData?.map((section, sectionIndex) => (
+                            <div
+                                key={sectionIndex}
+                                className={`tab ${activeIndex === sectionIndex ? 'active' : ''}`}
+                                onClick={() => scrollToSection(sectionIndex)}  
+                            >
+                                {section?.main_heading || `Section ${sectionIndex + 1}`}
+                            </div>
+                        ))}
+                    </div>
                 </div>
-              ))}
-          </div>
-        </div>
-      </div>
+            </div>
 
-      {/* Content Section */}
-      <div
-        ref={containerRef}
-        className="inner_container"
-        style={{
-          height: '100vh',
-          overflowY: 'scroll',
-          scrollSnapType: 'y mandatory',
-          flex: 1,
-        }}
-      >
-        <div className="second_section" style={{ height: '100%' }}>
-          {Array.isArray(mainData) &&
-            mainData.map((section, sectionIndex) => (
-              <div
-                key={sectionIndex}
-                className={`inner-section section-red ${activeIndex === sectionIndex ? 'active' : ''}`}
-                ref={(el) => (sectionRefs.current[sectionIndex] = el)}
-                style={{
-                  height: '100vh',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  scrollSnapAlign: 'start',
-                  opacity: activeIndex === sectionIndex ? 1 : 0.4,
-                  transition: 'opacity 0.3s ease',
-                }}
-              >
-                <div className="description_outer">
-                  {Array.isArray(section?.scroll_menu) &&
-                    section.scroll_menu.map((item, itemIndex) => (
-                      <div key={itemIndex} className="description">
-                        <h3>{String(item?.heading || 'No Title')}</h3>
-                        <p>{String(item?.description || 'No Description')}</p>
-                      </div>
+            {/* Right Section - Content */}
+            <div className="right_section">
+                <div className="second_section">
+                    {mainData?.map((section, sectionIndex) => (
+                      <>
+                      
+                        <div
+                            key={sectionIndex}
+                            className={`content_section_wrapper ${activeIndex === sectionIndex ? 'active' : ''}`}
+                            ref={(el) => (sectionRefs.current[sectionIndex] = el)}
+                        >
+                          <div className="des_flex">
+
+                           <h1>{activeIndex+1}</h1>
+                            <div className="description_outer">
+                                {(Array.isArray(section?.scroll_menu) ? section.scroll_menu : []).map((item, itemIndex) => (
+                                    <div key={itemIndex} className="description_area">
+                                        <h3>{item?.heading || `Heading ${itemIndex + 1}`}</h3>
+                                        <p>{item?.description || `Description ${itemIndex + 1}`}</p>
+                                    </div>
+                                ))}
+                            </div>
+                          </div>
+                        </div>
+                       
+                      </>
                     ))}
                 </div>
-              </div>
-            ))}
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default SecondSection;
