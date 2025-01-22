@@ -56,7 +56,7 @@ const Testimonial = () => {
           spaceBetween={20}
           slidesPerView={3}
           pagination={{
-            el: ".pagination-top", // Link to custom top pagination element
+            el: ".pagination-top",
             clickable: true,
           }}
           breakpoints={{
@@ -70,37 +70,34 @@ const Testimonial = () => {
             <SwiperSlide key={sectionIndex} className="testimonial">
               <div className="testimonial-inner">
                 <div className="testimonial-background-img">
-                  <img src="/images/Vector5.png" className="test-m-1" />
-                  <img src="/images/Vector6.png" className="test-m-2" />
-                </div>
-                <div className="testimonial-frontt">
-                  <div className="testimonial-image">
-                    <Image
-                      src={section.acf.image}
-                      alt="Testimonial Image"
-                      layout="responsive"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <div className="testimonial-name">
-                    <h2>{section.acf.name}</h2>
-                  </div>
-                  <div className="testimonial-desg">
-                    <p>{section.acf.designation}</p>
-                  </div>
-                  <div className="qutee-img">
-                    <Image
-                      src="/images/clarity_block-quote-line.png"
-                      alt="Quote Icon"
-                      width={40}
-                      height={40}
-                      layout="intrinsic"
-                    />
-                  </div>
-                  <div className="testimonial-main-text-des">
-                    {/* Truncate description to 20 words */}
-                    <p>{truncateDescription(section.acf.description)}</p>
+                  <div className="testimonial-frontt">
+                    <div className="testimonial-image">
+                      <Image
+                        src={section.acf.image}
+                        alt="Testimonial Image"
+                        layout="responsive"
+                        width={100}
+                        height={100}
+                      />
+                    </div>
+                    <div className="testimonial-name">
+                      <h2>{section.acf.name}</h2>
+                    </div>
+                    <div className="testimonial-desg">
+                      <p>{section.acf.designation}</p>
+                    </div>
+                    <div className="qutee-img">
+                      <Image
+                        src="/images/clarity_block-quote-line.png"
+                        alt="Quote Icon"
+                        width={40}
+                        height={40}
+                        layout="intrinsic"
+                      />
+                    </div>
+                    <div className="testimonial-main-text-des">
+                      <p>{truncateDescription(section.acf.description)}</p>
+                    </div>
                   </div>
                 </div>
               </div>
