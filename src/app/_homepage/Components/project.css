@@ -34,14 +34,14 @@
     left: -910px;
     width: 100%;
     z-index: 999;
-    color: #c2c2c2;
+    color: #2c2c2c;
 }
 .prog_content h1:before {
     content: "";
     position: absolute;
     width: 100%;
     height: 2px;
-    background: #fff;
+    background: #2c2c2c;
     top: 16px;
     left: 22px;
 }
@@ -76,7 +76,12 @@ div#proj_container {
     
 }
 
-
+.prog_content.active h1 {
+    color: #c2c2c2;
+}
+.prog_content.active h1:before {
+    background: #c2c2c2;
+}
  
 .proj_left_section {
     position: relative;
