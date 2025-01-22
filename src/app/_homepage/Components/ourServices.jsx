@@ -7,6 +7,8 @@ const OurServices = () => {
   const { pagesDataApi } = useContext(SectorDataContext);
   const mainData = pagesDataApi?.find(page => page.slug === 'home')?.acf?.our_service;
 
+  console.log(mainData)
+
   const marqueeRef = useRef(null);
   const marqueeRef2 = useRef(null);
 

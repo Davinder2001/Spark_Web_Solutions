@@ -52,7 +52,7 @@ body {
 
 button#toggle {
   background: unset;
-  top: 70px;
+  top: 80px;
   position: fixed;
   filter: invert(1);
   border: unset;
@@ -60,13 +60,13 @@ button#toggle {
 
   transform: scale(0.5);
   cursor: pointer;
-  right: -10px;
+  right: 0px;
 }
 
 button#toggle img {
   mix-blend-mode: color-burn;
   filter: invert(0);
-  width: 100px;
+  width: 80px;
   height: 80px;
 }
 

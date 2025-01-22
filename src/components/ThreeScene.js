@@ -76,6 +76,7 @@ export const ThreeRenderScene = () => {
 
         loader.load('./fonts/Montserrat-Regular.ttf', function (json) {
             const font = fontLoader.parse(json);
+            console.log(font)
 
             // Initial empty geometry
             const textGeometry = new TextGeometry('', {
@@ -93,7 +94,7 @@ export const ThreeRenderScene = () => {
 
             // Create text mesh
             textMesh = new THREE.Mesh(textGeometry, textMaterial);
-            scene.add(textMesh);
+            // scene.add(textMesh);
 
             textMesh.position.y = -1.5
             textMesh.position.x = -4
