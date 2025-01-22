@@ -599,7 +599,11 @@ body.light-mode {
   top: 0;
   z-index: 1000;
   width: 100%;
-  background-color: #111216;
+  width: 100%;
+  background-color: rgb(23 23 23 / 65%);
+
+  border-bottom: 2px solid #f24b74;
+
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -962,15 +966,7 @@ body.light-mode .footer {
   }
 }
 
-.sticky-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
 
-
-}
 
 .second_section .inner-section {
   display: flex;
@@ -3184,16 +3180,16 @@ body.light-mode .blogs {
 
 
   .contact-us-page {
-    .form_section{
+    .form_section {
       .left-inner {
         .form-inner-section {
           .upper-section {
-           flex-direction: column;
-           gap: 0 !important;
+            flex-direction: column;
+            gap: 0 !important;
 
-           .form-control {
-            width: 100% !important;
-           }
+            .form-control {
+              width: 100% !important;
+            }
 
 
           }

@@ -26,7 +26,7 @@ const ProjectSection = ({ section_4 }) => {
                 pin: true,
                 start: 'top top',
                 scrub: true,
-                
+
                 onUpdate: (self) => {
                     let progress = self.progress.toFixed(2);
                     let newIndex = Math.round(progress * (sections.length - 1));
@@ -44,34 +44,34 @@ const ProjectSection = ({ section_4 }) => {
         <div className='container' id='proj_container'>
             <div className="proj_heading">
 
-          <h2>{mainData?.heading}</h2>
+                <h2>{mainData?.heading}</h2>
             </div>
-            
+
             <div className="proj_left_section">
                 {mainData?.projects.map((project, index) => (
                     <>
-                         
-                    <div key={index} className={`proj_images ${index === activeIndex ? 'active' : ''}`}>
-                        <img src={project.image} alt={project.name} />
-                    </div>
-               
+
+                        <div key={index} className={`proj_images ${index === activeIndex ? 'active' : ''}`}>
+                            <img src={project.image} alt={project.name} />
+                        </div>
+
                     </>
                 ))}
             </div>
 
-          
+
             <div className="proj_right_section">
                 <div className='proj_section'>
                     {mainData?.projects?.length > 0 ? (
                         mainData.projects.map((project, index) => (
-                            <div 
-                                key={index} 
+                            <div
+                                key={index}
                                 className={`prog_content ${index === activeIndex ? 'active' : ''}`}
                             >
-                                <h1>{index+1}</h1>
+                                <h1>{index + 1}</h1>
                                 <h4>{project.name}</h4>
                                 <p>{project.description}</p>
-                                
+
                             </div>
                         ))
                     ) : (
@@ -79,10 +79,11 @@ const ProjectSection = ({ section_4 }) => {
                     )}
                 </div>
             </div>
-            </div>
-            
+        </div>
 
 
-)}
+
+    )
+}
 
 export default ProjectSection

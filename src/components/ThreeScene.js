@@ -24,7 +24,7 @@ export const ThreeRenderScene = () => {
 
         // 4. Initial Properties
         const initialProps = {
-            radius: 1.2,
+            radius: 1.4,
             widthSegments: 32,
             heightSegments: 32,
             color: LIL_GUI_COLOR,
@@ -139,7 +139,7 @@ export const ThreeRenderScene = () => {
 
 
 
-        sphere.position.y = 0.13;
+        sphere.position.y = 0;
 
         // 7. Create GUI
         const gui = new GUI({ title: 'Play With 3D Scene', closeFolders: true });
@@ -196,8 +196,7 @@ export const ThreeRenderScene = () => {
         // 9. Camera
         const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
         camera.position.z = 3;
-        scene.add(camera)
-;
+        scene.add(camera);
 
         // 10. Controls
         const controls = new OrbitControls(camera, canvas);
@@ -214,14 +213,14 @@ export const ThreeRenderScene = () => {
                 setTimeout(() => {
                     nextSection.scrollIntoView({ behavior: 'smooth' });
 
-                },500);
+                }, 500);
             }
         };
 
         canvas.addEventListener('wheel', handleScroll, { passive: false });
 
-
-        const toggleGUI = () => {
+        const toggleButton = document.getElementById('toggle'); 
+        const toggleGUIAndButton = () => {
             const section1 = document.querySelector('.section_1');
             const section0 = document.querySelector('.section_0');
 
@@ -230,14 +229,24 @@ export const ThreeRenderScene = () => {
                 const section0Rect = section0.getBoundingClientRect();
 
                 if (section1Rect.top <= window.innerHeight / 2 && section1Rect.bottom >= 0) {
-                    gui.hide(); // Hide GUI in section_1
+                    gui.hide();
+                    if (toggleButton) toggleButton.style.display = 'none';
                 } else if (section0Rect.top <= window.innerHeight / 2 && section0Rect.bottom >= 0) {
-                    gui.show(); // Show GUI in section_0
+                    gui.show();
+                    if (toggleButton) toggleButton.style.display = 'block'; 
                 }
             }
         };
 
-        window.addEventListener('scroll', toggleGUI);
+        window.addEventListener('scroll', toggleGUIAndButton);
+
+
+
+
+
+
+
+
 
         // 11. Handle Window Resize
         window.addEventListener('resize', () => {
@@ -249,7 +258,22 @@ export const ThreeRenderScene = () => {
         });
 
 
+       
+         
 
+        const toggleFullscreen = () => {
+            if (!document.fullscreenElement) {
+                canvas.requestFullscreen().catch(err => {
+                    console.error(`Fullscreen request failed: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        };
+
+       
+        canvas.addEventListener('dblclick', toggleFullscreen);
+        toggleButton.addEventListener('click', toggleFullscreen);
 
 
 
