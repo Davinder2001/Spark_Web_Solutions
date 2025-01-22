@@ -37,13 +37,12 @@ const OurServices = () => {
   }, [mainData]);
 
   return (
-    <div className='container our-service-home' style={{ height: '100vh', overflow: 'hidden' }}>
+    <div className='our-service-home' style={{ height: '100vh' }}>
       {/* Marquee 1 - Forward */}
       <div className='marquee-wrapper'>
         <div className='marquee' ref={marqueeRef}>
           <h1>
-            {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp;
-            {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading}
+            {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading}
           </h1>
         </div>
       </div>
@@ -52,8 +51,7 @@ const OurServices = () => {
       <div className='marquee-wrapper'>
         <div className='marquee-2' ref={marqueeRef2}>
           <h1>
-            {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp;
-            {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading}
+            {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading} &nbsp; {mainData?.heading}
           </h1>
         </div>
       </div>

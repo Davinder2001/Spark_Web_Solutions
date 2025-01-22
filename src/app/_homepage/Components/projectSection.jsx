@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use client';
 import { useContext, useEffect, useState } from 'react';
 import { SectorDataContext } from '@/context/apiContext';
@@ -79,6 +80,35 @@ const ProjectSection = ({ section_4 }) => {
                 </div>
             </div>
             
+=======
+
+'use client'
+import { useContext } from 'react';
+import { SectorDataContext } from '@/context/apiContext';
+
+const ProjectSection = () => {
+    const pagesDataApi = useContext(SectorDataContext);
+    const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'home')?.acf?.projects_section;
+   
+    return (
+        <div className='container'>
+            {mainData && (
+                <div className='dataa'>
+                    <h2>{mainData?.heading}</h2>
+                    {mainData.projects.map((project, index) => (
+                        <div key={index}>
+                            <img
+                                src={project.image}
+                                alt={project.name}
+                                style={{ width: '200px', borderRadius: '5px' }}
+                            />
+                            <h4>{project.name}</h4>
+                            <p>{project.description}</p>
+                        </div>
+                    ))}
+                </div>
+            )}
+>>>>>>> d850e7395849c7ead7b1c6703b7756fd1f40c43c
         </div>
     );
 };

@@ -47,9 +47,9 @@ const AboutUsMain = () => {
                     )}
 
                     <div className="description-column-main">
-                        {/* <div className="page-heading background">
-                            <h2>{mainData.heading}</h2>
-                        </div> */}
+                        {/* <div className=" background"> */}
+                            <h2 className='page-heading lite-bg-heading'>{mainData.heading}</h2>
+                        {/* </div> */}
                         <div className='main-description'>
                             <p>{mainData.main_description}</p>
                         </div>
