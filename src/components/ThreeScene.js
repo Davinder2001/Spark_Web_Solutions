@@ -69,56 +69,49 @@ export const ThreeRenderScene = () => {
         );
         scene.add(sphere);
 
-        // Load Fonts
         const loader = new TTFLoader();
         const fontLoader = new FontLoader();
         let textMesh = null;
+        let textGeometry = null;
+        let index = 0;
+        const fullText = `welcome to the starkweb solutions`;
 
         loader.load('./fonts/Montserrat-Regular.ttf', function (json) {
             const font = fontLoader.parse(json);
-            console.log(font)
 
             // Initial empty geometry
-            const textGeometry = new TextGeometry('', {
+            textGeometry = new TextGeometry('', {
                 font: font,
-                size: 11,
-                height: 0,
+                size: 1,
+                depth: 0, // Replaced `height` with `depth`
                 bevelEnabled: false,
                 bevelThickness: 0,
                 bevelSize: 0,
                 bevelOffset: 0,
                 bevelSegments: 0
-
             });
+
             const textMaterial = new THREE.MeshBasicMaterial({ color: '#F24B74' });
 
             // Create text mesh
             textMesh = new THREE.Mesh(textGeometry, textMaterial);
             // scene.add(textMesh);
 
-            textMesh.position.y = -1.5
-            textMesh.position.x = -4
-            textMesh.scale.set(0.1, 0.1, 0.1)
-
-            // Typing effect logic
-            const fullText = `welcome to the starkweb solutions`;
-            let index = 0;
-
+            textMesh.position.y = -1.5;
+            textMesh.position.x = -4;
+            textMesh.scale.set(0.1, 0.1, 0.1);
+ 
             function typeText() {
-                // Update current index
+                if (index >= fullText.length) return; // Stop unnecessary updates
+
                 index++;
 
-                // Restart typing from the beginning if it reaches the end
-                if (index > fullText.length) {
-                    index = 0;
-                }
-
-                // Update text geometry
-                textMesh.geometry.dispose(); // Dispose old geometry
+                // Update text geometry only when needed
+                textMesh.geometry.dispose();
                 textMesh.geometry = new TextGeometry(fullText.substring(0, index), {
                     font: font,
                     size: 1,
-                    height: 0,
+                    depth: 0, // Replaced `height` with `depth`
                     bevelEnabled: false,
                     bevelThickness: 0,
                     bevelSize: 0,
@@ -126,7 +119,7 @@ export const ThreeRenderScene = () => {
                     bevelSegments: 0
                 });
 
-                setTimeout(typeText, 100); // Typing speed in milliseconds
+                requestAnimationFrame(typeText); // ✅ Smooth updates
             }
 
             typeText();
