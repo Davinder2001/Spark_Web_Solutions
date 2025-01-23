@@ -13,7 +13,7 @@
     "@react-three/drei": "^9.116.3",
     "@react-three/fiber": "^8.17.10",
     "animejs": "^3.2.2",
-    "gsap": "^3.12.5",
+    "gsap": "^3.12.7",
     "imagesloaded": "^5.0.0",
     "lil-gui": "^0.20.0",
     "locomotive-scroll": "^4.1.4",

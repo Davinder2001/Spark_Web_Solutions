@@ -43,7 +43,7 @@ function HomePage() {
       </div>
 
       <div className={`${section_3} section_outer_wrapper`}>
-        <OurServices />
+        <OurServices section_3={section_3}/>
       </div>
 
 
