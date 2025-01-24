@@ -4,9 +4,9 @@ import Navigation from './navigation'
 
 const HeaderMain = () => {
   return (
-    <div className='container'>
-    <HeaderContent/>
-    <Navigation/>
+    <div className='header-container'>
+      <HeaderContent />
+      <Navigation />
     </div>
   )
 }

@@ -4,9 +4,9 @@ import SecondSection from './components/secondSection'
 
 const Page = () => {
   return (
-    <div className='internship'>
-     <FirstSection/>
-     <SecondSection/>
+    <div className='internship page-main-outer'>
+      <FirstSection />
+      <SecondSection />
     </div>
   )
 }

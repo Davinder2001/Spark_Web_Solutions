@@ -44,7 +44,6 @@ const HeaderContent = () => {
         if (audio.paused) audio.play();
       }
       setIsPlaying(!isPlaying);
-      // Close mobile menu after toggling music
       setIsMobileMenuOpen(false);
     }
   };
@@ -124,6 +123,9 @@ const HeaderContent = () => {
           <Link href={`tel:${mainData?.contact_no}`} className="desktop-call">
             <h3>{mainData?.contact_no}</h3>
           </Link>
+          <button onClick={toggleStickyForm} className="sticky-form-button">
+            Enquiry Now
+          </button>
           <div className="mobile-call mobile-menu-1-icons">
             <div className="menu-item" onClick={togglePopup}>
               <Image src={mainData?.enquery_icon} alt="Enquiry Icon" width={30} height={30} />
@@ -179,6 +181,7 @@ const HeaderContent = () => {
               height={30}
             />
           </div>
+
           {/* Hamburger Menu for Mobile */}
           <div className="hamburger-menu" onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? <FiX size={30} /> : <FiMenu size={30} />}

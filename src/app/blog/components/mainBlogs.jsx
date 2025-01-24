@@ -10,6 +10,8 @@ const MainBlogs = () => {
   console.log('Data', mainData);
 
   return (
+
+    <div className='container'>
     <div className='blogs'>
       <div className='page-heading'>
         <h1>Spark Web Solution Blogs</h1>
@@ -48,7 +50,6 @@ const MainBlogs = () => {
                   layout="responsive"
                   width={100}
                   height={100}
-                // style={{ width: '100%', height: '100%' }}
                 />
               )}
               <div className='overlay'></div>
@@ -57,6 +58,7 @@ const MainBlogs = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import Testimonial from '../_common/testimonial/testimonial'
 
 const Page = () => {
   return (
-    <div className='about-us-page'>
+    <div className='about-us-page page-main-outer'>
       <AboutUsMain/>
       <ParagraphSection/>
       <Testimonial/>

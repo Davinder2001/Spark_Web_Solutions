@@ -61,80 +61,80 @@ const FormSection = () => {
     };
 
     return (
-        <div className='form_section'>
-            <div className='inner-section'>
-                <div className='left-side'>
-                    <div className='left-inner'>
-                        <div className='page_title'>
-                            <h2>{mainData?.page_title}</h2>
-                        </div>
-                        {/* Form */}
-                        <div className='form-heading' >
-                            <h3>Make an Enquiry</h3>
-                        </div>
-                        <form onSubmit={handleSubmit} className='contact-us-form' >
-                            <div className="form-inner-section">
-                                <div className="upper-section">
-
-                                <div className='form-control'>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        placeholder='Name'
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        required
-                                        />
-                                </div>
-                                <div className='form-control'>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        placeholder='Email Address'
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                        />
-                                        </div>
-                                </div>
-                                <div className="lower-section">
-
-                                <div className='form-control'>
-                                    <input
-                                        type="tel"
-                                        name="phone"
-                                        placeholder='Phone Number'
-                                        value={formData.phone}
-                                        onChange={handleChange}
-                                        required
-                                        />
-                                </div>
-                                <div className='form-control'>
-                                    <textarea
-                                        name="message"
-                                        placeholder='Your Message'
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        required
-                                        ></textarea>
-                                </div>
-                                        </div>
+        <div className='container'>
+            <div className='form_section'>
+                <div className='inner-section'>
+                    <div className='left-side'>
+                        <div className='left-inner'>
+                            <div className='page_title'>
+                                <h1>{mainData?.page_title}</h1>
                             </div>
-                            <button className='btn' type="submit">Send Message</button>
-                        </form>
+                            <div className='form-heading' >
+                                <h3>Make an Enquiry</h3>
+                            </div>
+                            <form onSubmit={handleSubmit} className='contact-us-form' >
+                                <div className="form-inner-section">
+                                    <div className="upper-section">
+
+                                        <div className='form-control'>
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                placeholder='Name'
+                                                value={formData.name}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                        </div>
+                                        <div className='form-control'>
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                placeholder='Email Address'
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="lower-section">
+
+                                        <div className='form-control'>
+                                            <input
+                                                type="tel"
+                                                name="phone"
+                                                placeholder='Phone Number'
+                                                value={formData.phone}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                        </div>
+                                        <div className='form-control'>
+                                            <textarea
+                                                name="message"
+                                                placeholder='Your Message'
+                                                value={formData.message}
+                                                onChange={handleChange}
+                                                required
+                                            ></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button className='btn' type="submit">Send Message</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <div className='right-section'>
+                    <div className='right-section'>
+                        <Image
+                            src={mainData?.main_image}
+                            alt="Main Image"
+                            layout="responsive"
+                            width={100}
+                            height={50}
 
-                    <Image
-                        src={mainData?.main_image}
-                        alt="Main Image"
-                        layout="responsive"
-                        width={100}
-                        height={50}
+                        />
 
-                    />
-
+                    </div>
                 </div>
             </div>
         </div>
