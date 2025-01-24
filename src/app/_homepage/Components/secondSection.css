@@ -117,3 +117,55 @@ div#section_section {
 .tab:nth-child(4) {
     margin-left: 208px;
 }
+
+.second-section-redponsive {
+    display: none;
+}
+
+
+
+ /* ******************************************** Media Query Start ****************************************************** */
+
+
+
+
+
+
+/****** 1024 PX ******/
+@media only screen and (max-width: 1024px) {
+    .second-section-redponsive {
+        display: block
+    }
+   .second-section-animated {
+    display: none;
+    }
+    
+    .second-section-inner-res .tabs-container .tab-button-second  {
+        padding: 10px 20px;
+        cursor: pointer;
+        border: none;
+        background-color: white;
+        border-radius: 40px;
+        margin-right: 5px;
+        font-size: 20px;
+        font-weight: 600;
+        font-family: Saira;
+        color: #F24B74;
+    }
+    .second-section-inner-res .tabs-container .tab-button-second.active  {
+        background-color: #F24B74;
+        color: white;
+    }
+    .second-section-inner-res .tabs-container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    .second-section-inner-res .tab-item {
+        padding: 20px;
+        border: 1px solid;
+        margin-bottom: 25px;
+    }
+    
+}

@@ -385,6 +385,7 @@ p {
         position: relative;
         left: -270px;
         bottom: 65px;
+        
 
         .thumb-image {
           width: 150px;
@@ -2631,6 +2632,37 @@ body.light-mode .blogs {
   h1 {
     font-size: 50px;
     line-height: 65px;
+  }
+
+
+
+  .about-us-home {
+
+    height: unset;
+
+    .about-home-inr-cont {
+      flex-direction: column;
+      
+      .about-sec-right .gallery {
+        position: unset;
+      }
+
+      .about-sec-left {
+        width: 100%;
+      }
+      .about-sec-right {
+        width: 100%;
+
+        .short-description {
+          position: unset;
+        }
+        .gallery {
+          flex-wrap: wrap;
+        }
+
+      }
+      
+    } 
   }
 
 

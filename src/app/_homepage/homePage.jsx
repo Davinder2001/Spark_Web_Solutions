@@ -2,6 +2,7 @@
 
 import { ThreeRenderScene } from '@/components/ThreeScene'
 import SecondSectionOld from './Components/secondSection'
+import SecondSectionResponsive from './Components/secondSectionResponsive'
 import AboutUsSection from './Components/aboutUsSection';
 import OurServices from './Components/ourServices';
 
@@ -33,9 +34,14 @@ function HomePage() {
         <ThreeRenderScene />
       </div>
 
+        <div className="second-section-animated">
       <div className={`${section_1} section_outer_wrapper`}>
-        <SecondSectionOld section_1={section_1} />
+          <SecondSectionOld section_1={section_1} />
+        </div>
       </div>
+        <div className="second-section-redponsive container">
+          <SecondSectionResponsive />
+        </div>
 
 
       <div className={`${section_2} section_outer_wrapper`}>
@@ -43,7 +49,7 @@ function HomePage() {
       </div>
 
       <div className={`${section_3} section_outer_wrapper`}>
-        <OurServices section_3={section_3}/>
+        <OurServices section_3={section_3} />
       </div>
 
 
