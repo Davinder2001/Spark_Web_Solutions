@@ -31,25 +31,46 @@ body {
   padding: 80px 0px 0px 0px;
 }
 
-.lil-gui > button {
-  background: #F24B74!important;
+.lil-gui>button {
+  background: #F24B74 !important;
   font-size: 16px;
   font-family: 'Basement Grotesque';
-  
+
 }
 
-.lil-gui.autoPlace{
-  right:0px!important;
-  bottom:0px;
-  background:#19191E;
+.lil-gui.autoPlace {
+  right: 0px !important;
+  bottom: 0px;
+  background: #19191E;
 }
-.lil-gui{
-  right:0px!important;
-  bottom:0px;
-  top:unset!important
+
+.lil-gui {
+  right: 0px !important;
+  bottom: 0px;
+  top: unset !important
 }
- 
- 
+
+button#toggle {
+  background: unset;
+  top: 80px;
+  position: fixed;
+  filter: invert(1);
+  border: unset;
+  padding: 0;
+
+  transform: scale(0.5);
+  cursor: pointer;
+  right: 0px;
+}
+
+button#toggle img {
+  mix-blend-mode: color-burn;
+  filter: invert(0);
+  width: 80px;
+  height: 80px;
+}
+
+
 
 
 
@@ -97,12 +118,12 @@ button.active {
 /*raaj css ends*/
 
 
- 
 
 
 
 
- 
+
+
 
 
 

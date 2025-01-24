@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const ExpertiseSection = () => {
     const pagesDataApi = useContext(SectorDataContext);
     const mainData = pagesDataApi?.pagesDataApi?.find(page => page.slug === 'our-services')?.acf;
+    console.log(mainData)
 
     const expertiseList1Ref = useRef(null);
     const expertiseList2Ref = useRef(null);
@@ -127,7 +128,7 @@ const ExpertiseSection = () => {
                     </div>
                 ))}
             </div>
-            {/* Second list: Right to left or reversed */}
+          
             <div
                 className='expertises-list reverse'
                 ref={expertiseList2Ref}

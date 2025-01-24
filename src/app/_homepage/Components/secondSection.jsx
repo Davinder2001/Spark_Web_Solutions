@@ -15,6 +15,7 @@ const SecondSection = ({ section_1 }) => {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const sectionRefs = useRef([]);
+    const containerRef = useRef(null);
 
     useEffect(() => {
         if (!section_1 || mainData.length === 0) return;
@@ -22,22 +23,34 @@ const SecondSection = ({ section_1 }) => {
         let sections = gsap.utils.toArray('.content_section_wrapper');
         if (sections.length === 0) return;
 
-        gsap.to(sections, {
-            yPercent: -100 * (sections.length - 1),
+        // Enhanced smooth scrolling with more refined parameters
+        const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: `.${section_1}`,
                 pin: true,
                 start: 'top top',
-                scrub: true,
+               
+                scrub: 3, 
+                snap: {
+                    snapTo: 2 / (sections.length - 1),
+                    duration: { min: 2, max: 4 },
+                    delay: 3,
+                    ease: 'power1.inOut'
+                },
                 onUpdate: (self) => {
                     let newIndex = Math.round(self.progress * (mainData.length - 1));
                     setActiveIndex(newIndex);
                 },
-            },
+            }
+        });
+
+        // Animate sections vertically
+        tl.to(sections, {
+            yPercent: -100 * (sections.length - 1),
+            ease: 'none'
         });
     }, [section_1, mainData]);
 
-   
     const scrollToSection = (index) => {
         if (sectionRefs.current[index]) {
             setActiveIndex(index);  
@@ -47,15 +60,18 @@ const SecondSection = ({ section_1 }) => {
                     y: sectionRefs.current[index].offsetTop, 
                     autoKill: false
                 },
-                duration: 1.2, 
+                duration: 0.8, // Reduced duration for quicker, smoother scroll
                 ease: 'power2.inOut',
             });
         }
     };
 
     return (
-        <div className="container" id="section_section">
-        
+        <div 
+            className="container" 
+            id="section_section" 
+            ref={containerRef}
+        >
             {/* Left Section - Tabs */}
             <div className="left_section">
               <div className="tab_left_img">
@@ -80,16 +96,13 @@ const SecondSection = ({ section_1 }) => {
             <div className="right_section">
                 <div className="second_section">
                     {mainData?.map((section, sectionIndex) => (
-                      <>
-                      
                         <div
                             key={sectionIndex}
                             className={`content_section_wrapper ${activeIndex === sectionIndex ? 'active' : ''}`}
                             ref={(el) => (sectionRefs.current[sectionIndex] = el)}
                         >
                           <div className="des_flex">
-
-                           <h1>{activeIndex+1}</h1>
+                           <h1>{sectionIndex+1}</h1>
                             <div className="description_outer">
                                 {(Array.isArray(section?.scroll_menu) ? section.scroll_menu : []).map((item, itemIndex) => (
                                     <div key={itemIndex} className="description_area">
@@ -100,8 +113,6 @@ const SecondSection = ({ section_1 }) => {
                             </div>
                           </div>
                         </div>
-                       
-                      </>
                     ))}
                 </div>
             </div>

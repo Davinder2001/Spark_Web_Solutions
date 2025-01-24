@@ -24,7 +24,7 @@ export const ThreeRenderScene = () => {
 
         // 4. Initial Properties
         const initialProps = {
-            radius: 1.2,
+            radius: 1.4,
             widthSegments: 32,
             heightSegments: 32,
             color: LIL_GUI_COLOR,
@@ -69,55 +69,49 @@ export const ThreeRenderScene = () => {
         );
         scene.add(sphere);
 
-        // Load Fonts
         const loader = new TTFLoader();
         const fontLoader = new FontLoader();
         let textMesh = null;
+        let textGeometry = null;
+        let index = 0;
+        const fullText = `welcome to the starkweb solutions`;
 
         loader.load('./fonts/Montserrat-Regular.ttf', function (json) {
             const font = fontLoader.parse(json);
 
             // Initial empty geometry
-            const textGeometry = new TextGeometry('', {
+            textGeometry = new TextGeometry('', {
                 font: font,
-                size: 11,
-                height: 0,
+                size: 1,
+                depth: 0, // Replaced `height` with `depth`
                 bevelEnabled: false,
                 bevelThickness: 0,
                 bevelSize: 0,
                 bevelOffset: 0,
                 bevelSegments: 0
-
             });
+
             const textMaterial = new THREE.MeshBasicMaterial({ color: '#F24B74' });
 
             // Create text mesh
             textMesh = new THREE.Mesh(textGeometry, textMaterial);
-            scene.add(textMesh);
+            // scene.add(textMesh);
 
-            textMesh.position.y = -1.5
-            textMesh.position.x = -4
-            textMesh.scale.set(0.1, 0.1, 0.1)
-
-            // Typing effect logic
-            const fullText = `welcome to the starkweb solutions`;
-            let index = 0;
-
+            textMesh.position.y = -1.5;
+            textMesh.position.x = -4;
+            textMesh.scale.set(0.1, 0.1, 0.1);
+ 
             function typeText() {
-                // Update current index
+                if (index >= fullText.length) return; // Stop unnecessary updates
+
                 index++;
 
-                // Restart typing from the beginning if it reaches the end
-                if (index > fullText.length) {
-                    index = 0;
-                }
-
-                // Update text geometry
-                textMesh.geometry.dispose(); // Dispose old geometry
+                // Update text geometry only when needed
+                textMesh.geometry.dispose();
                 textMesh.geometry = new TextGeometry(fullText.substring(0, index), {
                     font: font,
                     size: 1,
-                    height: 0,
+                    depth: 0, // Replaced `height` with `depth`
                     bevelEnabled: false,
                     bevelThickness: 0,
                     bevelSize: 0,
@@ -125,7 +119,7 @@ export const ThreeRenderScene = () => {
                     bevelSegments: 0
                 });
 
-                setTimeout(typeText, 100); // Typing speed in milliseconds
+                requestAnimationFrame(typeText); // ✅ Smooth updates
             }
 
             typeText();
@@ -139,7 +133,7 @@ export const ThreeRenderScene = () => {
 
 
 
-        sphere.position.y = 0.13;
+        sphere.position.y = 0;
 
         // 7. Create GUI
         const gui = new GUI({ title: 'Play With 3D Scene', closeFolders: true });
@@ -196,8 +190,7 @@ export const ThreeRenderScene = () => {
         // 9. Camera
         const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
         camera.position.z = 3;
-        scene.add(camera)
-;
+        scene.add(camera);
 
         // 10. Controls
         const controls = new OrbitControls(camera, canvas);
@@ -214,14 +207,14 @@ export const ThreeRenderScene = () => {
                 setTimeout(() => {
                     nextSection.scrollIntoView({ behavior: 'smooth' });
 
-                },500);
+                }, 500);
             }
         };
 
         canvas.addEventListener('wheel', handleScroll, { passive: false });
 
-
-        const toggleGUI = () => {
+        const toggleButton = document.getElementById('toggle'); 
+        const toggleGUIAndButton = () => {
             const section1 = document.querySelector('.section_1');
             const section0 = document.querySelector('.section_0');
 
@@ -230,14 +223,24 @@ export const ThreeRenderScene = () => {
                 const section0Rect = section0.getBoundingClientRect();
 
                 if (section1Rect.top <= window.innerHeight / 2 && section1Rect.bottom >= 0) {
-                    gui.hide(); // Hide GUI in section_1
+                    gui.hide();
+                    if (toggleButton) toggleButton.style.display = 'none';
                 } else if (section0Rect.top <= window.innerHeight / 2 && section0Rect.bottom >= 0) {
-                    gui.show(); // Show GUI in section_0
+                    gui.show();
+                    if (toggleButton) toggleButton.style.display = 'block'; 
                 }
             }
         };
 
-        window.addEventListener('scroll', toggleGUI);
+        window.addEventListener('scroll', toggleGUIAndButton);
+
+
+
+
+
+
+
+
 
         // 11. Handle Window Resize
         window.addEventListener('resize', () => {
@@ -249,7 +252,22 @@ export const ThreeRenderScene = () => {
         });
 
 
+       
+         
 
+        const toggleFullscreen = () => {
+            if (!document.fullscreenElement) {
+                canvas.requestFullscreen().catch(err => {
+                    console.error(`Fullscreen request failed: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        };
+
+       
+        canvas.addEventListener('dblclick', toggleFullscreen);
+        toggleButton.addEventListener('click', toggleFullscreen);
 
 
 

@@ -7,7 +7,7 @@ import OurServices from './Components/ourServices';
 
 import TestimonialSection from './Components/testimonialSection';
 import ProjectSection from './Components/projectSection';
- 
+
 
 
 
@@ -20,6 +20,14 @@ function HomePage() {
   let section_5 = 'section_5'
   return (
     <>
+
+
+
+      <button id="toggle">
+        <img src="./images/preview.png" alt="Exit Fullscreen" />
+      </button>
+
+
       <div className={`${section_0} section_outer_wrapper`}>
 
         <ThreeRenderScene />
@@ -35,7 +43,7 @@ function HomePage() {
       </div>
 
       <div className={`${section_3} section_outer_wrapper`}>
-        <OurServices />
+        <OurServices section_3={section_3}/>
       </div>
 
 

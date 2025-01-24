@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
       // If mainData is not available, reload the page after 5 seconds
       timeout = setTimeout(() => {
         window.location.reload();
-      }, 10000);
+      }, 50000);
     }
 
     return () => {
