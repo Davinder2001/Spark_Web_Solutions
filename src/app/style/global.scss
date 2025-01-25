@@ -385,7 +385,7 @@ p {
         position: relative;
         left: -270px;
         bottom: 65px;
-        
+
 
         .thumb-image {
           width: 150px;
@@ -443,7 +443,7 @@ p {
 // Service section animation css
 .services-section {
 
-  
+
   .inner-service-content {
     display: flex;
     flex-direction: column;
@@ -1486,6 +1486,7 @@ body.light-mode .about-us-page {
   .testimonials-pagination {
     display: flex;
     flex-direction: column;
+    gap: 20px;
 
     .testimonial-heading {
       h3 {
@@ -1493,6 +1494,7 @@ body.light-mode .about-us-page {
         font-size: 36px;
         font-weight: 700;
         line-height: 56.66px;
+        text-align: center;
       }
     }
 
@@ -1513,6 +1515,10 @@ body.light-mode .about-us-page {
       }
     }
 
+    button.custom-prev.testimonial-button {
+      transform: rotate(180deg);
+  }
+
     .testimonial-heading {
       display: flex;
       justify-content: center;
@@ -1520,6 +1526,13 @@ body.light-mode .about-us-page {
 
       button {
         cursor: pointer;
+        border: none;
+        background: transparent;
+        img {
+          width: 50px;
+          height:50px;
+          filter: brightness(21.5);
+        }
       }
     }
   }
@@ -1961,8 +1974,8 @@ button.navbar-buttons-main.navigation-contact-btn {
       background-color: #111216F5;
       padding: 40px;
       border-radius: 20px;
-   
-      
+
+
 
       .form-top-bar {
         display: flex;
@@ -2637,13 +2650,26 @@ body.light-mode .blogs {
 
 
 
+  // Testimonial CSS Responsive
+
+  .testimonials {
+    .testimonials-pagination {
+      .testimonial-heading {
+        h3 {
+          font-size: 30px;
+        }    
+      } 
+    }   
+  } 
+
+
   .about-us-home {
 
     height: unset;
 
     .about-home-inr-cont {
       flex-direction: column;
-      
+
       .about-sec-right .gallery {
         position: unset;
       }
@@ -2651,19 +2677,21 @@ body.light-mode .blogs {
       .about-sec-left {
         width: 100%;
       }
+
       .about-sec-right {
         width: 100%;
 
         .short-description {
           position: unset;
         }
+
         .gallery {
           flex-wrap: wrap;
         }
 
       }
-      
-    } 
+
+    }
   }
 
 
@@ -2836,6 +2864,8 @@ body.light-mode .blogs {
 
     .para-section {
 
+      margin: 0;
+      
       .card-heading {
         h2 {
           font-size: 50px;
@@ -2856,6 +2886,7 @@ body.light-mode .blogs {
               padding: 0px;
               font-size: 25px;
               line-height: 40px;
+              text-align: justify;
             }
           }
         }
@@ -2871,7 +2902,8 @@ body.light-mode .blogs {
 
             img {
               max-width: 100%;
-              max-height: 100%;
+              max-height: 350px;
+              height: 100%;
               border-radius: 8px;
             }
           }
@@ -2892,14 +2924,18 @@ body.light-mode .blogs {
       .description-column-main {
         width: 100%;
         position: unset;
+        gap: 0;
 
         h2.lite-bg-heading {
           position: unset;
           color: #F24B74;
+          margin: 70px 0px 20px 0px;
         }
+
         .main-description {
           p {
             line-height: 40px;
+            text-align: justify;
           }
         }
       }
@@ -2997,7 +3033,6 @@ body.light-mode .blogs {
 
   // Service page meadia query
   .services-page {
-
     .inner-service-content {
       h1 {
         font-size: 45px;
@@ -3012,10 +3047,10 @@ body.light-mode .blogs {
   }
 
 
+
   //Blog Page
 
   .blogs {
-
     .blogs-inner {
       grid-template-columns: 1fr 1fr;
     }
@@ -3075,13 +3110,33 @@ body.light-mode .blogs {
   }
 
 
+  .testimonials {
+    .testimonials-pagination {
+      .testimonial-heading {
+
+        button {
+          img {
+            height: 30px;
+            width: 30px;
+          }
+        } 
+
+        h3 {
+          font-size: 25px;
+        }    
+      } 
+    }   
+  } 
+
+
   .stikey-side-popup {
     .stickey-form {
       top: 0;
+
       .class-stickey-popup-formss.second-form {
         .form-inner {
           gap: 15px;
-       }
+        }
       }
 
       .form-group {
@@ -3091,25 +3146,30 @@ body.light-mode .blogs {
         label {
           font-size: 20px;
         }
+
         .form-input-design {
           font-size: 16px;
           padding: 12px;
         }
-      } 
+      }
+
       .next-btn-st-form {
         button.proceed-button {
           padding: 5px 35px;
           font-size: 18px;
         }
+
         justify-content: space-around;
         gap: 0;
-      } 
+      }
+
       .option-container {
         label {
           font-size: 22px;
           line-height: 35px;
         }
       }
+
       .step {
         h3 {
           font-size: 25px;
@@ -3144,12 +3204,50 @@ body.light-mode .blogs {
       }
 
     }
+
+    .image-gallery-container {
+
+      .image-gallery.inline-thumbnails {
+        transform: scale(0.8);
+      }
+
+      .description-column-main {
+        h2.lite-bg-heading {
+          font-size: 35px;
+          line-height: 55px;
+        }
+      } 
+    }
+
+    .para-section {
+
+      .card-heading {
+        h2 {
+          font-size: 35px;
+          line-height: 55px;
+          margin: 20px 0;
+        }
+      } 
+      
+      .about-card {
+        padding: 20px;
+        
+        .desc-inner{
+
+          .card-description {
+            p {
+              font-size: 22px;
+              line-height: 35px;
+            }
+          }
+        }
+      } 
+    }
   }
 
 
 
   .internship {
-
     .tabs-container-btns {
       .tabs-button {
         font-size: 18px;
@@ -3231,6 +3329,27 @@ body.light-mode .blogs {
       }
     }
   }
+
+
+  .about-us-page {
+    .image-gallery-container {
+
+      .top-big-image {
+        height: 500px;
+        img {
+          max-height: 100%;
+        }
+
+      } 
+
+      .description-column-main {
+        .main-description p {
+          font-size: 22px;
+          line-height: 35px;
+        }
+      }
+    }
+  }
 }
 
 
@@ -3271,6 +3390,17 @@ body.light-mode .blogs {
     }
   }
 
+  .testimonials {
+    .testimonials-pagination {
+      .testimonial-heading {
+        h3 {
+          font-size: 22px;
+          line-height: 30px;
+        }    
+      } 
+    }   
+  } 
+
 
 }
 
@@ -3291,28 +3421,32 @@ body.light-mode .blogs {
     .stickey-form {
 
       top: 0;
+
       .form-group {
         label {
           font-size: 18px;
         }
+
         .form-input-design {
           font-size: 14px;
           padding: 12px;
-        } 
-      } 
+        }
+      }
+
       .next-btn-st-form {
         button.proceed-button {
           padding: 5px 25px;
           font-size: 16px;
         }
-      } 
-      
+      }
+
       .option-container {
         label {
           font-size: 18px;
           line-height: 25px;
         }
       }
+
       .step {
         h3 {
           font-size: 20px;
@@ -3334,18 +3468,85 @@ body.light-mode .blogs {
   }
 
 
-  
+
   .about-us-page {
 
     .about-us-main {
       .short-description {
         p {
-          font-size: 20px;
-          line-height: 30px;
+          font-size: 18px;
+          line-height: 25px;
         }
 
       }
 
+    }
+
+    .para-section {
+
+      .about-card-outer {
+        .card-heading {
+          h2 {
+            font-size: 25px;
+            margin: 10px 0;
+          }
+        } 
+      }
+
+      .about-card {
+
+        .card-img-sec {
+          .card-img-inner {
+            img {
+              max-height: 220px;
+            }
+          } 
+        } 
+
+        .desc-inner {
+          .card-description {
+            p {
+              font-size: 18px;
+              line-height: 25px;
+            }
+          } 
+        } 
+      } 
+    } 
+
+
+    .image-gallery-container {
+
+      gap: 20px;
+
+      .top-big-image {
+        height: 300px;
+
+        }
+
+        .image-gallery.inline-thumbnails {
+          flex-wrap: nowrap;
+          transform: scale(0.5);
+        }
+
+      .description-column-main {
+
+        h2.lite-bg-heading {
+          margin: 20px 0;
+          font-size: 25px;
+        }
+
+        .main-description {
+          p {
+            font-size: 18px;
+            line-height: 25px;
+          }
+          h2 {
+            font-size: 25px;
+            line-height: 35px;
+          }
+        }
+      }
     }
   }
 
@@ -3383,8 +3584,6 @@ body.light-mode .blogs {
             .form-control {
               width: 100% !important;
             }
-
-
           }
         }
       }
@@ -3392,8 +3591,19 @@ body.light-mode .blogs {
   }
 
 
-  .services-page {
+  .testimonials {
+    .testimonials-pagination {
+      .testimonial-heading {
+        h3 {
+          font-size: 18px;
+          line-height: 30px;
+        }    
+      } 
+    }   
+  } 
 
+
+  .services-page {
     h1 {
       font-size: 30px;
     }

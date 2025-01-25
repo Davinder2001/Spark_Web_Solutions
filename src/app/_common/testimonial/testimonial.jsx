@@ -30,7 +30,6 @@ const Testimonial = () => {
     initSwiper();
   }, []);
 
-  // Function to limit the description to 20 words
   const truncateDescription = (text, wordLimit = 45) => {
     const words = text.split(' ');
     if (words.length > wordLimit) {
@@ -44,9 +43,23 @@ const Testimonial = () => {
       <div className="testimonials">
         <div className="testimonials-pagination">
           <div className="testimonial-heading">
-            <button className="custom-prev testimonial-button">←</button>
+            <button className="custom-prev testimonial-button">
+              <Image
+                src="/images/testimonial-arrow.png"
+                alt="Previous"
+                width={24}
+                height={24}
+              />
+            </button>
             <h3>What Our Clients Say About Us</h3>
-            <button className="custom-next testimonial-button">→</button>
+            <button className="custom-next testimonial-button">
+              <Image
+                src="/images/testimonial-arrow.png"
+                alt="Next"
+                width={24}
+                height={24}
+              />
+            </button>
           </div>
           <div className="pagination-top" />
         </div>
