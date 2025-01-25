@@ -60,7 +60,7 @@ const SecondSection = ({ section_1 }) => {
                     y: sectionRefs.current[index].offsetTop, 
                     autoKill: false
                 },
-                duration: 0.8, // Reduced duration for quicker, smoother scroll
+                duration: 0.8,  
                 ease: 'power2.inOut',
             });
         }

@@ -172,6 +172,37 @@
 }
 
 
+button#scrollDown {
+  background: none;
+  filter: invert(1);
+  border: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: none;
+  animation: moveUpDown 2s linear infinite;
+}
+
+button#scrollDown img {
+  width: 80px;
+  filter: drop-shadow(6px 11px 28px black);
+}
+
+@keyframes moveUpDown {
+  0%, 100% {
+    transform: translateY(0);  
+  }
+  50% {
+    transform: translateY(-10px);  
+  }
+}
+
+
 
 
 
@@ -2647,6 +2678,9 @@ body.light-mode .blogs {
     font-size: 50px;
     line-height: 65px;
   }
+  button#scrollDown{
+    display: block;
+  }
 
 
 
@@ -3388,6 +3422,12 @@ body.light-mode .blogs {
       //   top: 1%;
       // }
     }
+  }
+  button#scrollDown {
+   
+    width: 100px;
+   
+    animation: moveUpDown 2s linear infinite;
   }
 
   .testimonials {

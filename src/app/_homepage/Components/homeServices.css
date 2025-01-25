@@ -4,6 +4,10 @@
     display: flex;
      
   }
+  .p_head_wrap {
+    display: flex;
+    gap: 30px;
+}
   
   .p_service_wrapper {
     display: flex;

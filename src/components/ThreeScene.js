@@ -188,7 +188,7 @@ export const ThreeRenderScene = () => {
 
 
         // 9. Camera
-        const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
+        const camera = new THREE.PerspectiveCamera(70, sizes.width / sizes.height, 0.1, 1000);
         camera.position.z = 3;
         scene.add(camera);
 
@@ -281,7 +281,6 @@ export const ThreeRenderScene = () => {
         window.addEventListener('resize', () => {
             sizes.width = window.innerWidth;
             sizes.height = window.innerHeight;
-
             camera.aspect = sizes.width / sizes.height;
             camera.updateProjectionMatrix();
             renderer.setSize(sizes.width, sizes.height);
@@ -289,7 +288,7 @@ export const ThreeRenderScene = () => {
 
         // 13. Animation
         const clock = new THREE.Clock();
-
+      
         const tick = () => {
             const elapsedTime = clock.getElapsedTime();
 
@@ -302,6 +301,7 @@ export const ThreeRenderScene = () => {
 
             // Render the scene
             renderer.render(scene, camera);
+            
 
             // Call tick again on the next frame
             window.requestAnimationFrame(tick);
