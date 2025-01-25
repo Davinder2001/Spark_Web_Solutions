@@ -6,7 +6,6 @@ const Page = () => {
   return (
     <div>
       <HomePage/>
-
     </div>
   )
 }

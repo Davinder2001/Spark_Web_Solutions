@@ -172,6 +172,37 @@
 }
 
 
+button#scrollDown {
+  background: none;
+  filter: invert(1);
+  border: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: none;
+  animation: moveUpDown 2s linear infinite;
+}
+
+button#scrollDown img {
+  width: 80px;
+  filter: drop-shadow(6px 11px 28px black);
+}
+
+@keyframes moveUpDown {
+  0%, 100% {
+    transform: translateY(0);  
+  }
+  50% {
+    transform: translateY(-10px);  
+  }
+}
+
+
 
 
 
@@ -385,7 +416,7 @@ p {
         position: relative;
         left: -270px;
         bottom: 65px;
-        
+
 
         .thumb-image {
           width: 150px;
@@ -443,7 +474,7 @@ p {
 // Service section animation css
 .services-section {
 
-  
+
   .inner-service-content {
     display: flex;
     flex-direction: column;
@@ -1958,8 +1989,8 @@ button.navbar-buttons-main.navigation-contact-btn {
       background-color: #111216F5;
       padding: 40px;
       border-radius: 20px;
-   
-      
+
+
 
       .form-top-bar {
         display: flex;
@@ -2633,6 +2664,9 @@ body.light-mode .blogs {
     font-size: 50px;
     line-height: 65px;
   }
+  button#scrollDown{
+    display: block;
+  }
 
 
 
@@ -2642,7 +2676,7 @@ body.light-mode .blogs {
 
     .about-home-inr-cont {
       flex-direction: column;
-      
+
       .about-sec-right .gallery {
         position: unset;
       }
@@ -2650,19 +2684,21 @@ body.light-mode .blogs {
       .about-sec-left {
         width: 100%;
       }
+
       .about-sec-right {
         width: 100%;
 
         .short-description {
           position: unset;
         }
+
         .gallery {
           flex-wrap: wrap;
         }
 
       }
-      
-    } 
+
+    }
   }
 
 
@@ -3071,10 +3107,11 @@ body.light-mode .blogs {
   .stikey-side-popup {
     .stickey-form {
       top: 0;
+
       .class-stickey-popup-formss.second-form {
         .form-inner {
           gap: 15px;
-       }
+        }
       }
 
       .form-group {
@@ -3084,25 +3121,30 @@ body.light-mode .blogs {
         label {
           font-size: 20px;
         }
+
         .form-input-design {
           font-size: 16px;
           padding: 12px;
         }
-      } 
+      }
+
       .next-btn-st-form {
         button.proceed-button {
           padding: 5px 35px;
           font-size: 18px;
         }
+
         justify-content: space-around;
         gap: 0;
-      } 
+      }
+
       .option-container {
         label {
           font-size: 22px;
           line-height: 35px;
         }
       }
+
       .step {
         h3 {
           font-size: 25px;
@@ -3249,6 +3291,12 @@ body.light-mode .blogs {
       }
     }
   }
+  button#scrollDown {
+   
+    width: 100px;
+   
+    animation: moveUpDown 2s linear infinite;
+  }
 
 
 }
@@ -3270,28 +3318,32 @@ body.light-mode .blogs {
     .stickey-form {
 
       top: 0;
+
       .form-group {
         label {
           font-size: 18px;
         }
+
         .form-input-design {
           font-size: 14px;
           padding: 12px;
-        } 
-      } 
+        }
+      }
+
       .next-btn-st-form {
         button.proceed-button {
           padding: 5px 25px;
           font-size: 16px;
         }
-      } 
-      
+      }
+
       .option-container {
         label {
           font-size: 18px;
           line-height: 25px;
         }
       }
+
       .step {
         h3 {
           font-size: 20px;
