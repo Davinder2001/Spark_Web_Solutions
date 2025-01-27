@@ -1401,6 +1401,7 @@ body.light-mode .about-us-page {
     gap: 20px;
     position: relative;
     left: -167px;
+    z-index: 999;
   }
 
   .description-column-main .thumbnail.active .overlay {
@@ -2365,7 +2366,6 @@ button.navbar-buttons-main.navigation-contact-btn {
   }
 
   .first-section .paragraph-section p {
-    font-size: 30px;
     padding-right: 200px;
   }
 
@@ -2374,10 +2374,6 @@ button.navbar-buttons-main.navigation-contact-btn {
     line-height: 81px;
   }
 
-  .second-section p {
-    font-size: 30px;
-    line-height: 53px;
-  }
 
   .second-section {
     margin: 100px auto;
@@ -2681,7 +2677,10 @@ body.light-mode .blogs {
   button#scrollDown{
     display: block;
   }
-
+  p {
+    font-size: 25px;
+    line-height: 40px;
+  }
 
 
   // Testimonial CSS Responsive
@@ -2829,13 +2828,21 @@ body.light-mode .blogs {
         }
       }
 
-      .paragraph-section {
-        p {
-          padding: 0;
-        }
+  
+    }
+    .paragraph-section {
+      p {
+        padding: 0 !important;
       }
     }
-
+    .second-section {
+      margin: 50px auto;
+      h2 {
+        font-size: 40px;
+        line-height: 55px;
+      }
+    } 
+    
     .courses-main-outer {
       .tabs-container-btns {
         display: flex;
@@ -2844,6 +2851,9 @@ body.light-mode .blogs {
         width: 100%;
 
         .tabs-button {
+
+          font-size: 22px;
+
           flex: 0 1 calc(50% - 16px);
           box-sizing: border-box;
 
@@ -3142,6 +3152,11 @@ body.light-mode .blogs {
     font-size: 35px;
     line-height: 55px;
   }
+  p {
+    font-size: 22px;
+    line-height: 35px;
+  }
+
 
 
   .testimonials {
@@ -3284,10 +3299,23 @@ body.light-mode .blogs {
   .internship {
     .tabs-container-btns {
       .tabs-button {
-        font-size: 18px;
+        font-size: 20px !important;
       }
     }
 
+    .single-course-wrapper {
+      h3 { 
+        font-size: 25px;
+        line-height: 35px;
+      }
+      p {
+        margin: 5px 0;
+        line-height: 35px;
+      }
+      button {
+        font-size: 22px !important;
+      }
+    } 
     .page-title {
 
       display: flex;
@@ -3319,10 +3347,18 @@ body.light-mode .blogs {
         }
       }
     }
-  }
+    .second-section {
 
+  
 
+      h2 {
+        font-size: 30px;
+        line-height: 45px;
+      }
+    } 
+  }  
 
+    
 
 
   .header {
@@ -3455,6 +3491,12 @@ body.light-mode .blogs {
     font-size: 25px;
     line-height: 35px;
   }
+
+  p {
+    font-size: 18px;
+    line-height: 25px;
+  }
+
 
 
   .stikey-side-popup {
@@ -3603,10 +3645,30 @@ body.light-mode .blogs {
   }
 
   .internship {
+
+    .second-section {
+      h2 { 
+        font-size: 25px;
+        line-height: 35px;
+      }
+    }
     .tabs-container-btns {
       .tabs-button {
-        font-size: 16px;
+        font-size: 18px !important;
         padding: 10px;
+      }
+    }
+    .single-course-wrapper {
+      padding: 22px;
+      p {
+        font-size: 18px;
+        line-height: 30px;
+      }
+      h3 {
+        font-size: 20px;
+      }
+      button {
+        font-size: 20px !important;
       }
     }
   }
