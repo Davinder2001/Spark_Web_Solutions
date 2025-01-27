@@ -20,7 +20,10 @@ const AboutUsMain = () => {
   const handleThumbnailClick = (newMainImage) => {
     // Set loading state to show loader overlay
     setIsLoading(true);
-    setMainImage(newMainImage);
+    
+      
+      setMainImage(newMainImage);
+    
   };
 
   // When the image has finished loading, hide the loader.
@@ -50,7 +53,7 @@ const AboutUsMain = () => {
                   height={100}
                   onLoadingComplete={handleImageLoad}
                 />
-                {/* Loader overlay */}
+                
                 {isLoading && (
                   <div className="image-loader">
             

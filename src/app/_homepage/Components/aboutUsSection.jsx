@@ -23,6 +23,7 @@ const AboutUsSection = () => {
 
   return (
     <div className='container about-us-home'>
+      <h1 className='mian-about-heading' >{mainData?.heading}</h1>
       <p className='main-description'>{mainData?.main_description}</p>
       <div className="about-home-inr-cont">
         {/* Left side: Preview image */}
