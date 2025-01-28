@@ -3194,24 +3194,30 @@ body.light-mode .blogs {
   .intership-popup-outer {
     .internsip-popup-inner {
       padding: 30px !important;
-    }}
+    }
+  }
+
   .internsip-popup {
     .internsip-popup-form {
-      gap:12px;
+      gap: 12px;
+
       .form-group {
         gap: 5px;
+
         label {
           font-size: 20px;
         }
+
         input {
           padding: 12px;
           font-size: 14px;
         }
+
         select {
           padding: 12px;
           font-size: 14px;
         }
-      } 
+      }
     }
   }
 
@@ -3228,10 +3234,12 @@ body.light-mode .blogs {
       .service-popup-form {
         .service-popup-form-inner {
           .form-group {
-            gap :1px;
+            gap: 1px;
+
             label {
               font-size: 20px;
             }
+
             input {
               font-size: 18px;
               padding: 12px;
@@ -3547,16 +3555,17 @@ body.light-mode .blogs {
     .enquery-popup-container {
 
       .form-control {
-        gap:5px;
+        gap: 5px;
 
         label {
           font-size: 20px;
         }
+
         input {
           font-size: 16px;
           padding: 12px;
         }
-      } 
+      }
 
       .enquery-popup-content {
         padding: 20px;
@@ -3649,48 +3658,72 @@ body.light-mode .blogs {
   }
 
 
+  .header-section {
+    .header {
+      .menu-item {
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
 
+      .hamburger-menu {
+        svg {
+          height: 25px;
+          width: 25px;
+        }
+      }
+    }
+  }
+
+  
   .intership-popup-outer {
     .internsip-popup-inner {
       padding: 20px !important;
-    }}
+    }
+  }
+
   .internsip-popup {
-    
+
     .internsip-popup-form {
-      gap:5px;
+      gap: 5px;
+
       .form-group {
         label {
           font-size: 18px;
         }
+
         input {
           padding: 10px;
           font-size: 14px;
         }
+
         select {
           padding: 10px;
           font-size: 14px;
         }
-      } 
+      }
     }
   }
 
 
-   // Popup Break
-   .enquery-popup {
+  // Popup Break
+  .enquery-popup {
     .enquery-popup-container {
 
       .form-control {
-        gap:5px;
+        gap: 5px;
         margin-top: 10px;
 
         label {
           font-size: 16px;
         }
+
         input {
           font-size: 14px;
           padding: 10px;
         }
-      } 
+      }
 
 
     }
@@ -3702,6 +3735,7 @@ body.light-mode .blogs {
       .service-popup-form {
         .service-popup-form-inner {
           gap: 5px;
+
           .form-group {
             label {
               font-size: 16px;
@@ -3719,8 +3753,8 @@ body.light-mode .blogs {
 
 
       .class-stickey-popup-formss.second-form .form-inner {
-        gap:5px ;
-          
+        gap: 5px;
+
       }
 
 
