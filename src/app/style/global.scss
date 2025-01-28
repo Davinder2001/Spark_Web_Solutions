@@ -3191,10 +3191,51 @@ body.light-mode .blogs {
   }
 
 
+
+  .internsip-popup {
+    .internsip-popup-form {
+      gap:12px;
+      .form-group {
+        gap: 5px;
+        label {
+          font-size: 20px;
+        }
+        input {
+          padding: 12px;
+          font-size: 14px;
+        }
+        select {
+          padding: 12px;
+          font-size: 14px;
+        }
+      } 
+    }
+  }
+
   .about-us-home {
     .main-description {
       font-size: 22px;
       line-height: 35px;
+    }
+  }
+
+
+  .service-popup {
+    .service-popup-content {
+      .service-popup-form {
+        .service-popup-form-inner {
+          .form-group {
+            gap :1px;
+            label {
+              font-size: 20px;
+            }
+            input {
+              font-size: 18px;
+              padding: 12px;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -3231,10 +3272,10 @@ body.light-mode .blogs {
 
       .form-group {
 
-        gap: 20px;
+        gap: 5px;
 
         label {
-          font-size: 20px;
+          font-size: 18px;
         }
 
         .form-input-design {
@@ -3500,8 +3541,20 @@ body.light-mode .blogs {
 
   // Popup Break
   .enquery-popup {
-
     .enquery-popup-container {
+
+      .form-control {
+        gap:5px;
+
+        label {
+          font-size: 20px;
+        }
+        input {
+          font-size: 16px;
+          padding: 12px;
+        }
+      } 
+
       .enquery-popup-content {
         padding: 20px;
       }
@@ -3588,7 +3641,50 @@ body.light-mode .blogs {
     line-height: 25px;
   }
 
+  .close-btn-x {
+    width: 20px;
+  }
 
+
+  .internsip-popup {
+    .internsip-popup-form {
+      gap:5px;
+      .form-group {
+        label {
+          font-size: 18px;
+        }
+        input {
+          padding: 10px;
+          font-size: 14px;
+        }
+        select {
+          padding: 10px;
+          font-size: 14px;
+        }
+      } 
+    }
+  }
+
+
+   // Popup Break
+   .enquery-popup {
+    .enquery-popup-container {
+
+      .form-control {
+        gap:5px;
+
+        label {
+          font-size: 16px;
+        }
+        input {
+          font-size: 14px;
+          padding: 10px;
+        }
+      } 
+
+
+    }
+  }
 
 
   .service-popup {
@@ -3596,9 +3692,8 @@ body.light-mode .blogs {
       .service-popup-form {
         .service-popup-form-inner {
           .form-group {
-
             label {
-              font-size: 18px;
+              font-size: 16px;
             }
           }
         }
@@ -3611,16 +3706,24 @@ body.light-mode .blogs {
   .stikey-side-popup {
     .stickey-form {
 
+
+      .class-stickey-popup-formss.second-form .form-inner {
+        gap:5px ;
+          
+      }
+
+
+      padding: 20px;
       top: 0;
 
       .form-group {
         label {
-          font-size: 18px;
+          font-size: 16px;
         }
 
         .form-input-design {
           font-size: 14px;
-          padding: 12px;
+          padding: 10px;
         }
       }
 
@@ -3661,17 +3764,15 @@ body.light-mode .blogs {
 
 
   .about-us-page {
-
     .about-us-main {
       .short-description {
         p {
           font-size: 18px;
           line-height: 25px;
         }
-
       }
-
     }
+
 
     .para-section {
 
