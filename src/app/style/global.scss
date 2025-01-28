@@ -3191,7 +3191,10 @@ body.light-mode .blogs {
   }
 
 
-
+  .intership-popup-outer {
+    .internsip-popup-inner {
+      padding: 30px !important;
+    }}
   .internsip-popup {
     .internsip-popup-form {
       gap:12px;
@@ -3646,7 +3649,13 @@ body.light-mode .blogs {
   }
 
 
+
+  .intership-popup-outer {
+    .internsip-popup-inner {
+      padding: 20px !important;
+    }}
   .internsip-popup {
+    
     .internsip-popup-form {
       gap:5px;
       .form-group {
@@ -3672,6 +3681,7 @@ body.light-mode .blogs {
 
       .form-control {
         gap:5px;
+        margin-top: 10px;
 
         label {
           font-size: 16px;
@@ -3691,6 +3701,7 @@ body.light-mode .blogs {
     .service-popup-content {
       .service-popup-form {
         .service-popup-form-inner {
+          gap: 5px;
           .form-group {
             label {
               font-size: 16px;
