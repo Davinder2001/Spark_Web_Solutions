@@ -2694,6 +2694,21 @@ body.light-mode .blogs {
   }
 
 
+
+  button.sticky-form-button {
+    bottom: 10px;
+    right: 10px;
+    transform: unset;
+    top: unset;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+
   // Testimonial CSS Responsive
 
   .testimonials {
@@ -3170,6 +3185,34 @@ body.light-mode .blogs {
       }
     }
   }
+
+  .footer {
+    .footer-inner {
+      .section {
+        p {
+          font-size: 22px;
+        }
+
+        .open-map {
+          font-size: 22px;
+        }
+
+        h3 {
+          font-size: 28px;
+        }
+      }
+    }
+
+    .forth-section {
+      img {
+        max-width: 200px;
+      }
+    }
+  }
+
+
+
+
 }
 
 
@@ -3523,6 +3566,37 @@ body.light-mode .blogs {
       }
     }
   }
+
+  .footer {
+    margin: 0;
+
+    .footer-inner {
+      padding: 30px;
+
+      .section {
+        p {
+          font-size: 20px;
+        }
+
+        .open-map {
+          font-size: 20px;
+        }
+
+        h3 {
+          font-size: 25px;
+        }
+      }
+    }
+
+    .forth-section {
+      img {
+        max-width: 200px;
+      }
+    }
+  }
+
+
+
 }
 
 
@@ -3657,6 +3731,9 @@ body.light-mode .blogs {
     width: 20px;
   }
 
+  .mobile-menu {
+    top: 56px;
+  }
 
   .header-section {
     .header {
@@ -3676,7 +3753,7 @@ body.light-mode .blogs {
     }
   }
 
-  
+
   .intership-popup-outer {
     .internsip-popup-inner {
       padding: 20px !important;
@@ -3890,12 +3967,17 @@ body.light-mode .blogs {
 
 
 
+  .header-section {
 
-  .header {
-    .header-logo-main {
-      img {
-        max-width: 200px;
-        width: 100%;
+    border-bottom: 1px solid #f24b74;
+
+    .header {
+      .header-logo-main {
+        img {
+          max-width: 200px;
+          width: 100%;
+          height: 55px;
+        }
       }
     }
   }
@@ -3999,4 +4081,34 @@ body.light-mode .blogs {
       }
     }
   }
+
+  .footer {
+
+    .footer-inner {
+        padding: 25px;
+      .section {
+
+        gap:0;
+
+        p {
+          font-size: 18px;
+        }
+
+        .open-map {
+          font-size: 18px;
+        }
+
+        h3 {
+          font-size: 22px;
+        }
+      }
+    }
+
+    .forth-section {
+      img {
+        max-width: 175px;
+      }
+    }
+  }
+
 }
