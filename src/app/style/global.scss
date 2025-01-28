@@ -1912,7 +1912,12 @@ button.sticky-form-button {
   z-index: 99;
   cursor: pointer;
   transition: background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1), color 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  // display: none;
+  
+
+  img {
+    display: none;
+  }
+
 }
 
 button.sticky-form-button:hover {
@@ -2696,16 +2701,27 @@ body.light-mode .blogs {
 
 
   button.sticky-form-button {
-    bottom: 10px;
+    bottom: 20px;
     right: 10px;
     transform: unset;
     top: unset;
-    height: 80px;
-    width: 80px;
     border-radius: 50%;
     padding: 10px;
     font-size: 14px;
     text-align: center;
+    height: 70px;
+    width:70px;
+
+    .enq-now-text {
+      display: none;
+    }
+
+    img {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+
   }
 
 
@@ -3234,6 +3250,12 @@ body.light-mode .blogs {
   }
 
 
+  button.sticky-form-button {
+    height: 50px;
+    width: 50px;
+  }
+
+
   .intership-popup-outer {
     .internsip-popup-inner {
       padding: 30px !important;
@@ -3654,8 +3676,8 @@ body.light-mode .blogs {
   button#scrollDown {
 
     width: 100px;
-
     animation: moveUpDown 2s linear infinite;
+
   }
 
   .testimonials {
@@ -3671,7 +3693,6 @@ body.light-mode .blogs {
 
 
   .service-popup {
-
 
     .service-popup-content {
       padding: 20px;
@@ -3700,7 +3721,6 @@ body.light-mode .blogs {
           }
         }
       }
-
     }
   }
 

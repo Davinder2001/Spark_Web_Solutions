@@ -124,7 +124,10 @@ const HeaderContent = () => {
             <h3>{mainData?.contact_no}</h3>
           </Link>
           <button onClick={toggleStickyForm} className="sticky-form-button">
-            Enquiry Now
+            <img src='/images/support.png' />
+            <span className='enq-now-text'>
+              Enquiry Now
+            </span> 
           </button>
           <div className="mobile-call mobile-menu-1-icons">
             <div className="menu-item" onClick={togglePopup}>
