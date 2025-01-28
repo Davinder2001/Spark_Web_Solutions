@@ -194,11 +194,14 @@ button#scrollDown img {
 }
 
 @keyframes moveUpDown {
-  0%, 100% {
-    transform: translateY(0);  
+
+  0%,
+  100% {
+    transform: translateY(0);
   }
+
   50% {
-    transform: translateY(-10px);  
+    transform: translateY(-10px);
   }
 }
 
@@ -375,6 +378,7 @@ p {
   .mian-about-heading {
     display: none;
   }
+
   .main-description {
     font-size: 40px;
     color: #FFFFFFA6;
@@ -1553,7 +1557,7 @@ body.light-mode .about-us-page {
 
     button.custom-prev.testimonial-button {
       transform: rotate(180deg);
-  }
+    }
 
     .testimonial-heading {
       display: flex;
@@ -1564,9 +1568,10 @@ body.light-mode .about-us-page {
         cursor: pointer;
         border: none;
         background: transparent;
+
         img {
           width: 50px;
-          height:50px;
+          height: 50px;
           filter: brightness(21.5);
         }
       }
@@ -2678,9 +2683,11 @@ body.light-mode .blogs {
     font-size: 50px;
     line-height: 65px;
   }
-  button#scrollDown{
+
+  button#scrollDown {
     display: block;
   }
+
   p {
     font-size: 25px;
     line-height: 40px;
@@ -2694,10 +2701,10 @@ body.light-mode .blogs {
       .testimonial-heading {
         h3 {
           font-size: 30px;
-        }    
-      } 
-    }   
-  } 
+        }
+      }
+    }
+  }
 
 
   .about-us-home {
@@ -2707,6 +2714,7 @@ body.light-mode .blogs {
     .mian-about-heading {
       display: block;
     }
+
     .main-description {
       font-size: 25px;
       line-height: 40px;
@@ -2848,21 +2856,24 @@ body.light-mode .blogs {
         }
       }
 
-  
+
     }
+
     .paragraph-section {
       p {
         padding: 0 !important;
       }
     }
+
     .second-section {
       margin: 50px auto;
+
       h2 {
         font-size: 40px;
         line-height: 55px;
       }
-    } 
-    
+    }
+
     .courses-main-outer {
       .tabs-container-btns {
         display: flex;
@@ -2930,7 +2941,7 @@ body.light-mode .blogs {
     .para-section {
 
       margin: 0;
-      
+
       .card-heading {
         h2 {
           font-size: 50px;
@@ -3173,6 +3184,7 @@ body.light-mode .blogs {
     font-size: 35px;
     line-height: 55px;
   }
+
   p {
     font-size: 22px;
     line-height: 35px;
@@ -3197,14 +3209,14 @@ body.light-mode .blogs {
             height: 30px;
             width: 30px;
           }
-        } 
+        }
 
         h3 {
           font-size: 25px;
-        }    
-      } 
-    }   
-  } 
+        }
+      }
+    }
+  }
 
 
   .stikey-side-popup {
@@ -3294,7 +3306,7 @@ body.light-mode .blogs {
           font-size: 35px;
           line-height: 55px;
         }
-      } 
+      }
     }
 
     .para-section {
@@ -3305,12 +3317,12 @@ body.light-mode .blogs {
           line-height: 55px;
           margin: 20px 0;
         }
-      } 
-      
+      }
+
       .about-card {
         padding: 20px;
-        
-        .desc-inner{
+
+        .desc-inner {
 
           .card-description {
             p {
@@ -3319,9 +3331,11 @@ body.light-mode .blogs {
             }
           }
         }
-      } 
+      }
     }
   }
+
+
 
 
 
@@ -3333,22 +3347,26 @@ body.light-mode .blogs {
     }
 
     .single-course-wrapper {
-      h3 { 
+      h3 {
         font-size: 25px;
         line-height: 35px;
       }
+
       p {
         margin: 5px 0;
         line-height: 35px;
       }
+
       button {
         font-size: 22px !important;
       }
-    } 
+    }
+
     .page-title {
 
       display: flex;
       flex-direction: column;
+      margin: 0px 0px 30px 0px;
 
 
       .programe-img {
@@ -3357,6 +3375,8 @@ body.light-mode .blogs {
 
         img {
           margin: 0;
+          height: 80px;
+          width: 80px;
         }
       }
 
@@ -3376,18 +3396,19 @@ body.light-mode .blogs {
         }
       }
     }
+
     .second-section {
 
-  
+      margin: 30px 0 0 0;
 
       h2 {
         font-size: 30px;
         line-height: 45px;
       }
-    } 
-  }  
+    }
+  }
 
-    
+
 
 
   .header {
@@ -3435,11 +3456,12 @@ body.light-mode .blogs {
 
       .top-big-image {
         height: 500px;
+
         img {
           max-height: 100%;
         }
 
-      } 
+      }
 
       .description-column-main {
         .main-description p {
@@ -3478,20 +3500,22 @@ body.light-mode .blogs {
 
   // Popup Break
   .enquery-popup {
+
     .enquery-popup-container {
+      .enquery-popup-content {
+        padding: 20px;
+      }
+
       .container-for-four {
         grid-template-columns: 1fr;
       }
-
-      // .enquery-popup-content {
-      //   top: 1%;
-      // }
     }
   }
+
   button#scrollDown {
-   
+
     width: 100px;
-   
+
     animation: moveUpDown 2s linear infinite;
   }
 
@@ -3501,12 +3525,50 @@ body.light-mode .blogs {
         h3 {
           font-size: 22px;
           line-height: 30px;
-        }    
-      } 
-    }   
-  } 
+        }
+      }
+    }
+  }
 
 
+  .service-popup {
+
+
+    .service-popup-content {
+      padding: 20px;
+
+      .service-popup-form {
+        .service-popup-form-inner {
+          gap: 12px;
+
+
+          .form-group {
+            gap: 1px;
+
+            label {
+              font-size: 20px;
+            }
+
+            input {
+              padding: 10px;
+              font-size: 14px;
+            }
+
+            select {
+              font-size: 14px;
+              padding: 10px;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+  .hover-effect-btn {
+    font-size: 18px;
+    padding: 8px 50px;
+  }
 }
 
 
@@ -3524,6 +3586,24 @@ body.light-mode .blogs {
   p {
     font-size: 18px;
     line-height: 25px;
+  }
+
+
+
+
+  .service-popup {
+    .service-popup-content {
+      .service-popup-form {
+        .service-popup-form-inner {
+          .form-group {
+
+            label {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
   }
 
 
@@ -3601,7 +3681,7 @@ body.light-mode .blogs {
             font-size: 25px;
             margin: 10px 0;
           }
-        } 
+        }
       }
 
       .about-card {
@@ -3611,8 +3691,8 @@ body.light-mode .blogs {
             img {
               max-height: 220px;
             }
-          } 
-        } 
+          }
+        }
 
         .desc-inner {
           .card-description {
@@ -3620,10 +3700,10 @@ body.light-mode .blogs {
               font-size: 18px;
               line-height: 25px;
             }
-          } 
-        } 
-      } 
-    } 
+          }
+        }
+      }
+    }
 
 
     .image-gallery-container {
@@ -3633,12 +3713,12 @@ body.light-mode .blogs {
       .top-big-image {
         height: 300px;
 
-        }
+      }
 
-        .image-gallery.inline-thumbnails {
-          flex-wrap: nowrap;
-          transform: scale(0.5);
-        }
+      .image-gallery.inline-thumbnails {
+        flex-wrap: nowrap;
+        transform: scale(0.5);
+      }
 
       .description-column-main {
 
@@ -3652,6 +3732,7 @@ body.light-mode .blogs {
             font-size: 18px;
             line-height: 25px;
           }
+
           h2 {
             font-size: 25px;
             line-height: 35px;
@@ -3675,27 +3756,44 @@ body.light-mode .blogs {
 
   .internship {
 
+    .page-title {
+
+      .programe-img {
+        img {
+          height: 50px;
+          width: 50px;
+        }
+      }
+    }
+
     .second-section {
-      h2 { 
+      h2 {
         font-size: 25px;
         line-height: 35px;
       }
     }
+
     .tabs-container-btns {
       .tabs-button {
         font-size: 18px !important;
         padding: 10px;
+        width: 100%;
+        flex-basis: unset !important;
       }
     }
+
     .single-course-wrapper {
       padding: 22px;
+
       p {
         font-size: 18px;
         line-height: 30px;
       }
+
       h3 {
         font-size: 20px;
       }
+
       button {
         font-size: 20px !important;
       }
@@ -3728,10 +3826,10 @@ body.light-mode .blogs {
         h3 {
           font-size: 18px;
           line-height: 30px;
-        }    
-      } 
-    }   
-  } 
+        }
+      }
+    }
+  }
 
 
   .services-page {
