@@ -47,9 +47,7 @@ div#section_section {
     font-size: 25px;
 }
 
-.description_area p {
-    font-size: 18px;
-}
+
 
 .des_flex {
     display: flex;
@@ -66,12 +64,24 @@ div#section_section {
 
 .tab_left_img {
     position: relative;
+    top: -79px;
+}
+h1.process_c {
+    margin-bottom: -42px;
+    margin-top: 20px;
 }
 
+
+
 .tab_left_img img {
-    transform: scale(0.85);
+    transform: scale(0.6) !important;
     position: absolute;
-    left: -222px;
+    left: -197px;
+}
+
+h1.process_c {
+    margin-bottom: -42px;
+    margin-top: 63px;
 }
 
 
@@ -81,13 +91,14 @@ div#section_section {
     justify-content: space-between;
     width: 100%;
     align-items: flex-start;
+    cursor: pointer;
 }
 
 .tabs_holder {
-    height: 650px;
+    height: 557px;
     position: relative;
     display: flex;
-    margin-top: 172px;
+    margin-top: 140px;
     margin-left: 160px;
 }
 
@@ -96,9 +107,8 @@ div#section_section {
 }
 
 .tab {
-
     background: #583C43;
-    padding: 12px;
+    padding: 8px;
     border-radius: 4px;
     display: flex;
     justify-content: center;

@@ -73,20 +73,22 @@ function HomePage() {
         <ThreeRenderScene />
       </div>
 
-      <div className="second-section-animated" ref={secondSectionRef}>
-        <div className={`${section_1} section_outer_wrapper`}>
-          <SecondSectionOld section_1={section_1} />
-        </div>
-      </div>
-      <div className="second-section-redponsive container" ref={secondSectionRef}>
-        <SecondSectionResponsive />
-      </div>
-
-
       <div className={`${section_2} section_outer_wrapper`}>
         <AboutUsSection />
       </div>
 
+
+      <div className="second-section-animated" ref={secondSectionRef}>
+        <div className={`${section_1} section_outer_wrapper`}>
+          <SecondSectionOld section_1={section_1} />
+        </div>
+      </div>     
+     
+
+      <div className="second-section-redponsive container" ref={secondSectionRef}>
+        <SecondSectionResponsive />
+      </div>
+      
       <div className={`${section_3} section_outer_wrapper`}>
         <OurServices section_3={section_3} />
       </div>

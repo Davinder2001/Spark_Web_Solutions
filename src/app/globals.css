@@ -44,6 +44,20 @@ body {
   background: #19191E;
 }
 
+
+.left_section h1 {
+  line-height: 30px;
+  margin-top: 72px;
+    margin-bottom: -47px;
+}
+
+.description_area p {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+
+
 .lil-gui {
   right: 0px !important;
   bottom: 0px;
@@ -57,27 +71,33 @@ button#toggle {
   filter: invert(1);
   border: unset;
   padding: 0;
-
   transform: scale(0.5);
   cursor: pointer;
-  right: 0px;
+  right: 40px;
+}
+
+a.desktop-call span {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+
+a.desktop-call span svg {
+  color: #f24b74;
+  font-size: 23px;
+  transform: rotate(0deg);
 }
 
 button#toggle img {
   mix-blend-mode: color-burn;
   filter: invert(0);
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
 }
 
 
 
-
-
-
-
 .navigation_buttons button p {
-
   border-radius: 100%;
   transition: background 0.3s ease, height 0.3s ease, width 0.3s ease;
 }
